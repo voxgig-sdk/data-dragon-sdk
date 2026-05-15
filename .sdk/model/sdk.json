@@ -1,0 +1,1069 @@
+{
+  "name": "data-dragon",
+  "origin": "voxgig-sdk",
+  "def": "data-dragon_0.1.0.json",
+  "main": {
+    "kit": {
+      "info": {
+        "contact": {
+          "url": "https://riot-api-libraries.readthedocs.io/en/latest/ddragon.html"
+        },
+        "description": "Data Dragon is a static data API providing information and images related to champions, runes, and items in League of Legends. It allows developers to access and download data files, enabling them to integrate game-related information into their applications.",
+        "servers": [
+          {
+            "description": "Data Dragon API Server",
+            "url": "https://ddragon.leagueoflegends.com"
+          }
+        ],
+        "title": "Data Dragon API",
+        "version": "1.0.0"
+      },
+      "config": {
+        "auth": {
+          "prefix": "Bearer"
+        },
+        "headers": {
+          "content-type": "application/json"
+        }
+      },
+      "entity": {
+        "champion": {
+          "alias": {
+            "field": {}
+          },
+          "name": "champion",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": "Ahri.png",
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "champion_image",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "12.6.1",
+                        "kind": "param",
+                        "name": "version",
+                        "orig": "version",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/cdn/{version}/img/champion/{championImage}",
+                  "parts": [
+                    "cdn",
+                    "{version}",
+                    "img",
+                    "champion",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "championImage": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id",
+                      "version"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "cdn"
+              ]
+            ]
+          },
+          "active": true,
+          "fields": []
+        },
+        "data_champion": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "data",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "format",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "version",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "data_champion",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": "en_US",
+                        "kind": "param",
+                        "name": "language",
+                        "orig": "language",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "12.6.1",
+                        "kind": "param",
+                        "name": "version",
+                        "orig": "version",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/cdn/{version}/data/{language}/champion.json",
+                  "parts": [
+                    "cdn",
+                    "{version}",
+                    "data",
+                    "{language}",
+                    "champion.json"
+                  ],
+                  "select": {
+                    "exist": [
+                      "language",
+                      "version"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "cdn",
+                "data"
+              ]
+            ]
+          },
+          "active": true
+        },
+        "data_item": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "data",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "version",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "data_item",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": "en_US",
+                        "kind": "param",
+                        "name": "language",
+                        "orig": "language",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "12.6.1",
+                        "kind": "param",
+                        "name": "version",
+                        "orig": "version",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/cdn/{version}/data/{language}/item.json",
+                  "parts": [
+                    "cdn",
+                    "{version}",
+                    "data",
+                    "{language}",
+                    "item.json"
+                  ],
+                  "select": {
+                    "exist": [
+                      "language",
+                      "version"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "cdn",
+                "data"
+              ]
+            ]
+          },
+          "active": true
+        },
+        "data_rune": {
+          "alias": {
+            "field": {}
+          },
+          "name": "data_rune",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": "en_US",
+                        "kind": "param",
+                        "name": "language",
+                        "orig": "language",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "12.6.1",
+                        "kind": "param",
+                        "name": "version",
+                        "orig": "version",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/cdn/{version}/data/{language}/rune.json",
+                  "parts": [
+                    "cdn",
+                    "{version}",
+                    "data",
+                    "{language}",
+                    "rune.json"
+                  ],
+                  "select": {
+                    "exist": [
+                      "language",
+                      "version"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "cdn",
+                "data"
+              ]
+            ]
+          },
+          "active": true,
+          "fields": []
+        },
+        "dragontail_versiontgz": {
+          "alias": {
+            "field": {}
+          },
+          "name": "dragontail_versiontgz",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": "12.6.1",
+                        "kind": "param",
+                        "name": "version",
+                        "orig": "version",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/cdn/dragontail-{version}.tgz",
+                  "parts": [
+                    "cdn",
+                    "dragontail-{version}.tgz"
+                  ],
+                  "select": {
+                    "exist": [
+                      "version"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "fields": [],
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "item": {
+          "alias": {
+            "field": {}
+          },
+          "name": "item",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": "1001.png",
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "item_image",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "12.6.1",
+                        "kind": "param",
+                        "name": "version",
+                        "orig": "version",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/cdn/{version}/img/item/{itemImage}",
+                  "parts": [
+                    "cdn",
+                    "{version}",
+                    "img",
+                    "item",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "itemImage": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id",
+                      "version"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "cdn"
+              ]
+            ]
+          },
+          "active": true,
+          "fields": []
+        },
+        "region": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "cdn",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "n",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "v",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "region",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": "na",
+                        "kind": "param",
+                        "name": "region",
+                        "orig": "region",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/realms/{region}.json",
+                  "parts": [
+                    "realms",
+                    "{region}.json"
+                  ],
+                  "select": {
+                    "exist": [
+                      "region"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "realm"
+              ]
+            ]
+          },
+          "active": true
+        },
+        "version": {
+          "alias": {
+            "field": {}
+          },
+          "name": "version",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "method": "GET",
+                  "orig": "/api/versions.json",
+                  "parts": [
+                    "api",
+                    "versions.json"
+                  ],
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {},
+                  "select": {}
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "fields": [],
+          "relations": {
+            "ancestors": []
+          }
+        }
+      },
+      "feature": {
+        "test": {
+          "name": "test",
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1",
+          "active": true,
+          "config": {
+            "options": {
+              "active": false
+            }
+          },
+          "hook": {
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            }
+          },
+          "target": {
+            "ts": {
+              "deps": {}
+            },
+            "go": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            }
+          }
+        }
+      },
+      "flow": {
+        "BasicChampionFlow": {
+          "entity": "champion",
+          "kind": "basic",
+          "name": "BasicChampionFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "champion_ref01",
+                "srcdatavar": "champion_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "champion01",
+                "version": "version01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-champion_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicChampionFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicDataChampionFlow": {
+          "entity": "data_champion",
+          "kind": "basic",
+          "name": "BasicDataChampionFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "data_champion_ref01",
+                "srcdatavar": "data_champion_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "data_champion01",
+                "version": "version01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-data_champion_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicDataChampionFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicDataItemFlow": {
+          "entity": "data_item",
+          "kind": "basic",
+          "name": "BasicDataItemFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "data_item_ref01",
+                "srcdatavar": "data_item_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "data_item01",
+                "version": "version01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-data_item_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicDataItemFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicDataRuneFlow": {
+          "entity": "data_rune",
+          "kind": "basic",
+          "name": "BasicDataRuneFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "data_rune_ref01",
+                "srcdatavar": "data_rune_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "data_rune01",
+                "version": "version01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-data_rune_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicDataRuneFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicDragontailVersiontgzFlow": {
+          "entity": "dragontail_versiontgz",
+          "kind": "basic",
+          "name": "BasicDragontailVersiontgzFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "dragontail_versiontgz_ref01",
+                "srcdatavar": "dragontail_versiontgz_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "version": "version01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-dragontail_versiontgz_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicDragontailVersiontgzFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicItemFlow": {
+          "entity": "item",
+          "kind": "basic",
+          "name": "BasicItemFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "item_ref01",
+                "srcdatavar": "item_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "item01",
+                "version": "version01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-item_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicItemFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicRegionFlow": {
+          "entity": "region",
+          "kind": "basic",
+          "name": "BasicRegionFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "region_ref01",
+                "srcdatavar": "region_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "region": "region01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-region_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicRegionFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicVersionFlow": {
+          "entity": "version",
+          "kind": "basic",
+          "name": "BasicVersionFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "version_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicVersionFlow",
+          "active": true,
+          "param": {}
+        }
+      },
+      "target": {
+        "ts": {
+          "title": "TypeScript",
+          "ext": "ts",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "data-dragon"
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "deps": {
+            "dotenv": {
+              "active": true,
+              "version": "^17.4.2",
+              "kind": "dev"
+            },
+            "typescript": {
+              "active": true,
+              "version": "^5.9.3",
+              "kind": "dev"
+            },
+            "@types/node": {
+              "active": true,
+              "version": "^25.6.0",
+              "kind": "dev"
+            }
+          },
+          "name": "ts",
+          "active": true
+        },
+        "go": {
+          "title": "Golang",
+          "ext": "go",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "data-dragon"
+          },
+          "srcfeature": false,
+          "deps": {
+            "github.com/voxgig/struct": {
+              "active": true,
+              "version": "v0.0.0",
+              "replace": "./utility/struct",
+              "kind": "prod"
+            }
+          },
+          "name": "go",
+          "active": true
+        },
+        "lua": {
+          "title": "Lua",
+          "ext": "lua",
+          "comment": {
+            "line": "--"
+          },
+          "module": {
+            "name": "data-dragon"
+          },
+          "srcfeature": false,
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "version": "2.5",
+              "kind": "prod"
+            }
+          },
+          "name": "lua",
+          "active": true
+        },
+        "php": {
+          "title": "PHP",
+          "ext": "php",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "data-dragon"
+          },
+          "srcfeature": false,
+          "deps": {},
+          "name": "php",
+          "active": true
+        },
+        "py": {
+          "title": "Python",
+          "ext": "py",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "data-dragon"
+          },
+          "srcfeature": false,
+          "deps": {
+            "requests": {
+              "active": true,
+              "version": "2.33",
+              "kind": "prod"
+            }
+          },
+          "name": "py",
+          "active": true
+        },
+        "rb": {
+          "title": "Ruby",
+          "ext": "rb",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "data-dragon"
+          },
+          "srcfeature": false,
+          "deps": {
+            "voxgig-struct": {
+              "active": true,
+              "version": "0.0.10",
+              "kind": "prod"
+            },
+            "json": {
+              "active": true,
+              "version": "0",
+              "kind": "prod"
+            }
+          },
+          "name": "rb",
+          "active": true
+        }
+      },
+      "option": {}
+    },
+    "def": {
+      "desc": ""
+    },
+    "api": {
+      "guide": {},
+      "entity": {}
+    }
+  },
+  "name__orig": "data-dragon",
+  "Name": "DataDragon",
+  "name_": "data_dragon",
+  "name-": "data-dragon",
+  "NAME": "DATA-DRAGON"
+}

@@ -1,0 +1,10 @@
+# Entity Models
+
+@"champion.jsonic"
+@"data_champion.jsonic"
+@"data_item.jsonic"
+@"data_rune.jsonic"
+@"dragontail_versiontgz.jsonic"
+@"item.jsonic"
+@"region.jsonic"
+@"version.jsonic"

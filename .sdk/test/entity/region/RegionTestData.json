@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "region": {
+      "REGION00": {
+        "cdn": "s1e",
+        "n": {},
+        "v": "s20",
+        "region": "REGION01"
+      },
+      "REGION01": {
+        "cdn": "s3c",
+        "n": {},
+        "v": "s3e",
+        "region": "REGION01"
+      },
+      "REGION02": {
+        "cdn": "s5a",
+        "n": {},
+        "v": "s5c",
+        "region": "REGION01"
+      }
+    }
+  },
+  "new": {
+    "region": {
+      "region_ref01": {
+        "cdn": "s78",
+        "n": {},
+        "v": "s7a"
+      }
+    }
+  }
+}

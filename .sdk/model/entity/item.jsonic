@@ -1,0 +1,72 @@
+# Entity: item
+
+main: kit: entity: item: {
+
+  alias: field: {}
+
+  name: "item"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "1001.png"
+                kind: "param"
+                name: "id"
+                orig: "item_image"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "12.6.1"
+                kind: "param"
+                name: "version"
+                orig: "version"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/cdn/{version}/img/item/{itemImage}"
+          parts: [
+            "cdn"
+            "{version}"
+            "img"
+            "item"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              itemImage: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "version"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "cdn"
+      ]
+    ]
+  }
+
+
+
+}

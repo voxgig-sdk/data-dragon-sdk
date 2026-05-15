@@ -1,0 +1,72 @@
+# Entity: champion
+
+main: kit: entity: champion: {
+
+  alias: field: {}
+
+  name: "champion"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "Ahri.png"
+                kind: "param"
+                name: "id"
+                orig: "champion_image"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "12.6.1"
+                kind: "param"
+                name: "version"
+                orig: "version"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/cdn/{version}/img/champion/{championImage}"
+          parts: [
+            "cdn"
+            "{version}"
+            "img"
+            "champion"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              championImage: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "version"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "cdn"
+      ]
+    ]
+  }
+
+
+
+}

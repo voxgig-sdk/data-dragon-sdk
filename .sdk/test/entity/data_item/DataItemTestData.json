@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "data_item": {
+      "DATA_ITEM00": {
+        "data": {},
+        "type": "s1f",
+        "version": "s20",
+        "language": "LANGUAGE01"
+      },
+      "DATA_ITEM01": {
+        "data": {},
+        "type": "s3d",
+        "version": "s3e",
+        "language": "LANGUAGE01"
+      },
+      "DATA_ITEM02": {
+        "data": {},
+        "type": "s5b",
+        "version": "s5c",
+        "language": "LANGUAGE01"
+      }
+    }
+  },
+  "new": {
+    "data_item": {
+      "data_item_ref01": {
+        "data": {},
+        "type": "s79",
+        "version": "s7a"
+      }
+    }
+  }
+}

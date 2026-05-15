@@ -1,0 +1,68 @@
+# Entity: data_rune
+
+main: kit: entity: data_rune: {
+
+  alias: field: {}
+
+  name: "data_rune"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "en_US"
+                kind: "param"
+                name: "language"
+                orig: "language"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "12.6.1"
+                kind: "param"
+                name: "version"
+                orig: "version"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/cdn/{version}/data/{language}/rune.json"
+          parts: [
+            "cdn"
+            "{version}"
+            "data"
+            "{language}"
+            "rune.json"
+          ]
+          select: {
+            exist: [
+              "language"
+              "version"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "cdn"
+        "data"
+      ]
+    ]
+  }
+
+
+
+}

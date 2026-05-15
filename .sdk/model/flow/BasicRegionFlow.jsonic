@@ -1,0 +1,32 @@
+# BasicRegionFlow
+
+main: kit: flow: BasicRegionFlow:
+{
+  entity: "region",
+  kind: "basic",
+  name: "BasicRegionFlow",
+  step: [
+    {
+      input: {
+        ref: "region_ref01",
+        srcdatavar: "region_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        region: "region01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-region_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRegionFlow"
+}

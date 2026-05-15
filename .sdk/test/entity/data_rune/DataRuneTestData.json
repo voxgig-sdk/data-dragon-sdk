@@ -1,0 +1,23 @@
+{
+  "existing": {
+    "data_rune": {
+      "DATA_RUNE00": {
+        "language": "LANGUAGE01",
+        "version": "VERSION01"
+      },
+      "DATA_RUNE01": {
+        "language": "LANGUAGE01",
+        "version": "VERSION01"
+      },
+      "DATA_RUNE02": {
+        "language": "LANGUAGE01",
+        "version": "VERSION01"
+      }
+    }
+  },
+  "new": {
+    "data_rune": {
+      "data_rune_ref01": {}
+    }
+  }
+}

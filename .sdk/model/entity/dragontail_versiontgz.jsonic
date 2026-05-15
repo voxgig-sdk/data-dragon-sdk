@@ -1,0 +1,47 @@
+# Entity: dragontail_versiontgz
+
+main: kit: entity: dragontail_versiontgz: {
+
+  alias: field: {}
+
+  name: "dragontail_versiontgz"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "12.6.1"
+                kind: "param"
+                name: "version"
+                orig: "version"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/cdn/dragontail-{version}.tgz"
+          parts: [
+            "cdn"
+            "dragontail-{version}.tgz"
+          ]
+          select: {
+            exist: [
+              "version"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "version": {
+      "VERSION00": {},
+      "VERSION01": {},
+      "VERSION02": {}
+    }
+  },
+  "new": {
+    "version": {
+      "version_ref01": {}
+    }
+  }
+}

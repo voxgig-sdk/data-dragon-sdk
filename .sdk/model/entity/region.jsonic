@@ -1,0 +1,73 @@
+# Entity: region
+
+main: kit: entity: region: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "cdn"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "n"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "v"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "region"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "na"
+                kind: "param"
+                name: "region"
+                orig: "region"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/realms/{region}.json"
+          parts: [
+            "realms"
+            "{region}.json"
+          ]
+          select: {
+            exist: [
+              "region"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "realm"
+      ]
+    ]
+  }
+
+
+
+}

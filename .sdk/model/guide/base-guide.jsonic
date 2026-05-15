@@ -1,0 +1,58 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 8
+  metrics: count: path: 8
+  metrics: count: method: 8
+
+  entity: champion: {
+    path: "/cdn/{version}/img/champion/{championImage}": {
+      rename: param: "championImage": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: data_champion: {
+    path: "/cdn/{version}/data/{language}/champion.json": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: data_item: {
+    path: "/cdn/{version}/data/{language}/item.json": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: data_rune: {
+    path: "/cdn/{version}/data/{language}/rune.json": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: dragontail_versiontgz: {
+    path: "/cdn/dragontail-{version}.tgz": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: item: {
+    path: "/cdn/{version}/img/item/{itemImage}": {
+      rename: param: "itemImage": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: region: {
+    path: "/realms/{region}.json": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: version: {
+    path: "/api/versions.json": {
+      op: list: method: *GET
+    }
+  }
+
+}

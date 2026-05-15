@@ -1,0 +1,596 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Data Dragon API",
+    "description": "Data Dragon is a static data API providing information and images related to champions, runes, and items in League of Legends. It allows developers to access and download data files, enabling them to integrate game-related information into their applications.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://riot-api-libraries.readthedocs.io/en/latest/ddragon.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://ddragon.leagueoflegends.com",
+      "description": "Data Dragon API Server"
+    }
+  ],
+  "paths": {
+    "/cdn/dragontail-{version}.tgz": {
+      "get": {
+        "summary": "Download complete Data Dragon tarball",
+        "description": "Downloads the entire set of data and images including champions, runes, and items. File size is approximately 1 GB.",
+        "operationId": "downloadDragontail",
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "description": "Patch version (e.g., 12.6.1)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "12.6.1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved tarball",
+            "content": {
+              "application/gzip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cdn/{version}/data/{language}/champion.json": {
+      "get": {
+        "summary": "Get champion data",
+        "description": "Retrieves champion information including names, IDs, stats, and abilities for all champions.",
+        "operationId": "getChampionData",
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "description": "Patch version (e.g., 12.6.1)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "12.6.1"
+          },
+          {
+            "name": "language",
+            "in": "path",
+            "required": true,
+            "description": "Language code (e.g., en_US, ko_KR, ja_JP)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "cs_CZ",
+                "el_GR",
+                "pl_PL",
+                "ro_RO",
+                "hu_HU",
+                "en_GB",
+                "de_DE",
+                "es_ES",
+                "it_IT",
+                "fr_FR",
+                "ja_JP",
+                "ko_KR",
+                "es_MX",
+                "es_AR",
+                "pt_BR",
+                "en_US",
+                "en_AU",
+                "ru_RU",
+                "tr_TR",
+                "ms_MY",
+                "en_PH",
+                "en_SG",
+                "th_TH",
+                "vn_VN",
+                "id_ID",
+                "zh_MY",
+                "zh_CN",
+                "zh_TW"
+              ]
+            },
+            "example": "en_US"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved champion data",
+            "headers": {
+              "Accept-Charset": {
+                "description": "Response encoding (UTF-8)",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "format": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "string",
+                            "description": "Champion ID"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Champion name"
+                          },
+                          "title": {
+                            "type": "string",
+                            "description": "Champion title"
+                          },
+                          "image": {
+                            "type": "object",
+                            "properties": {
+                              "full": {
+                                "type": "string",
+                                "description": "Image filename"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cdn/{version}/data/{language}/item.json": {
+      "get": {
+        "summary": "Get item data",
+        "description": "Retrieves item information including names, stats, and descriptions for all items.",
+        "operationId": "getItemData",
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "description": "Patch version (e.g., 12.6.1)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "12.6.1"
+          },
+          {
+            "name": "language",
+            "in": "path",
+            "required": true,
+            "description": "Language code (e.g., en_US, ko_KR, ja_JP)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "cs_CZ",
+                "el_GR",
+                "pl_PL",
+                "ro_RO",
+                "hu_HU",
+                "en_GB",
+                "de_DE",
+                "es_ES",
+                "it_IT",
+                "fr_FR",
+                "ja_JP",
+                "ko_KR",
+                "es_MX",
+                "es_AR",
+                "pt_BR",
+                "en_US",
+                "en_AU",
+                "ru_RU",
+                "tr_TR",
+                "ms_MY",
+                "en_PH",
+                "en_SG",
+                "th_TH",
+                "vn_VN",
+                "id_ID",
+                "zh_MY",
+                "zh_CN",
+                "zh_TW"
+              ]
+            },
+            "example": "en_US"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved item data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "image": {
+                            "type": "object",
+                            "properties": {
+                              "full": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cdn/{version}/data/{language}/rune.json": {
+      "get": {
+        "summary": "Get rune data",
+        "description": "Retrieves rune information including names, descriptions, and effects.",
+        "operationId": "getRuneData",
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "description": "Patch version (e.g., 12.6.1)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "12.6.1"
+          },
+          {
+            "name": "language",
+            "in": "path",
+            "required": true,
+            "description": "Language code (e.g., en_US, ko_KR, ja_JP)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "cs_CZ",
+                "el_GR",
+                "pl_PL",
+                "ro_RO",
+                "hu_HU",
+                "en_GB",
+                "de_DE",
+                "es_ES",
+                "it_IT",
+                "fr_FR",
+                "ja_JP",
+                "ko_KR",
+                "es_MX",
+                "es_AR",
+                "pt_BR",
+                "en_US",
+                "en_AU",
+                "ru_RU",
+                "tr_TR",
+                "ms_MY",
+                "en_PH",
+                "en_SG",
+                "th_TH",
+                "vn_VN",
+                "id_ID",
+                "zh_MY",
+                "zh_CN",
+                "zh_TW"
+              ]
+            },
+            "example": "en_US"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved rune data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/versions.json": {
+      "get": {
+        "summary": "Get available versions",
+        "description": "Retrieves a list of all available Data Dragon versions/patches.",
+        "operationId": "getVersions",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved version list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "example": [
+                    "12.6.1",
+                    "12.5.1",
+                    "12.4.1"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/realms/{region}.json": {
+      "get": {
+        "summary": "Get realm data for region",
+        "description": "Retrieves realm information for a specific region, including the current patch version active in that region.",
+        "operationId": "getRealmData",
+        "parameters": [
+          {
+            "name": "region",
+            "in": "path",
+            "required": true,
+            "description": "Region code (e.g., na, euw, kr)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "na",
+                "euw",
+                "eune",
+                "kr",
+                "br",
+                "jp",
+                "lan",
+                "las",
+                "oce",
+                "tr",
+                "ru"
+              ]
+            },
+            "example": "na"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved realm data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "n": {
+                      "type": "object",
+                      "properties": {
+                        "champion": {
+                          "type": "string"
+                        },
+                        "item": {
+                          "type": "string"
+                        },
+                        "rune": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "v": {
+                      "type": "string",
+                      "description": "Current patch version"
+                    },
+                    "cdn": {
+                      "type": "string",
+                      "description": "CDN base URL"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cdn/{version}/img/champion/{championImage}": {
+      "get": {
+        "summary": "Get champion image",
+        "description": "Retrieves the image for a specific champion.",
+        "operationId": "getChampionImage",
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "description": "Patch version (e.g., 12.6.1)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "12.6.1"
+          },
+          {
+            "name": "championImage",
+            "in": "path",
+            "required": true,
+            "description": "Champion image filename (e.g., Ahri.png)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Ahri.png"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved champion image",
+            "content": {
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cdn/{version}/img/item/{itemImage}": {
+      "get": {
+        "summary": "Get item image",
+        "description": "Retrieves the image for a specific item.",
+        "operationId": "getItemImage",
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "description": "Patch version (e.g., 12.6.1)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "12.6.1"
+          },
+          {
+            "name": "itemImage",
+            "in": "path",
+            "required": true,
+            "description": "Item image filename (e.g., 1001.png)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "1001.png"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved item image",
+            "content": {
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "parameters": {
+      "versionParam": {
+        "name": "version",
+        "in": "path",
+        "required": true,
+        "description": "Patch version (e.g., 12.6.1)",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "languageParam": {
+        "name": "language",
+        "in": "path",
+        "required": true,
+        "description": "Language code",
+        "schema": {
+          "type": "string",
+          "enum": [
+            "cs_CZ",
+            "el_GR",
+            "pl_PL",
+            "ro_RO",
+            "hu_HU",
+            "en_GB",
+            "de_DE",
+            "es_ES",
+            "it_IT",
+            "fr_FR",
+            "ja_JP",
+            "ko_KR",
+            "es_MX",
+            "es_AR",
+            "pt_BR",
+            "en_US",
+            "en_AU",
+            "ru_RU",
+            "tr_TR",
+            "ms_MY",
+            "en_PH",
+            "en_SG",
+            "th_TH",
+            "vn_VN",
+            "id_ID",
+            "zh_MY",
+            "zh_CN",
+            "zh_TW"
+          ]
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Champion Data",
+      "description": "Endpoints related to champion information and images"
+    },
+    {
+      "name": "Item Data",
+      "description": "Endpoints related to item information and images"
+    },
+    {
+      "name": "Rune Data",
+      "description": "Endpoints related to rune information"
+    },
+    {
+      "name": "Version Management",
+      "description": "Endpoints for retrieving version and realm information"
+    }
+  ],
+  "externalDocs": {
+    "description": "Official Data Dragon Documentation",
+    "url": "https://riot-api-libraries.readthedocs.io/en/latest/ddragon.html"
+  }
+}

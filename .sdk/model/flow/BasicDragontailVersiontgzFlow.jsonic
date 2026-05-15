@@ -1,0 +1,32 @@
+# BasicDragontailVersiontgzFlow
+
+main: kit: flow: BasicDragontailVersiontgzFlow:
+{
+  entity: "dragontail_versiontgz",
+  kind: "basic",
+  name: "BasicDragontailVersiontgzFlow",
+  step: [
+    {
+      input: {
+        ref: "dragontail_versiontgz_ref01",
+        srcdatavar: "dragontail_versiontgz_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        version: "version01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-dragontail_versiontgz_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDragontailVersiontgzFlow"
+}

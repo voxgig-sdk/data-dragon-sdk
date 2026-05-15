@@ -1,0 +1,20 @@
+{
+  "existing": {
+    "champion": {
+      "CHAMPION00": {
+        "version": "VERSION01"
+      },
+      "CHAMPION01": {
+        "version": "VERSION01"
+      },
+      "CHAMPION02": {
+        "version": "VERSION01"
+      }
+    }
+  },
+  "new": {
+    "champion": {
+      "champion_ref01": {}
+    }
+  }
+}

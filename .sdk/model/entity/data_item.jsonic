@@ -1,0 +1,86 @@
+# Entity: data_item
+
+main: kit: entity: data_item: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "data"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "version"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "data_item"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "en_US"
+                kind: "param"
+                name: "language"
+                orig: "language"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "12.6.1"
+                kind: "param"
+                name: "version"
+                orig: "version"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/cdn/{version}/data/{language}/item.json"
+          parts: [
+            "cdn"
+            "{version}"
+            "data"
+            "{language}"
+            "item.json"
+          ]
+          select: {
+            exist: [
+              "language"
+              "version"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "cdn"
+        "data"
+      ]
+    ]
+  }
+
+
+
+}

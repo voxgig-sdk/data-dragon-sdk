@@ -1,0 +1,22 @@
+# BasicVersionFlow
+
+main: kit: flow: BasicVersionFlow:
+{
+  entity: "version",
+  kind: "basic",
+  name: "BasicVersionFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "version_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicVersionFlow"
+}

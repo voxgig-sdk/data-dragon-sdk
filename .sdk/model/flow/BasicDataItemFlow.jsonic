@@ -1,0 +1,33 @@
+# BasicDataItemFlow
+
+main: kit: flow: BasicDataItemFlow:
+{
+  entity: "data_item",
+  kind: "basic",
+  name: "BasicDataItemFlow",
+  step: [
+    {
+      input: {
+        ref: "data_item_ref01",
+        srcdatavar: "data_item_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "data_item01",
+        version: "version01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-data_item_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDataItemFlow"
+}

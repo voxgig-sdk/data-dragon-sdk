@@ -1,0 +1,33 @@
+# BasicDataRuneFlow
+
+main: kit: flow: BasicDataRuneFlow:
+{
+  entity: "data_rune",
+  kind: "basic",
+  name: "BasicDataRuneFlow",
+  step: [
+    {
+      input: {
+        ref: "data_rune_ref01",
+        srcdatavar: "data_rune_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "data_rune01",
+        version: "version01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-data_rune_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDataRuneFlow"
+}
