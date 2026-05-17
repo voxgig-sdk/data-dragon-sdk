@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/data-dragon-sdk/core"
+	"github.com/voxgig-sdk/data-dragon-sdk/go/core"
 )
 
 type BaseFeature struct {

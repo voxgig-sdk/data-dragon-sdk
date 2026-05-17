@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/data-dragon-sdk"
-	"github.com/voxgig-sdk/data-dragon-sdk/core"
+	sdk "github.com/voxgig-sdk/data-dragon-sdk/go"
+	"github.com/voxgig-sdk/data-dragon-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/data-dragon-sdk/go/utility/struct"
 )
 
 func TestChampionEntity(t *testing.T) {

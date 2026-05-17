@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/data-dragon-sdk/core"
+	"github.com/voxgig-sdk/data-dragon-sdk/go/core"
 )
 
 type LogFeature struct {

@@ -2,13 +2,16 @@
   "existing": {
     "dragontail_versiontgz": {
       "DRAGONTAIL_VERSIONTGZ00": {
-        "version": "VERSION01"
+        "version": "VERSION01",
+        "id": "DRAGONTAIL_VERSIONTGZ00"
       },
       "DRAGONTAIL_VERSIONTGZ01": {
-        "version": "VERSION01"
+        "version": "VERSION01",
+        "id": "DRAGONTAIL_VERSIONTGZ01"
       },
       "DRAGONTAIL_VERSIONTGZ02": {
-        "version": "VERSION01"
+        "version": "VERSION01",
+        "id": "DRAGONTAIL_VERSIONTGZ02"
       }
     }
   },

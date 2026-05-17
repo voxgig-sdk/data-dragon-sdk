@@ -5,19 +5,22 @@
         "data": {},
         "type": "s1f",
         "version": "s20",
-        "language": "LANGUAGE01"
+        "language": "LANGUAGE01",
+        "id": "DATA_ITEM00"
       },
       "DATA_ITEM01": {
         "data": {},
         "type": "s3d",
         "version": "s3e",
-        "language": "LANGUAGE01"
+        "language": "LANGUAGE01",
+        "id": "DATA_ITEM01"
       },
       "DATA_ITEM02": {
         "data": {},
         "type": "s5b",
         "version": "s5c",
-        "language": "LANGUAGE01"
+        "language": "LANGUAGE01",
+        "id": "DATA_ITEM02"
       }
     }
   },

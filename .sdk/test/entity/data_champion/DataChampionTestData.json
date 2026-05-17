@@ -6,21 +6,24 @@
         "format": "s29",
         "type": "s2a",
         "version": "s2b",
-        "language": "LANGUAGE01"
+        "language": "LANGUAGE01",
+        "id": "DATA_CHAMPION00"
       },
       "DATA_CHAMPION01": {
         "data": {},
         "format": "s51",
         "type": "s52",
         "version": "s53",
-        "language": "LANGUAGE01"
+        "language": "LANGUAGE01",
+        "id": "DATA_CHAMPION01"
       },
       "DATA_CHAMPION02": {
         "data": {},
         "format": "s79",
         "type": "s7a",
         "version": "s7b",
-        "language": "LANGUAGE01"
+        "language": "LANGUAGE01",
+        "id": "DATA_CHAMPION02"
       }
     }
   },

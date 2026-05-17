@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/data-dragon-sdk"
-	"github.com/voxgig-sdk/data-dragon-sdk/core"
+	sdk "github.com/voxgig-sdk/data-dragon-sdk/go"
+	"github.com/voxgig-sdk/data-dragon-sdk/go/core"
 )
 
 func TestDragontailVersiontgzDirect(t *testing.T) {

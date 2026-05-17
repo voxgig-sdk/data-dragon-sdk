@@ -5,19 +5,22 @@
         "cdn": "s1e",
         "n": {},
         "v": "s20",
-        "region": "REGION01"
+        "region": "REGION01",
+        "id": "REGION00"
       },
       "REGION01": {
         "cdn": "s3c",
         "n": {},
         "v": "s3e",
-        "region": "REGION01"
+        "region": "REGION01",
+        "id": "REGION01"
       },
       "REGION02": {
         "cdn": "s5a",
         "n": {},
         "v": "s5c",
-        "region": "REGION01"
+        "region": "REGION01",
+        "id": "REGION02"
       }
     }
   },
