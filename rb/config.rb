@@ -15,9 +15,6 @@ module DataDragonConfig
       },
       "options" => {
         "base" => "https://ddragon.leagueoflegends.com",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

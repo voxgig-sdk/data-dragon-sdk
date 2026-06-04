@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://ddragon.leagueoflegends.com',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },

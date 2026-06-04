@@ -59,14 +59,12 @@ def _dragontail_versiontgz_direct_setup(mockres):
     env = runner.env_override({
         "DATADRAGON_TEST_DRAGONTAIL_VERSIONTGZ_ENTID": {},
         "DATADRAGON_TEST_LIVE": "FALSE",
-        "DATADRAGON_APIKEY": "NONE",
     })
 
     live = env.get("DATADRAGON_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("DATADRAGON_APIKEY"),
         }
         client = DataDragonSDK(merged_opts)
         return {

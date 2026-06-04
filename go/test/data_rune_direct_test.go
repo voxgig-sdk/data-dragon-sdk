@@ -115,14 +115,12 @@ func data_runeDirectSetup(mockres any) *data_runeDirectSetupResult {
 	env := envOverride(map[string]any{
 		"DATADRAGON_TEST_DATA_RUNE_ENTID": map[string]any{},
 		"DATADRAGON_TEST_LIVE":    "FALSE",
-		"DATADRAGON_APIKEY":       "NONE",
 	})
 
 	live := env["DATADRAGON_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["DATADRAGON_APIKEY"],
 		}
 		client := sdk.NewDataDragonSDK(mergedOpts)
 

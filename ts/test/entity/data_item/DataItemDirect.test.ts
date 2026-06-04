@@ -82,14 +82,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'DATADRAGON_TEST_DATA_ITEM_ENTID': {},
     'DATADRAGON_TEST_LIVE': 'FALSE',
-    'DATADRAGON_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.DATADRAGON_TEST_LIVE
 
   if (live) {
     const client = new DataDragonSDK({
-      apikey: env.DATADRAGON_APIKEY,
     })
 
     let idmap: any = env['DATADRAGON_TEST_DATA_ITEM_ENTID']

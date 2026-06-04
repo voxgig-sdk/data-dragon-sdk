@@ -85,7 +85,6 @@ function item_basic_setup($extra)
         "DATADRAGON_TEST_ITEM_ENTID" => $idmap,
         "DATADRAGON_TEST_LIVE" => "FALSE",
         "DATADRAGON_TEST_EXPLAIN" => "FALSE",
-        "DATADRAGON_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +96,6 @@ function item_basic_setup($extra)
     if ($env["DATADRAGON_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["DATADRAGON_APIKEY"],
             ],
             $extra ?? [],
         ]);
