@@ -119,6 +119,7 @@ func versionBasicSetup(extra map[string]any) *entityTestSetup {
 		"DATADRAGON_TEST_VERSION_ENTID": idmap,
 		"DATADRAGON_TEST_LIVE":      "FALSE",
 		"DATADRAGON_TEST_EXPLAIN":   "FALSE",
+		"DATADRAGON_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["DATADRAGON_TEST_VERSION_ENTID"])
@@ -129,6 +130,7 @@ func versionBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["DATADRAGON_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["DATADRAGON_APIKEY"],
 			},
 			extra,
 		})

@@ -16,35 +16,7 @@ main: {
       ]
       title: "Data Dragon API"
       version: "1.0.0"
-      tagline: "Static CDN of League of Legends champion, item, and rune data plus images, published by Riot Games"
-      homepage: "https://ddragon.leagueoflegends.com"
-      docs_url: "https://riot-api-libraries.readthedocs.io/en/latest/ddragon.html"
-      license_short: "No explicit licence published; data and images are Riot Games property and subject to Riot's developer / legal terms."
-      license_md: `- Data Dragon does not ship its own licence file; usage is governed by Riot Games' developer terms and legal policies.
-- Champion art, item icons, and other assets are Riot Games intellectual property; respect Riot's fan-content and attribution policies.
-- No authentication or API key is required for the CDN itself, and CORS is enabled for browser use.
-- Versions are pinned per patch, so cache aggressively and pick a known version rather than assuming "latest".`
-      about_md: `Data Dragon (\`ddragon\`) is the static data CDN run by [Riot Games](https://www.riotgames.com/) for [League of Legends](https://www.leagueoflegends.com/). It exposes the game's reference data — champions, items, runes, summoner spells — together with the matching portraits, icons, and sprite sheets, so third-party tools can translate IDs into human-readable names and images without hitting the rate-limited live Riot API.
-
-What you get from the API:
-
-- Per-version JSON bundles under \`/cdn/{version}/data/{language}/{datatype}.json\` (e.g. \`champion.json\`, \`item.json\`, \`runesReforged.json\`).
-- The full asset tarball \`https://ddragon.leagueoflegends.com/cdn/dragontail-{version}.tgz\` (~1 GB) containing every data file and image for a patch.
-- The list of available patches at \`https://ddragon.leagueoflegends.com/api/versions.json\`.
-- Per-region realm metadata at \`https://ddragon.leagueoflegends.com/realms/{region}.json\`, useful for discovering which ddragon version a given shard is currently serving.
-
-Data is published per patch and across 27 locales (en_US, en_GB, es_ES, ja_JP, ko_KR, zh_CN, and so on). Regional realms can lag or lead the global patch by a day or two, so production tools typically read \`realms/{region}.json\` first and then fetch the matching versioned files. No API key is needed and CORS is enabled, but the assets are large — prefer caching individual JSON files over downloading the dragontail tarball for every build.`
-      entity_desc: {
-        champion: "League of Legends champion records — name, title, tags, stats, spells, and image references — served under `/cdn/{version}/data/{language}/champion.json` and per-champion files."
-        data_champion: "The champion data bundle for a given patch and locale at `/cdn/{version}/data/{language}/champion.json`."
-        data_item: "The item catalogue (stats, gold cost, tags, build paths, icons) for a patch and locale at `/cdn/{version}/data/{language}/item.json`."
-        data_rune: "Rune / Runes Reforged data (paths, slots, keystones) for a patch and locale at `/cdn/{version}/data/{language}/runesReforged.json`."
-        dragontail_versiontgz: "Full per-patch asset tarball containing every data file and image, at `https://ddragon.leagueoflegends.com/cdn/dragontail-{version}.tgz`."
-        item: "Individual League of Legends items as exposed via the item data bundle, used to resolve item IDs to names, stats, and icons."
-        region: "Per-shard realm metadata at `https://ddragon.leagueoflegends.com/realms/{region}.json`, describing which ddragon and game versions a Riot region is currently serving."
-        version: "The list of published Data Dragon patch versions at `https://ddragon.leagueoflegends.com/api/versions.json`, used to pick a `{version}` for the CDN paths."
-      }
-      auth: false
     }
   }
 }
+

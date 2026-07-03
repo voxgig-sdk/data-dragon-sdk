@@ -15,6 +15,9 @@ module DataDragonConfig
       },
       "options" => {
         "base" => "https://ddragon.leagueoflegends.com",
+        "auth" => {
+          "prefix" => "Bearer",
+        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -35,28 +38,30 @@ module DataDragonConfig
           "name" => "champion",
           "op" => {
             "load" => {
+              "input" => "data",
               "name" => "load",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "params" => [
                       {
+                        "active" => true,
                         "example" => "Ahri.png",
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "champion_image",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                       {
+                        "active" => true,
                         "example" => "12.6.1",
                         "kind" => "param",
                         "name" => "version",
                         "orig" => "version",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -84,11 +89,9 @@ module DataDragonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "load",
             },
           },
@@ -103,59 +106,61 @@ module DataDragonConfig
         "data_champion" => {
           "fields" => [
             {
+              "active" => true,
               "name" => "data",
               "req" => false,
               "type" => "`$OBJECT`",
-              "active" => true,
               "index$" => 0,
             },
             {
+              "active" => true,
               "name" => "format",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 1,
             },
             {
+              "active" => true,
               "name" => "type",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 2,
             },
             {
+              "active" => true,
               "name" => "version",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 3,
             },
           ],
           "name" => "data_champion",
           "op" => {
             "load" => {
+              "input" => "data",
               "name" => "load",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "params" => [
                       {
+                        "active" => true,
                         "example" => "en_US",
                         "kind" => "param",
                         "name" => "language",
                         "orig" => "language",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                       {
+                        "active" => true,
                         "example" => "12.6.1",
                         "kind" => "param",
                         "name" => "version",
                         "orig" => "version",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -178,11 +183,9 @@ module DataDragonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "load",
             },
           },
@@ -198,52 +201,54 @@ module DataDragonConfig
         "data_item" => {
           "fields" => [
             {
+              "active" => true,
               "name" => "data",
               "req" => false,
               "type" => "`$OBJECT`",
-              "active" => true,
               "index$" => 0,
             },
             {
+              "active" => true,
               "name" => "type",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 1,
             },
             {
+              "active" => true,
               "name" => "version",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 2,
             },
           ],
           "name" => "data_item",
           "op" => {
             "load" => {
+              "input" => "data",
               "name" => "load",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "params" => [
                       {
+                        "active" => true,
                         "example" => "en_US",
                         "kind" => "param",
                         "name" => "language",
                         "orig" => "language",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                       {
+                        "active" => true,
                         "example" => "12.6.1",
                         "kind" => "param",
                         "name" => "version",
                         "orig" => "version",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -266,11 +271,9 @@ module DataDragonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "load",
             },
           },
@@ -288,28 +291,30 @@ module DataDragonConfig
           "name" => "data_rune",
           "op" => {
             "load" => {
+              "input" => "data",
               "name" => "load",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "params" => [
                       {
+                        "active" => true,
                         "example" => "en_US",
                         "kind" => "param",
                         "name" => "language",
                         "orig" => "language",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                       {
+                        "active" => true,
                         "example" => "12.6.1",
                         "kind" => "param",
                         "name" => "version",
                         "orig" => "version",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -332,11 +337,9 @@ module DataDragonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "load",
             },
           },
@@ -354,19 +357,21 @@ module DataDragonConfig
           "name" => "dragontail_versiontgz",
           "op" => {
             "load" => {
+              "input" => "data",
               "name" => "load",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "params" => [
                       {
+                        "active" => true,
                         "example" => "12.6.1",
                         "kind" => "param",
                         "name" => "version",
                         "orig" => "version",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -385,11 +390,9 @@ module DataDragonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "load",
             },
           },
@@ -402,28 +405,30 @@ module DataDragonConfig
           "name" => "item",
           "op" => {
             "load" => {
+              "input" => "data",
               "name" => "load",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "params" => [
                       {
+                        "active" => true,
                         "example" => "1001.png",
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "item_image",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                       {
+                        "active" => true,
                         "example" => "12.6.1",
                         "kind" => "param",
                         "name" => "version",
                         "orig" => "version",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -451,11 +456,9 @@ module DataDragonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "load",
             },
           },
@@ -470,43 +473,45 @@ module DataDragonConfig
         "region" => {
           "fields" => [
             {
+              "active" => true,
               "name" => "cdn",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 0,
             },
             {
+              "active" => true,
               "name" => "n",
               "req" => false,
               "type" => "`$OBJECT`",
-              "active" => true,
               "index$" => 1,
             },
             {
+              "active" => true,
               "name" => "v",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 2,
             },
           ],
           "name" => "region",
           "op" => {
             "load" => {
+              "input" => "data",
               "name" => "load",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "params" => [
                       {
+                        "active" => true,
                         "example" => "na",
                         "kind" => "param",
                         "name" => "region",
                         "orig" => "region",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -525,11 +530,9 @@ module DataDragonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "load",
             },
           },
@@ -546,26 +549,26 @@ module DataDragonConfig
           "name" => "version",
           "op" => {
             "list" => {
+              "input" => "data",
               "name" => "list",
               "points" => [
                 {
+                  "active" => true,
+                  "args" => {},
                   "method" => "GET",
                   "orig" => "/api/versions.json",
                   "parts" => [
                     "api",
                     "versions.json",
                   ],
+                  "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
-                  "args" => {},
-                  "select" => {},
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "list",
             },
           },

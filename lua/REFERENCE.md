@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -122,7 +122,7 @@ local champion = client:Champion(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Champion(nil):load({ id = "champion_id" }, nil)
+local result, err = client:Champion():load({ id = "champion_id" })
 ```
 
 ### Common Methods
@@ -177,7 +177,7 @@ local data_champion = client:DataChampion(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:DataChampion(nil):load({ id = "data_champion_id" }, nil)
+local result, err = client:DataChampion():load({ id = "data_champion_id" })
 ```
 
 ### Common Methods
@@ -231,7 +231,7 @@ local data_item = client:DataItem(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:DataItem(nil):load({ id = "data_item_id" }, nil)
+local result, err = client:DataItem():load({ id = "data_item_id" })
 ```
 
 ### Common Methods
@@ -277,7 +277,7 @@ local data_rune = client:DataRune(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:DataRune(nil):load({ id = "data_rune_id" }, nil)
+local result, err = client:DataRune():load({ id = "data_rune_id" })
 ```
 
 ### Common Methods
@@ -323,7 +323,7 @@ local dragontail_versiontgz = client:DragontailVersiontgz(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:DragontailVersiontgz(nil):load({ id = "dragontail_versiontgz_id" }, nil)
+local result, err = client:DragontailVersiontgz():load({ id = "dragontail_versiontgz_id" })
 ```
 
 ### Common Methods
@@ -369,7 +369,7 @@ local item = client:Item(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Item(nil):load({ id = "item_id" }, nil)
+local result, err = client:Item():load({ id = "item_id" })
 ```
 
 ### Common Methods
@@ -423,7 +423,7 @@ local region = client:Region(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Region(nil):load({ id = "region_id" }, nil)
+local result, err = client:Region():load({ id = "region_id" })
 ```
 
 ### Common Methods
@@ -469,7 +469,7 @@ local version = client:Version(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Version(nil):list(nil, nil)
+local results, err = client:Version():list()
 ```
 
 ### Common Methods

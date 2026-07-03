@@ -111,6 +111,7 @@ function basicSetup(extra?: any) {
     'DATA_DRAGON_TEST_DATA_ITEM_ENTID': idmap,
     'DATA_DRAGON_TEST_LIVE': 'FALSE',
     'DATA_DRAGON_TEST_EXPLAIN': 'FALSE',
+    'DATA_DRAGON_APIKEY': 'NONE',
   })
 
   idmap = env['DATA_DRAGON_TEST_DATA_ITEM_ENTID']
@@ -120,6 +121,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new DataDragonSDK(merge([
       {
+        apikey: env.DATA_DRAGON_APIKEY,
       },
       extra
     ]))

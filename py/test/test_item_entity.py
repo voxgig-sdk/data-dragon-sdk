@@ -91,6 +91,7 @@ def _item_basic_setup(extra):
         "DATADRAGON_TEST_ITEM_ENTID": idmap,
         "DATADRAGON_TEST_LIVE": "FALSE",
         "DATADRAGON_TEST_EXPLAIN": "FALSE",
+        "DATADRAGON_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -101,6 +102,7 @@ def _item_basic_setup(extra):
     if env.get("DATADRAGON_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("DATADRAGON_APIKEY"),
             },
             extra or {},
         ])

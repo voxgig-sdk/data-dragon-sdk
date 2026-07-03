@@ -1,21 +1,8 @@
 # DataDragon SDK
 
-Static CDN of League of Legends champion, item, and rune data plus images, published by Riot Games
+Data Dragon API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Data Dragon API
-
-Data Dragon (`ddragon`) is the static data CDN run by [Riot Games](https://www.riotgames.com/) for [League of Legends](https://www.leagueoflegends.com/). It exposes the game's reference data — champions, items, runes, summoner spells — together with the matching portraits, icons, and sprite sheets, so third-party tools can translate IDs into human-readable names and images without hitting the rate-limited live Riot API.
-
-What you get from the API:
-
-- Per-version JSON bundles under `/cdn/{version}/data/{language}/{datatype}.json` (e.g. `champion.json`, `item.json`, `runesReforged.json`).
-- The full asset tarball `https://ddragon.leagueoflegends.com/cdn/dragontail-{version}.tgz` (~1 GB) containing every data file and image for a patch.
-- The list of available patches at `https://ddragon.leagueoflegends.com/api/versions.json`.
-- Per-region realm metadata at `https://ddragon.leagueoflegends.com/realms/{region}.json`, useful for discovering which ddragon version a given shard is currently serving.
-
-Data is published per patch and across 27 locales (en_US, en_GB, es_ES, ja_JP, ko_KR, zh_CN, and so on). Regional realms can lag or lead the global patch by a day or two, so production tools typically read `realms/{region}.json` first and then fetch the matching versioned files. No API key is needed and CORS is enabled, but the assets are large — prefer caching individual JSON files over downloading the dragontail tarball for every build.
 
 ## Try it
 
@@ -49,27 +36,31 @@ gem install data-dragon-sdk
 luarocks install data-dragon-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { DataDragonSDK } from 'data-dragon'
 
-const client = new DataDragonSDK({})
+const client = new DataDragonSDK({
+  apikey: process.env.DATA-DRAGON_APIKEY,
+})
 
+// Load champion data
+const champion = await client.Champion().load({})
+console.log(champion.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -99,14 +90,14 @@ The API exposes 8 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Champion** | League of Legends champion records — name, title, tags, stats, spells, and image references — served under `/cdn/{version}/data/{language}/champion.json` and per-champion files. | `/cdn/{version}/img/champion/{championImage}` |
-| **DataChampion** | The champion data bundle for a given patch and locale at `/cdn/{version}/data/{language}/champion.json`. | `/cdn/{version}/data/{language}/champion.json` |
-| **DataItem** | The item catalogue (stats, gold cost, tags, build paths, icons) for a patch and locale at `/cdn/{version}/data/{language}/item.json`. | `/cdn/{version}/data/{language}/item.json` |
-| **DataRune** | Rune / Runes Reforged data (paths, slots, keystones) for a patch and locale at `/cdn/{version}/data/{language}/runesReforged.json`. | `/cdn/{version}/data/{language}/rune.json` |
-| **DragontailVersiontgz** | Full per-patch asset tarball containing every data file and image, at `https://ddragon.leagueoflegends.com/cdn/dragontail-{version}.tgz`. | `/cdn/dragontail-{version}.tgz` |
-| **Item** | Individual League of Legends items as exposed via the item data bundle, used to resolve item IDs to names, stats, and icons. | `/cdn/{version}/img/item/{itemImage}` |
-| **Region** | Per-shard realm metadata at `https://ddragon.leagueoflegends.com/realms/{region}.json`, describing which ddragon and game versions a Riot region is currently serving. | `/realms/{region}.json` |
-| **Version** | The list of published Data Dragon patch versions at `https://ddragon.leagueoflegends.com/api/versions.json`, used to pick a `{version}` for the CDN paths. | `/api/versions.json` |
+| **Champion** |  | `/cdn/{version}/img/champion/{championImage}` |
+| **DataChampion** |  | `/cdn/{version}/data/{language}/champion.json` |
+| **DataItem** |  | `/cdn/{version}/data/{language}/item.json` |
+| **DataRune** |  | `/cdn/{version}/data/{language}/rune.json` |
+| **DragontailVersiontgz** |  | `/cdn/dragontail-{version}.tgz` |
+| **Item** |  | `/cdn/{version}/img/item/{itemImage}` |
+| **Region** |  | `/realms/{region}.json` |
+| **Version** |  | `/api/versions.json` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -116,15 +107,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from datadragon_sdk import DataDragonSDK
 
-client = DataDragonSDK({})
+client = DataDragonSDK({
+    "apikey": os.environ.get("DATA-DRAGON_APIKEY"),
+})
 
 
 # Load a specific champion
-champion, err = client.Champion(None).load(
-    {"id": "example_id"}, None
-)
+champion, err = client.Champion().load({"id": "example_id"})
+print(champion)
 ```
 
 ### PHP
@@ -133,13 +126,14 @@ champion, err = client.Champion(None).load(
 <?php
 require_once 'datadragon_sdk.php';
 
-$client = new DataDragonSDK([]);
+$client = new DataDragonSDK([
+    "apikey" => getenv("DATA-DRAGON_APIKEY"),
+]);
 
 
 // Load a specific champion
-[$champion, $err] = $client->Champion(null)->load(
-    ["id" => "example_id"], null
-);
+[$champion, $err] = $client->Champion()->load(["id" => "example_id"]);
+print_r($champion);
 ```
 
 ### Golang
@@ -147,8 +141,13 @@ $client = new DataDragonSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/data-dragon-sdk/go"
 
-client := sdk.NewDataDragonSDK(map[string]any{})
+client := sdk.NewDataDragonSDK(map[string]any{
+    "apikey": os.Getenv("DATA-DRAGON_APIKEY"),
+})
 
+// Load champion data
+champion, err := client.Champion(nil).Load(map[string]any{}, nil)
+fmt.Println(champion)
 ```
 
 ### Ruby
@@ -156,13 +155,14 @@ client := sdk.NewDataDragonSDK(map[string]any{})
 ```ruby
 require_relative "DataDragon_sdk"
 
-client = DataDragonSDK.new({})
+client = DataDragonSDK.new({
+  "apikey" => ENV["DATA-DRAGON_APIKEY"],
+})
 
 
 # Load a specific champion
-champion, err = client.Champion(nil).load(
-  { "id" => "example_id" }, nil
-)
+champion, err = client.Champion().load({ "id" => "example_id" })
+puts champion
 ```
 
 ### Lua
@@ -170,13 +170,14 @@ champion, err = client.Champion(nil).load(
 ```lua
 local sdk = require("data-dragon_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("DATA-DRAGON_APIKEY"),
+})
 
 
 -- Load a specific champion
-local champion, err = client:Champion(nil):load(
-  { id = "example_id" }, nil
-)
+local champion, err = client:Champion():load({ id = "example_id" })
+print(champion)
 ```
 
 ## Unit testing in offline mode
@@ -195,25 +196,21 @@ const result = await client.Champion().load({ id: 'test01' })
 ### Python
 
 ```python
-client = DataDragonSDK.test(None, None)
-result, err = client.Champion(None).load(
-    {"id": "test01"}, None
-)
+client = DataDragonSDK.test()
+result, err = client.Champion().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = DataDragonSDK::test(null, null);
-[$result, $err] = $client->Champion(null)->load(
-    ["id" => "test01"], null
-);
+$client = DataDragonSDK::test();
+[$result, $err] = $client->Champion()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Champion(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -222,19 +219,15 @@ result, err := client.Champion(nil).Load(
 ### Ruby
 
 ```ruby
-client = DataDragonSDK.test(nil, nil)
-result, err = client.Champion(nil).load(
-  { "id" => "test01" }, nil
-)
+client = DataDragonSDK.test
+result, err = client.Champion().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Champion(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Champion():load({ id = "test01" })
 ```
 
 ## How it works
@@ -338,16 +331,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Data Dragon API
-
-- Upstream: [https://ddragon.leagueoflegends.com](https://ddragon.leagueoflegends.com)
-- API docs: [https://riot-api-libraries.readthedocs.io/en/latest/ddragon.html](https://riot-api-libraries.readthedocs.io/en/latest/ddragon.html)
-
-- Data Dragon does not ship its own licence file; usage is governed by Riot Games' developer terms and legal policies.
-- Champion art, item icons, and other assets are Riot Games intellectual property; respect Riot's fan-content and attribution policies.
-- No authentication or API key is required for the CDN itself, and CORS is enabled for browser use.
-- Versions are pinned per patch, so cache aggressively and pick a known version rather than assuming "latest".
 
 ---
 

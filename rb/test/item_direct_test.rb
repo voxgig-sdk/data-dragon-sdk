@@ -71,12 +71,14 @@ def item_direct_setup(mockres)
   env = Runner.env_override({
     "DATADRAGON_TEST_ITEM_ENTID" => {},
     "DATADRAGON_TEST_LIVE" => "FALSE",
+    "DATADRAGON_APIKEY" => "NONE",
   })
 
   live = env["DATADRAGON_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["DATADRAGON_APIKEY"],
     }
     client = DataDragonSDK.new(merged_opts)
     return {

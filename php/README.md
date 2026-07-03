@@ -1,6 +1,11 @@
 # DataDragon PHP SDK
 
-The PHP SDK for the DataDragon API. Provides an entity-oriented interface using PHP conventions.
+
+
+The PHP SDK for the DataDragon API — an entity-oriented client using PHP conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -20,13 +25,15 @@ loading a specific record.
 <?php
 require_once 'datadragon_sdk.php';
 
-$client = new DataDragonSDK([]);
+$client = new DataDragonSDK([
+    "apikey" => getenv("DATA-DRAGON_APIKEY"),
+]);
 ```
 
 ### 3. Load a champion
 
 ```php
-[$result, $err] = $client->Champion(null)->load(["id" => "example_id"], null);
+[$result, $err] = $client->Champion()->load(["id" => "example_id"]);
 if ($err) { throw new \Exception($err); }
 print_r($result);
 ```
@@ -72,11 +79,9 @@ print_r($fetchdef["headers"]);
 Create a mock client for unit testing — no server required:
 
 ```php
-$client = DataDragonSDK::test(null, null);
+$client = DataDragonSDK::test();
 
-[$result, $err] = $client->DataDragon(null)->load(
-    ["id" => "test01"], null
-);
+[$result, $err] = $client->DataDragon()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -111,6 +116,7 @@ Create a `.env.local` file at the project root:
 
 ```
 DATA-DRAGON_TEST_LIVE=TRUE
+DATA-DRAGON_APIKEY=<your-key>
 ```
 
 Then run:
@@ -133,6 +139,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
