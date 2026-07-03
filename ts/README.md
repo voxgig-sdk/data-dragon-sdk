@@ -10,7 +10,7 @@ The TypeScript SDK for the DataDragon API — a type-safe, entity-oriented clien
 
 ## Install
 ```bash
-npm install data-dragon
+npm install @voxgig-sdk/data-dragon
 ```
 ## Tutorial: your first API call
 

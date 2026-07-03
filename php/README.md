@@ -10,7 +10,7 @@ The PHP SDK for the DataDragon API — an entity-oriented client using PHP conve
 
 ## Install
 ```bash
-composer require voxgig/data-dragon-sdk
+composer require voxgig-sdk/data-dragon
 ```
 
 

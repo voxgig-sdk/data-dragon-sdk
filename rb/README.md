@@ -10,13 +10,13 @@ The Ruby SDK for the DataDragon API — an entity-oriented client using idiomati
 
 ## Install
 ```bash
-gem install data-dragon-sdk
+gem install voxgig-sdk-data-dragon
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "data-dragon-sdk"
+gem "voxgig-sdk-data-dragon"
 ```
 
 Then run:

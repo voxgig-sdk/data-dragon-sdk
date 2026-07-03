@@ -10,7 +10,7 @@ The Python SDK for the DataDragon API — an entity-oriented client following Py
 
 ## Install
 ```bash
-pip install data-dragon-sdk
+pip install voxgig-sdk-data-dragon
 ```
 
 Or install from source:
