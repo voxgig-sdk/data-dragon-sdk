@@ -33,10 +33,12 @@ client = DataDragonSDK()
 
 ### 3. Load a champion
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.champion.load({"id": "example_id"})
-    print(result)
+    champion = client.Champion().load({"id": "example_id"})
+    print(champion)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -84,8 +86,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = DataDragonSDK.test()
 
-result = client.champion.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+champion = client.Champion().load({"id": "test01"})
+# champion contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -166,7 +169,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `DataItem` | `(data) -> DataItemEntity` | Create a DataItem entity instance. |
 | `DataRune` | `(data) -> DataRuneEntity` | Create a DataRune entity instance. |
 | `DragontailVersiontgz` | `(data) -> DragontailVersiontgzEntity` | Create a DragontailVersiontgz entity instance. |
-| `Item` | `(data) -> ItemEntity` | Create a Item entity instance. |
+| `Item` | `(data) -> ItemEntity` | Create an Item entity instance. |
 | `Region` | `(data) -> RegionEntity` | Create a Region entity instance. |
 | `Version` | `(data) -> VersionEntity` | Create a Version entity instance. |
 
@@ -297,7 +300,7 @@ API path: `/api/versions.json`
 
 ### Champion
 
-Create an instance: `const champion = client.champion`
+Create an instance: `champion = client.Champion()`
 
 #### Operations
 
@@ -307,14 +310,14 @@ Create an instance: `const champion = client.champion`
 
 #### Example: Load
 
-```ts
-const champion = await client.champion.load({ id: 'champion_id' })
+```python
+champion = client.Champion().load({"id": "champion_id"})
 ```
 
 
 ### DataChampion
 
-Create an instance: `const data_champion = client.data_champion`
+Create an instance: `data_champion = client.DataChampion()`
 
 #### Operations
 
@@ -333,14 +336,14 @@ Create an instance: `const data_champion = client.data_champion`
 
 #### Example: Load
 
-```ts
-const data_champion = await client.data_champion.load({ id: 'data_champion_id' })
+```python
+data_champion = client.DataChampion().load({"id": "data_champion_id"})
 ```
 
 
 ### DataItem
 
-Create an instance: `const data_item = client.data_item`
+Create an instance: `data_item = client.DataItem()`
 
 #### Operations
 
@@ -358,14 +361,14 @@ Create an instance: `const data_item = client.data_item`
 
 #### Example: Load
 
-```ts
-const data_item = await client.data_item.load({ id: 'data_item_id' })
+```python
+data_item = client.DataItem().load({"id": "data_item_id"})
 ```
 
 
 ### DataRune
 
-Create an instance: `const data_rune = client.data_rune`
+Create an instance: `data_rune = client.DataRune()`
 
 #### Operations
 
@@ -375,14 +378,14 @@ Create an instance: `const data_rune = client.data_rune`
 
 #### Example: Load
 
-```ts
-const data_rune = await client.data_rune.load({ id: 'data_rune_id' })
+```python
+data_rune = client.DataRune().load({"id": "data_rune_id"})
 ```
 
 
 ### DragontailVersiontgz
 
-Create an instance: `const dragontail_versiontgz = client.dragontail_versiontgz`
+Create an instance: `dragontail_versiontgz = client.DragontailVersiontgz()`
 
 #### Operations
 
@@ -392,14 +395,14 @@ Create an instance: `const dragontail_versiontgz = client.dragontail_versiontgz`
 
 #### Example: Load
 
-```ts
-const dragontail_versiontgz = await client.dragontail_versiontgz.load({ id: 'dragontail_versiontgz_id' })
+```python
+dragontail_versiontgz = client.DragontailVersiontgz().load({"id": "dragontail_versiontgz_id"})
 ```
 
 
 ### Item
 
-Create an instance: `const item = client.item`
+Create an instance: `item = client.Item()`
 
 #### Operations
 
@@ -409,14 +412,14 @@ Create an instance: `const item = client.item`
 
 #### Example: Load
 
-```ts
-const item = await client.item.load({ id: 'item_id' })
+```python
+item = client.Item().load({"id": "item_id"})
 ```
 
 
 ### Region
 
-Create an instance: `const region = client.region`
+Create an instance: `region = client.Region()`
 
 #### Operations
 
@@ -434,14 +437,14 @@ Create an instance: `const region = client.region`
 
 #### Example: Load
 
-```ts
-const region = await client.region.load({ id: 'region_id' })
+```python
+region = client.Region().load({"id": "region_id"})
 ```
 
 
 ### Version
 
-Create an instance: `const version = client.version`
+Create an instance: `version = client.Version()`
 
 #### Operations
 
@@ -451,8 +454,8 @@ Create an instance: `const version = client.version`
 
 #### Example: List
 
-```ts
-const versions = await client.version.list()
+```python
+versions = client.Version().list({})
 ```
 
 
@@ -526,7 +529,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-champion = client.champion
+champion = client.Champion()
 champion.load({"id": "example_id"})
 
 # champion.data_get() now returns the loaded champion data

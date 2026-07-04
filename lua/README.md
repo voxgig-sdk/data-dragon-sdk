@@ -34,9 +34,9 @@ local client = sdk.new()
 ### 3. Load a champion
 
 ```lua
-local result, err = client:champion():load({ id = "example_id" })
+local champion, err = client:Champion():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(champion)
 ```
 
 
@@ -82,8 +82,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:champion():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Champion():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -166,7 +166,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `DataItem` | `(data) -> DataItemEntity` | Create a DataItem entity instance. |
 | `DataRune` | `(data) -> DataRuneEntity` | Create a DataRune entity instance. |
 | `DragontailVersiontgz` | `(data) -> DragontailVersiontgzEntity` | Create a DragontailVersiontgz entity instance. |
-| `Item` | `(data) -> ItemEntity` | Create a Item entity instance. |
+| `Item` | `(data) -> ItemEntity` | Create an Item entity instance. |
 | `Region` | `(data) -> RegionEntity` | Create a Region entity instance. |
 | `Version` | `(data) -> VersionEntity` | Create a Version entity instance. |
 
@@ -190,17 +190,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local champion, err = client:Champion():load({ id = "example_id" })
+    if err then error(err) end
+    -- champion is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -293,7 +298,7 @@ API path: `/api/versions.json`
 
 ### Champion
 
-Create an instance: `const champion = client.champion`
+Create an instance: `local champion = client:Champion(nil)`
 
 #### Operations
 
@@ -303,14 +308,14 @@ Create an instance: `const champion = client.champion`
 
 #### Example: Load
 
-```ts
-const champion = await client.champion.load({ id: 'champion_id' })
+```lua
+local champion, err = client:Champion():load({ id = "champion_id" })
 ```
 
 
 ### DataChampion
 
-Create an instance: `const data_champion = client.data_champion`
+Create an instance: `local data_champion = client:DataChampion(nil)`
 
 #### Operations
 
@@ -329,14 +334,14 @@ Create an instance: `const data_champion = client.data_champion`
 
 #### Example: Load
 
-```ts
-const data_champion = await client.data_champion.load({ id: 'data_champion_id' })
+```lua
+local data_champion, err = client:DataChampion():load({ id = "data_champion_id" })
 ```
 
 
 ### DataItem
 
-Create an instance: `const data_item = client.data_item`
+Create an instance: `local data_item = client:DataItem(nil)`
 
 #### Operations
 
@@ -354,14 +359,14 @@ Create an instance: `const data_item = client.data_item`
 
 #### Example: Load
 
-```ts
-const data_item = await client.data_item.load({ id: 'data_item_id' })
+```lua
+local data_item, err = client:DataItem():load({ id = "data_item_id" })
 ```
 
 
 ### DataRune
 
-Create an instance: `const data_rune = client.data_rune`
+Create an instance: `local data_rune = client:DataRune(nil)`
 
 #### Operations
 
@@ -371,14 +376,14 @@ Create an instance: `const data_rune = client.data_rune`
 
 #### Example: Load
 
-```ts
-const data_rune = await client.data_rune.load({ id: 'data_rune_id' })
+```lua
+local data_rune, err = client:DataRune():load({ id = "data_rune_id" })
 ```
 
 
 ### DragontailVersiontgz
 
-Create an instance: `const dragontail_versiontgz = client.dragontail_versiontgz`
+Create an instance: `local dragontail_versiontgz = client:DragontailVersiontgz(nil)`
 
 #### Operations
 
@@ -388,14 +393,14 @@ Create an instance: `const dragontail_versiontgz = client.dragontail_versiontgz`
 
 #### Example: Load
 
-```ts
-const dragontail_versiontgz = await client.dragontail_versiontgz.load({ id: 'dragontail_versiontgz_id' })
+```lua
+local dragontail_versiontgz, err = client:DragontailVersiontgz():load({ id = "dragontail_versiontgz_id" })
 ```
 
 
 ### Item
 
-Create an instance: `const item = client.item`
+Create an instance: `local item = client:Item(nil)`
 
 #### Operations
 
@@ -405,14 +410,14 @@ Create an instance: `const item = client.item`
 
 #### Example: Load
 
-```ts
-const item = await client.item.load({ id: 'item_id' })
+```lua
+local item, err = client:Item():load({ id = "item_id" })
 ```
 
 
 ### Region
 
-Create an instance: `const region = client.region`
+Create an instance: `local region = client:Region(nil)`
 
 #### Operations
 
@@ -430,14 +435,14 @@ Create an instance: `const region = client.region`
 
 #### Example: Load
 
-```ts
-const region = await client.region.load({ id: 'region_id' })
+```lua
+local region, err = client:Region():load({ id = "region_id" })
 ```
 
 
 ### Version
 
-Create an instance: `const version = client.version`
+Create an instance: `local version = client:Version(nil)`
 
 #### Operations
 
@@ -447,8 +452,8 @@ Create an instance: `const version = client.version`
 
 #### Example: List
 
-```ts
-const versions = await client.version.list()
+```lua
+local versions, err = client:Version():list()
 ```
 
 
@@ -523,7 +528,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local champion = client:champion()
+local champion = client:Champion()
 champion:load({ id = "example_id" })
 
 -- champion:data_get() now returns the loaded champion data

@@ -114,7 +114,7 @@ same parameters as `direct()`. Raises on error.
 ## ChampionEntity
 
 ```ruby
-champion = client.champion
+champion = client.Champion
 ```
 
 ### Operations
@@ -124,7 +124,7 @@ champion = client.champion
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.champion.load({ "id" => "champion_id" })
+result = client.Champion.load({ "id" => "champion_id" })
 ```
 
 ### Common Methods
@@ -160,7 +160,7 @@ Return the entity name.
 ## DataChampionEntity
 
 ```ruby
-data_champion = client.data_champion
+data_champion = client.DataChampion
 ```
 
 ### Fields
@@ -179,7 +179,7 @@ data_champion = client.data_champion
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.data_champion.load({ "id" => "data_champion_id" })
+result = client.DataChampion.load({ "id" => "data_champion_id" })
 ```
 
 ### Common Methods
@@ -215,7 +215,7 @@ Return the entity name.
 ## DataItemEntity
 
 ```ruby
-data_item = client.data_item
+data_item = client.DataItem
 ```
 
 ### Fields
@@ -233,7 +233,7 @@ data_item = client.data_item
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.data_item.load({ "id" => "data_item_id" })
+result = client.DataItem.load({ "id" => "data_item_id" })
 ```
 
 ### Common Methods
@@ -269,7 +269,7 @@ Return the entity name.
 ## DataRuneEntity
 
 ```ruby
-data_rune = client.data_rune
+data_rune = client.DataRune
 ```
 
 ### Operations
@@ -279,7 +279,7 @@ data_rune = client.data_rune
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.data_rune.load({ "id" => "data_rune_id" })
+result = client.DataRune.load({ "id" => "data_rune_id" })
 ```
 
 ### Common Methods
@@ -315,7 +315,7 @@ Return the entity name.
 ## DragontailVersiontgzEntity
 
 ```ruby
-dragontail_versiontgz = client.dragontail_versiontgz
+dragontail_versiontgz = client.DragontailVersiontgz
 ```
 
 ### Operations
@@ -325,7 +325,7 @@ dragontail_versiontgz = client.dragontail_versiontgz
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.dragontail_versiontgz.load({ "id" => "dragontail_versiontgz_id" })
+result = client.DragontailVersiontgz.load({ "id" => "dragontail_versiontgz_id" })
 ```
 
 ### Common Methods
@@ -361,7 +361,7 @@ Return the entity name.
 ## ItemEntity
 
 ```ruby
-item = client.item
+item = client.Item
 ```
 
 ### Operations
@@ -371,7 +371,7 @@ item = client.item
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.item.load({ "id" => "item_id" })
+result = client.Item.load({ "id" => "item_id" })
 ```
 
 ### Common Methods
@@ -407,7 +407,7 @@ Return the entity name.
 ## RegionEntity
 
 ```ruby
-region = client.region
+region = client.Region
 ```
 
 ### Fields
@@ -425,7 +425,7 @@ region = client.region
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.region.load({ "id" => "region_id" })
+result = client.Region.load({ "id" => "region_id" })
 ```
 
 ### Common Methods
@@ -461,7 +461,7 @@ Return the entity name.
 ## VersionEntity
 
 ```ruby
-version = client.version
+version = client.Version
 ```
 
 ### Operations
@@ -471,7 +471,7 @@ version = client.version
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.version.list(nil)
+results = client.Version.list(nil)
 ```
 
 ### Common Methods

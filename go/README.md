@@ -30,36 +30,30 @@ go mod edit -replace github.com/voxgig-sdk/data-dragon-sdk/go=../data-dragon-sdk
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/data-dragon-sdk/go"
-    "github.com/voxgig-sdk/data-dragon-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 3. Load a champion
-
-```go
-    result, err = client.Champion(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single champion — the value is the loaded record.
+    champion, err := client.Champion(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
-    }
+    fmt.Println(champion)
 }
 ```
 
@@ -110,10 +104,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Champion(nil).Load(
+champion, err := client.Champion(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(champion) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -195,7 +192,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `DataItem` | `(data map[string]any) DataDragonEntity` | Create a DataItem entity instance. |
 | `DataRune` | `(data map[string]any) DataDragonEntity` | Create a DataRune entity instance. |
 | `DragontailVersiontgz` | `(data map[string]any) DataDragonEntity` | Create a DragontailVersiontgz entity instance. |
-| `Item` | `(data map[string]any) DataDragonEntity` | Create a Item entity instance. |
+| `Item` | `(data map[string]any) DataDragonEntity` | Create an Item entity instance. |
 | `Region` | `(data map[string]any) DataDragonEntity` | Create a Region entity instance. |
 | `Version` | `(data map[string]any) DataDragonEntity` | Create a Version entity instance. |
 
@@ -217,17 +214,24 @@ All entities implement the `DataDragonEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    champion, err := client.Champion(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // champion is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -331,7 +335,11 @@ Create an instance: `champion := client.Champion(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Champion(nil).Load(map[string]any{"id": "champion_id"}, nil)
+champion, err := client.Champion(nil).Load(map[string]any{"id": "champion_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(champion) // the loaded record
 ```
 
 
@@ -357,7 +365,11 @@ Create an instance: `data_champion := client.DataChampion(nil)`
 #### Example: Load
 
 ```go
-result, err := client.DataChampion(nil).Load(map[string]any{"id": "data_champion_id"}, nil)
+data_champion, err := client.DataChampion(nil).Load(map[string]any{"id": "data_champion_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(data_champion) // the loaded record
 ```
 
 
@@ -382,7 +394,11 @@ Create an instance: `data_item := client.DataItem(nil)`
 #### Example: Load
 
 ```go
-result, err := client.DataItem(nil).Load(map[string]any{"id": "data_item_id"}, nil)
+data_item, err := client.DataItem(nil).Load(map[string]any{"id": "data_item_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(data_item) // the loaded record
 ```
 
 
@@ -399,7 +415,11 @@ Create an instance: `data_rune := client.DataRune(nil)`
 #### Example: Load
 
 ```go
-result, err := client.DataRune(nil).Load(map[string]any{"id": "data_rune_id"}, nil)
+data_rune, err := client.DataRune(nil).Load(map[string]any{"id": "data_rune_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(data_rune) // the loaded record
 ```
 
 
@@ -416,7 +436,11 @@ Create an instance: `dragontail_versiontgz := client.DragontailVersiontgz(nil)`
 #### Example: Load
 
 ```go
-result, err := client.DragontailVersiontgz(nil).Load(map[string]any{"id": "dragontail_versiontgz_id"}, nil)
+dragontail_versiontgz, err := client.DragontailVersiontgz(nil).Load(map[string]any{"id": "dragontail_versiontgz_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(dragontail_versiontgz) // the loaded record
 ```
 
 
@@ -433,7 +457,11 @@ Create an instance: `item := client.Item(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Item(nil).Load(map[string]any{"id": "item_id"}, nil)
+item, err := client.Item(nil).Load(map[string]any{"id": "item_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(item) // the loaded record
 ```
 
 
@@ -458,7 +486,11 @@ Create an instance: `region := client.Region(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Region(nil).Load(map[string]any{"id": "region_id"}, nil)
+region, err := client.Region(nil).Load(map[string]any{"id": "region_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(region) // the loaded record
 ```
 
 
@@ -475,7 +507,11 @@ Create an instance: `version := client.Version(nil)`
 #### Example: List
 
 ```go
-results, err := client.Version(nil).List(nil, nil)
+versions, err := client.Version(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(versions) // the array of records
 ```
 
 

@@ -193,7 +193,7 @@ Alias for `DataDragonSDK.test()`.
 ## ChampionEntity
 
 ```ts
-const champion = client.champion
+const champion = client.Champion()
 ```
 
 ### Operations
@@ -203,7 +203,7 @@ const champion = client.champion
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.champion.load({ id: 'champion_id' })
+const result = await client.Champion().load({ id: 'champion_id' })
 ```
 
 ### Common Methods
@@ -237,7 +237,7 @@ Return a copy of the entity options.
 ## DataChampionEntity
 
 ```ts
-const data_champion = client.data_champion
+const data_champion = client.DataChampion()
 ```
 
 ### Fields
@@ -256,7 +256,7 @@ const data_champion = client.data_champion
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.data_champion.load({ id: 'data_champion_id' })
+const result = await client.DataChampion().load({ id: 'data_champion_id' })
 ```
 
 ### Common Methods
@@ -290,7 +290,7 @@ Return a copy of the entity options.
 ## DataItemEntity
 
 ```ts
-const data_item = client.data_item
+const data_item = client.DataItem()
 ```
 
 ### Fields
@@ -308,7 +308,7 @@ const data_item = client.data_item
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.data_item.load({ id: 'data_item_id' })
+const result = await client.DataItem().load({ id: 'data_item_id' })
 ```
 
 ### Common Methods
@@ -342,7 +342,7 @@ Return a copy of the entity options.
 ## DataRuneEntity
 
 ```ts
-const data_rune = client.data_rune
+const data_rune = client.DataRune()
 ```
 
 ### Operations
@@ -352,7 +352,7 @@ const data_rune = client.data_rune
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.data_rune.load({ id: 'data_rune_id' })
+const result = await client.DataRune().load({ id: 'data_rune_id' })
 ```
 
 ### Common Methods
@@ -386,7 +386,7 @@ Return a copy of the entity options.
 ## DragontailVersiontgzEntity
 
 ```ts
-const dragontail_versiontgz = client.dragontail_versiontgz
+const dragontail_versiontgz = client.DragontailVersiontgz()
 ```
 
 ### Operations
@@ -396,7 +396,7 @@ const dragontail_versiontgz = client.dragontail_versiontgz
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.dragontail_versiontgz.load({ id: 'dragontail_versiontgz_id' })
+const result = await client.DragontailVersiontgz().load({ id: 'dragontail_versiontgz_id' })
 ```
 
 ### Common Methods
@@ -430,7 +430,7 @@ Return a copy of the entity options.
 ## ItemEntity
 
 ```ts
-const item = client.item
+const item = client.Item()
 ```
 
 ### Operations
@@ -440,7 +440,7 @@ const item = client.item
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.item.load({ id: 'item_id' })
+const result = await client.Item().load({ id: 'item_id' })
 ```
 
 ### Common Methods
@@ -474,7 +474,7 @@ Return a copy of the entity options.
 ## RegionEntity
 
 ```ts
-const region = client.region
+const region = client.Region()
 ```
 
 ### Fields
@@ -492,7 +492,7 @@ const region = client.region
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.region.load({ id: 'region_id' })
+const result = await client.Region().load({ id: 'region_id' })
 ```
 
 ### Common Methods
@@ -526,7 +526,7 @@ Return a copy of the entity options.
 ## VersionEntity
 
 ```ts
-const version = client.version
+const version = client.Version()
 ```
 
 ### Operations
@@ -536,7 +536,7 @@ const version = client.version
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.version.list()
+const results = await client.Version().list()
 ```
 
 ### Common Methods

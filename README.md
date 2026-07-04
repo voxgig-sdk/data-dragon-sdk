@@ -26,9 +26,9 @@ import { DataDragonSDK } from '@voxgig-sdk/data-dragon'
 
 const client = new DataDragonSDK()
 
-// Load champion data
-const champion = await client.champion.load({})
-console.log(champion.data)
+// Load champion data (returns a Champion)
+const champion = await client.Champion().load()
+console.log(champion)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -91,8 +91,8 @@ from datadragon_sdk import DataDragonSDK
 client = DataDragonSDK()
 
 
-# Load a specific champion
-champion = client.champion.load({"id": "example_id"})
+# Load a specific champion (returns the record, raises on error)
+champion = client.Champion().load({"id": "example_id"})
 print(champion)
 ```
 
@@ -105,8 +105,8 @@ require_once 'datadragon_sdk.php';
 $client = new DataDragonSDK();
 
 
-// Load a specific champion
-$champion = $client->champion()->load(["id" => "example_id"]);
+// Load a specific champion (returns the bare record; throws on error)
+$champion = $client->Champion()->load(["id" => "example_id"]);
 print_r($champion);
 ```
 
@@ -130,8 +130,8 @@ require_relative "DataDragon_sdk"
 client = DataDragonSDK.new
 
 
-# Load a specific champion
-champion = client.champion.load({ "id" => "example_id" })
+# Load a specific champion (returns the bare record; raises on error)
+champion = client.Champion.load({ "id" => "example_id" })
 puts champion
 ```
 
@@ -144,7 +144,7 @@ local client = sdk.new()
 
 
 -- Load a specific champion
-local champion, err = client:champion():load({ id = "example_id" })
+local champion, err = client:Champion():load({ id = "example_id" })
 print(champion)
 ```
 
@@ -157,22 +157,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = DataDragonSDK.test()
-const result = await client.champion.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const champion = await client.Champion().load({ id: 'test01' })
+// champion is a bare Champion populated with mock data
+console.log(champion)
 ```
 
 ### Python
 
 ```python
 client = DataDragonSDK.test()
-result = client.champion.load({"id": "test01"})
+champion = client.Champion().load({"id": "test01"})
+print(champion)
 ```
 
 ### PHP
 
 ```php
-$client = DataDragonSDK::test();
-$result = $client->champion()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = DataDragonSDK::test([
+    "entity" => ["champion" => ["test01" => ["id" => "test01"]]],
+]);
+$champion = $client->Champion()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -187,15 +192,18 @@ result, err := client.Champion(nil).Load(
 ### Ruby
 
 ```ruby
-client = DataDragonSDK.test
-result = client.champion.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = DataDragonSDK.test({
+  "entity" => { "champion" => { "test01" => { "id" => "test01" } } },
+})
+champion = client.Champion.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:champion():load({ id = "test01" })
+local result, err = client:Champion():load({ id = "test01" })
 ```
 
 ## How it works
@@ -243,6 +251,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

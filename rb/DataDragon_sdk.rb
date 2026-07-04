@@ -208,104 +208,56 @@ class DataDragonSDK
   end
 
 
-  # Idiomatic facade: client.champion.list / client.champion.load({ "id" => ... })
-  def champion
-    require_relative 'entity/champion_entity'
-    @champion ||= ChampionEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.champion instead.
+  # Canonical facade: client.Champion.list / client.Champion.load({ "id" => ... })
   def Champion(data = nil)
     require_relative 'entity/champion_entity'
     ChampionEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.data_champion.list / client.data_champion.load({ "id" => ... })
-  def data_champion
-    require_relative 'entity/data_champion_entity'
-    @data_champion ||= DataChampionEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.data_champion instead.
+  # Canonical facade: client.DataChampion.list / client.DataChampion.load({ "id" => ... })
   def DataChampion(data = nil)
     require_relative 'entity/data_champion_entity'
     DataChampionEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.data_item.list / client.data_item.load({ "id" => ... })
-  def data_item
-    require_relative 'entity/data_item_entity'
-    @data_item ||= DataItemEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.data_item instead.
+  # Canonical facade: client.DataItem.list / client.DataItem.load({ "id" => ... })
   def DataItem(data = nil)
     require_relative 'entity/data_item_entity'
     DataItemEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.data_rune.list / client.data_rune.load({ "id" => ... })
-  def data_rune
-    require_relative 'entity/data_rune_entity'
-    @data_rune ||= DataRuneEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.data_rune instead.
+  # Canonical facade: client.DataRune.list / client.DataRune.load({ "id" => ... })
   def DataRune(data = nil)
     require_relative 'entity/data_rune_entity'
     DataRuneEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.dragontail_versiontgz.list / client.dragontail_versiontgz.load({ "id" => ... })
-  def dragontail_versiontgz
-    require_relative 'entity/dragontail_versiontgz_entity'
-    @dragontail_versiontgz ||= DragontailVersiontgzEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.dragontail_versiontgz instead.
+  # Canonical facade: client.DragontailVersiontgz.list / client.DragontailVersiontgz.load({ "id" => ... })
   def DragontailVersiontgz(data = nil)
     require_relative 'entity/dragontail_versiontgz_entity'
     DragontailVersiontgzEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.item.list / client.item.load({ "id" => ... })
-  def item
-    require_relative 'entity/item_entity'
-    @item ||= ItemEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.item instead.
+  # Canonical facade: client.Item.list / client.Item.load({ "id" => ... })
   def Item(data = nil)
     require_relative 'entity/item_entity'
     ItemEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.region.list / client.region.load({ "id" => ... })
-  def region
-    require_relative 'entity/region_entity'
-    @region ||= RegionEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.region instead.
+  # Canonical facade: client.Region.list / client.Region.load({ "id" => ... })
   def Region(data = nil)
     require_relative 'entity/region_entity'
     RegionEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.version.list / client.version.load({ "id" => ... })
-  def version
-    require_relative 'entity/version_entity'
-    @version ||= VersionEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.version instead.
+  # Canonical facade: client.Version.list / client.Version.load({ "id" => ... })
   def Version(data = nil)
     require_relative 'entity/version_entity'
     VersionEntity.new(self, data)

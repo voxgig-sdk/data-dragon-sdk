@@ -4,101 +4,89 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Champion:
+class Champion(TypedDict):
     pass
 
 
-@dataclass
-class ChampionLoadMatch:
+class ChampionLoadMatch(TypedDict):
     id: str
     version: str
 
 
-@dataclass
-class DataChampion:
-    data: Optional[dict] = None
-    format: Optional[str] = None
-    type: Optional[str] = None
-    version: Optional[str] = None
+class DataChampion(TypedDict, total=False):
+    data: dict
+    format: str
+    type: str
+    version: str
 
 
-@dataclass
-class DataChampionLoadMatch:
+class DataChampionLoadMatch(TypedDict):
     language: str
     version: str
 
 
-@dataclass
-class DataItem:
-    data: Optional[dict] = None
-    type: Optional[str] = None
-    version: Optional[str] = None
+class DataItem(TypedDict, total=False):
+    data: dict
+    type: str
+    version: str
 
 
-@dataclass
-class DataItemLoadMatch:
+class DataItemLoadMatch(TypedDict):
     language: str
     version: str
 
 
-@dataclass
-class DataRune:
+class DataRune(TypedDict):
     pass
 
 
-@dataclass
-class DataRuneLoadMatch:
+class DataRuneLoadMatch(TypedDict):
     language: str
     version: str
 
 
-@dataclass
-class DragontailVersiontgz:
+class DragontailVersiontgz(TypedDict):
     pass
 
 
-@dataclass
-class DragontailVersiontgzLoadMatch:
+class DragontailVersiontgzLoadMatch(TypedDict):
     version: str
 
 
-@dataclass
-class Item:
+class Item(TypedDict):
     pass
 
 
-@dataclass
-class ItemLoadMatch:
+class ItemLoadMatch(TypedDict):
     id: str
     version: str
 
 
-@dataclass
-class Region:
-    cdn: Optional[str] = None
-    n: Optional[dict] = None
-    v: Optional[str] = None
+class Region(TypedDict, total=False):
+    cdn: str
+    n: dict
+    v: str
 
 
-@dataclass
-class RegionLoadMatch:
+class RegionLoadMatch(TypedDict):
     region: str
 
 
-@dataclass
-class Version:
+class Version(TypedDict):
     pass
 
 
-@dataclass
-class VersionListMatch:
+class VersionListMatch(TypedDict):
     pass
-

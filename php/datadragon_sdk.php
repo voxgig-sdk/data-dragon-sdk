@@ -233,10 +233,10 @@ class DataDragonSDK
 
     private $_champion = null;
 
-    // Idiomatic facade: $client->champion()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Champion() (PHP method
-    // names are case-insensitive).
-    public function champion($data = null)
+    // Canonical facade: $client->Champion()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->champion()
+    // resolves here too.
+    public function Champion($data = null)
     {
         require_once __DIR__ . '/entity/champion_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class DataDragonSDK
 
     private $_data_champion = null;
 
-    // Idiomatic facade: $client->data_champion()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias DataChampion() (PHP method
-    // names are case-insensitive).
-    public function data_champion($data = null)
+    // Canonical facade: $client->DataChampion()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->data_champion()
+    // resolves here too.
+    public function DataChampion($data = null)
     {
         require_once __DIR__ . '/entity/data_champion_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class DataDragonSDK
 
     private $_data_item = null;
 
-    // Idiomatic facade: $client->data_item()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias DataItem() (PHP method
-    // names are case-insensitive).
-    public function data_item($data = null)
+    // Canonical facade: $client->DataItem()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->data_item()
+    // resolves here too.
+    public function DataItem($data = null)
     {
         require_once __DIR__ . '/entity/data_item_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class DataDragonSDK
 
     private $_data_rune = null;
 
-    // Idiomatic facade: $client->data_rune()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias DataRune() (PHP method
-    // names are case-insensitive).
-    public function data_rune($data = null)
+    // Canonical facade: $client->DataRune()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->data_rune()
+    // resolves here too.
+    public function DataRune($data = null)
     {
         require_once __DIR__ . '/entity/data_rune_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class DataDragonSDK
 
     private $_dragontail_versiontgz = null;
 
-    // Idiomatic facade: $client->dragontail_versiontgz()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias DragontailVersiontgz() (PHP method
-    // names are case-insensitive).
-    public function dragontail_versiontgz($data = null)
+    // Canonical facade: $client->DragontailVersiontgz()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->dragontail_versiontgz()
+    // resolves here too.
+    public function DragontailVersiontgz($data = null)
     {
         require_once __DIR__ . '/entity/dragontail_versiontgz_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class DataDragonSDK
 
     private $_item = null;
 
-    // Idiomatic facade: $client->item()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Item() (PHP method
-    // names are case-insensitive).
-    public function item($data = null)
+    // Canonical facade: $client->Item()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->item()
+    // resolves here too.
+    public function Item($data = null)
     {
         require_once __DIR__ . '/entity/item_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class DataDragonSDK
 
     private $_region = null;
 
-    // Idiomatic facade: $client->region()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Region() (PHP method
-    // names are case-insensitive).
-    public function region($data = null)
+    // Canonical facade: $client->Region()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->region()
+    // resolves here too.
+    public function Region($data = null)
     {
         require_once __DIR__ . '/entity/region_entity.php';
         if ($data === null) {
@@ -359,10 +359,10 @@ class DataDragonSDK
 
     private $_version = null;
 
-    // Idiomatic facade: $client->version()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Version() (PHP method
-    // names are case-insensitive).
-    public function version($data = null)
+    // Canonical facade: $client->Version()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->version()
+    // resolves here too.
+    public function Version($data = null)
     {
         require_once __DIR__ . '/entity/version_entity.php';
         if ($data === null) {

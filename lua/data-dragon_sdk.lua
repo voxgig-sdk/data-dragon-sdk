@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:champion():list() / client:champion():load({ id = ... })
-function DataDragonSDK:champion(data)
+-- Idiomatic facade: client:Champion():list() / client:Champion():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DataDragonSDK:Champion(data)
   local EntityMod = require("entity.champion_entity")
   if data == nil then
     if self._champion == nil then
@@ -256,15 +257,10 @@ function DataDragonSDK:champion(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:champion() instead.
-function DataDragonSDK:Champion(data)
-  local EntityMod = require("entity.champion_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:data_champion():list() / client:data_champion():load({ id = ... })
-function DataDragonSDK:data_champion(data)
+-- Idiomatic facade: client:DataChampion():list() / client:DataChampion():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DataDragonSDK:DataChampion(data)
   local EntityMod = require("entity.data_champion_entity")
   if data == nil then
     if self._data_champion == nil then
@@ -275,15 +271,10 @@ function DataDragonSDK:data_champion(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:data_champion() instead.
-function DataDragonSDK:DataChampion(data)
-  local EntityMod = require("entity.data_champion_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:data_item():list() / client:data_item():load({ id = ... })
-function DataDragonSDK:data_item(data)
+-- Idiomatic facade: client:DataItem():list() / client:DataItem():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DataDragonSDK:DataItem(data)
   local EntityMod = require("entity.data_item_entity")
   if data == nil then
     if self._data_item == nil then
@@ -294,15 +285,10 @@ function DataDragonSDK:data_item(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:data_item() instead.
-function DataDragonSDK:DataItem(data)
-  local EntityMod = require("entity.data_item_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:data_rune():list() / client:data_rune():load({ id = ... })
-function DataDragonSDK:data_rune(data)
+-- Idiomatic facade: client:DataRune():list() / client:DataRune():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DataDragonSDK:DataRune(data)
   local EntityMod = require("entity.data_rune_entity")
   if data == nil then
     if self._data_rune == nil then
@@ -313,15 +299,10 @@ function DataDragonSDK:data_rune(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:data_rune() instead.
-function DataDragonSDK:DataRune(data)
-  local EntityMod = require("entity.data_rune_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:dragontail_versiontgz():list() / client:dragontail_versiontgz():load({ id = ... })
-function DataDragonSDK:dragontail_versiontgz(data)
+-- Idiomatic facade: client:DragontailVersiontgz():list() / client:DragontailVersiontgz():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DataDragonSDK:DragontailVersiontgz(data)
   local EntityMod = require("entity.dragontail_versiontgz_entity")
   if data == nil then
     if self._dragontail_versiontgz == nil then
@@ -332,15 +313,10 @@ function DataDragonSDK:dragontail_versiontgz(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:dragontail_versiontgz() instead.
-function DataDragonSDK:DragontailVersiontgz(data)
-  local EntityMod = require("entity.dragontail_versiontgz_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:item():list() / client:item():load({ id = ... })
-function DataDragonSDK:item(data)
+-- Idiomatic facade: client:Item():list() / client:Item():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DataDragonSDK:Item(data)
   local EntityMod = require("entity.item_entity")
   if data == nil then
     if self._item == nil then
@@ -351,15 +327,10 @@ function DataDragonSDK:item(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:item() instead.
-function DataDragonSDK:Item(data)
-  local EntityMod = require("entity.item_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:region():list() / client:region():load({ id = ... })
-function DataDragonSDK:region(data)
+-- Idiomatic facade: client:Region():list() / client:Region():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DataDragonSDK:Region(data)
   local EntityMod = require("entity.region_entity")
   if data == nil then
     if self._region == nil then
@@ -370,15 +341,10 @@ function DataDragonSDK:region(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:region() instead.
-function DataDragonSDK:Region(data)
-  local EntityMod = require("entity.region_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:version():list() / client:version():load({ id = ... })
-function DataDragonSDK:version(data)
+-- Idiomatic facade: client:Version():list() / client:Version():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function DataDragonSDK:Version(data)
   local EntityMod = require("entity.version_entity")
   if data == nil then
     if self._version == nil then
@@ -386,12 +352,6 @@ function DataDragonSDK:version(data)
     end
     return self._version
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:version() instead.
-function DataDragonSDK:Version(data)
-  local EntityMod = require("entity.version_entity")
   return EntityMod.new(self, data)
 end
 
