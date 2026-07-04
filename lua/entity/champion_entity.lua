@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ChampionLoadMatch
+---@param ctrl? table
+---@return Champion
+---@return string? err
 function ChampionEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

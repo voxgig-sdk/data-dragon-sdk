@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch DragontailVersiontgzLoadMatch
+---@param ctrl? table
+---@return DragontailVersiontgz
+---@return string? err
 function DragontailVersiontgzEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

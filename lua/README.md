@@ -9,12 +9,9 @@ The Lua SDK for the DataDragon API — an entity-oriented client using Lua conve
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-data-dragon
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/data-dragon-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("data-dragon_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("DATA-DRAGON_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 3. Load a champion
 
 ```lua
-local result, err = client:Champion():load({ id = "example_id" })
+local result, err = client:champion():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:DataDragon():load({ id = "test01" })
+local result, err = client:champion():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -120,8 +115,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-DATA-DRAGON_TEST_LIVE=TRUE
-DATA-DRAGON_APIKEY=<your-key>
+DATA_DRAGON_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -144,7 +138,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -300,7 +293,7 @@ API path: `/api/versions.json`
 
 ### Champion
 
-Create an instance: `const champion = client.Champion()`
+Create an instance: `const champion = client.champion`
 
 #### Operations
 
@@ -311,13 +304,13 @@ Create an instance: `const champion = client.Champion()`
 #### Example: Load
 
 ```ts
-const champion = await client.Champion().load({ id: 'champion_id' })
+const champion = await client.champion.load({ id: 'champion_id' })
 ```
 
 
 ### DataChampion
 
-Create an instance: `const data_champion = client.DataChampion()`
+Create an instance: `const data_champion = client.data_champion`
 
 #### Operations
 
@@ -337,13 +330,13 @@ Create an instance: `const data_champion = client.DataChampion()`
 #### Example: Load
 
 ```ts
-const data_champion = await client.DataChampion().load({ id: 'data_champion_id' })
+const data_champion = await client.data_champion.load({ id: 'data_champion_id' })
 ```
 
 
 ### DataItem
 
-Create an instance: `const data_item = client.DataItem()`
+Create an instance: `const data_item = client.data_item`
 
 #### Operations
 
@@ -362,13 +355,13 @@ Create an instance: `const data_item = client.DataItem()`
 #### Example: Load
 
 ```ts
-const data_item = await client.DataItem().load({ id: 'data_item_id' })
+const data_item = await client.data_item.load({ id: 'data_item_id' })
 ```
 
 
 ### DataRune
 
-Create an instance: `const data_rune = client.DataRune()`
+Create an instance: `const data_rune = client.data_rune`
 
 #### Operations
 
@@ -379,13 +372,13 @@ Create an instance: `const data_rune = client.DataRune()`
 #### Example: Load
 
 ```ts
-const data_rune = await client.DataRune().load({ id: 'data_rune_id' })
+const data_rune = await client.data_rune.load({ id: 'data_rune_id' })
 ```
 
 
 ### DragontailVersiontgz
 
-Create an instance: `const dragontail_versiontgz = client.DragontailVersiontgz()`
+Create an instance: `const dragontail_versiontgz = client.dragontail_versiontgz`
 
 #### Operations
 
@@ -396,13 +389,13 @@ Create an instance: `const dragontail_versiontgz = client.DragontailVersiontgz()
 #### Example: Load
 
 ```ts
-const dragontail_versiontgz = await client.DragontailVersiontgz().load({ id: 'dragontail_versiontgz_id' })
+const dragontail_versiontgz = await client.dragontail_versiontgz.load({ id: 'dragontail_versiontgz_id' })
 ```
 
 
 ### Item
 
-Create an instance: `const item = client.Item()`
+Create an instance: `const item = client.item`
 
 #### Operations
 
@@ -413,13 +406,13 @@ Create an instance: `const item = client.Item()`
 #### Example: Load
 
 ```ts
-const item = await client.Item().load({ id: 'item_id' })
+const item = await client.item.load({ id: 'item_id' })
 ```
 
 
 ### Region
 
-Create an instance: `const region = client.Region()`
+Create an instance: `const region = client.region`
 
 #### Operations
 
@@ -438,13 +431,13 @@ Create an instance: `const region = client.Region()`
 #### Example: Load
 
 ```ts
-const region = await client.Region().load({ id: 'region_id' })
+const region = await client.region.load({ id: 'region_id' })
 ```
 
 
 ### Version
 
-Create an instance: `const version = client.Version()`
+Create an instance: `const version = client.version`
 
 #### Operations
 
@@ -455,7 +448,7 @@ Create an instance: `const version = client.Version()`
 #### Example: List
 
 ```ts
-const versions = await client.Version().list()
+const versions = await client.version.list()
 ```
 
 
@@ -530,11 +523,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local champion = client:champion()
+champion:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- champion:data_get() now returns the loaded champion data
+-- champion:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

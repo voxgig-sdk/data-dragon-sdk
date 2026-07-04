@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `Hash` | SDK configuration options. |
-| `options["apikey"]` | `String` | API key for authentication. |
 | `options["base"]` | `String` | Base URL for API requests. |
 | `options["prefix"]` | `String` | URL prefix appended after base. |
 | `options["suffix"]` | `String` | URL suffix appended after path. |
@@ -82,9 +81,11 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs = {}) -> Hash, err`
+#### `direct(fetchargs = {}) -> Hash`
 
-Make a direct HTTP request to any API endpoint.
+Make a direct HTTP request to any API endpoint. Returns a result hash
+(`{ "ok" => ..., "status" => ..., "data" => ..., "err" => ... }`); it
+does not raise — inspect `result["ok"]`.
 
 **Parameters:**
 
@@ -98,14 +99,14 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs["body"]` | `any` | Request body (hashes are JSON-serialized). |
 | `fetchargs["ctrl"]` | `Hash` | Control options (e.g. `{ "explain" => true }`). |
 
-**Returns:** `Hash, err`
+**Returns:** `Hash`
 
-#### `prepare(fetchargs = {}) -> Hash, err`
+#### `prepare(fetchargs = {}) -> Hash`
 
 Prepare a fetch definition without sending the request. Accepts the
-same parameters as `direct()`.
+same parameters as `direct()`. Raises on error.
 
-**Returns:** `Hash, err`
+**Returns:** `Hash` (the fetch definition; raises on error)
 
 
 ---
@@ -113,17 +114,17 @@ same parameters as `direct()`.
 ## ChampionEntity
 
 ```ruby
-champion = client.Champion
+champion = client.champion
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Champion.load({ "id" => "champion_id" })
+result = client.champion.load({ "id" => "champion_id" })
 ```
 
 ### Common Methods
@@ -159,7 +160,7 @@ Return the entity name.
 ## DataChampionEntity
 
 ```ruby
-data_champion = client.DataChampion
+data_champion = client.data_champion
 ```
 
 ### Fields
@@ -173,12 +174,12 @@ data_champion = client.DataChampion
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.DataChampion.load({ "id" => "data_champion_id" })
+result = client.data_champion.load({ "id" => "data_champion_id" })
 ```
 
 ### Common Methods
@@ -214,7 +215,7 @@ Return the entity name.
 ## DataItemEntity
 
 ```ruby
-data_item = client.DataItem
+data_item = client.data_item
 ```
 
 ### Fields
@@ -227,12 +228,12 @@ data_item = client.DataItem
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.DataItem.load({ "id" => "data_item_id" })
+result = client.data_item.load({ "id" => "data_item_id" })
 ```
 
 ### Common Methods
@@ -268,17 +269,17 @@ Return the entity name.
 ## DataRuneEntity
 
 ```ruby
-data_rune = client.DataRune
+data_rune = client.data_rune
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.DataRune.load({ "id" => "data_rune_id" })
+result = client.data_rune.load({ "id" => "data_rune_id" })
 ```
 
 ### Common Methods
@@ -314,17 +315,17 @@ Return the entity name.
 ## DragontailVersiontgzEntity
 
 ```ruby
-dragontail_versiontgz = client.DragontailVersiontgz
+dragontail_versiontgz = client.dragontail_versiontgz
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.DragontailVersiontgz.load({ "id" => "dragontail_versiontgz_id" })
+result = client.dragontail_versiontgz.load({ "id" => "dragontail_versiontgz_id" })
 ```
 
 ### Common Methods
@@ -360,17 +361,17 @@ Return the entity name.
 ## ItemEntity
 
 ```ruby
-item = client.Item
+item = client.item
 ```
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Item.load({ "id" => "item_id" })
+result = client.item.load({ "id" => "item_id" })
 ```
 
 ### Common Methods
@@ -406,7 +407,7 @@ Return the entity name.
 ## RegionEntity
 
 ```ruby
-region = client.Region
+region = client.region
 ```
 
 ### Fields
@@ -419,12 +420,12 @@ region = client.Region
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Region.load({ "id" => "region_id" })
+result = client.region.load({ "id" => "region_id" })
 ```
 
 ### Common Methods
@@ -460,17 +461,17 @@ Return the entity name.
 ## VersionEntity
 
 ```ruby
-version = client.Version
+version = client.version
 ```
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Version.list(nil)
+results = client.version.list(nil)
 ```
 
 ### Common Methods

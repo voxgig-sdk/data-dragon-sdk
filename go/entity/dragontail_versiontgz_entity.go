@@ -85,6 +85,27 @@ func (e *DragontailVersiontgzEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an DragontailVersiontgz; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *DragontailVersiontgzEntity) DataTyped(data ...DragontailVersiontgz) DragontailVersiontgz {
+	if len(data) > 0 {
+		return typedFrom[DragontailVersiontgz](e.Data(asMap(data[0])))
+	}
+	return typedFrom[DragontailVersiontgz](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through DragontailVersiontgz (all fields
+// optional at the wire level).
+func (e *DragontailVersiontgzEntity) MatchTyped(match ...DragontailVersiontgz) DragontailVersiontgz {
+	if len(match) > 0 {
+		return typedFrom[DragontailVersiontgz](e.Match(asMap(match[0])))
+	}
+	return typedFrom[DragontailVersiontgz](e.Match())
+}
+
 
 func (e *DragontailVersiontgzEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *DragontailVersiontgzEntity) Load(reqmatch map[string]any, ctrl map[stri
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// DragontailVersiontgzLoadMatch and returns an DragontailVersiontgz. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *DragontailVersiontgzEntity) LoadTyped(reqmatch DragontailVersiontgzLoadMatch, ctrl map[string]any) (DragontailVersiontgz, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return DragontailVersiontgz{}, err
+	}
+	return typedFrom[DragontailVersiontgz](res), nil
 }
 
 

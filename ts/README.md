@@ -9,9 +9,12 @@ The TypeScript SDK for the DataDragon API — a type-safe, entity-oriented clien
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/data-dragon
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/data-dragon-sdk/releases](https://github.com/voxgig-sdk/data-dragon-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { DataDragonSDK } from 'data-dragon'
+import { DataDragonSDK } from '@voxgig-sdk/data-dragon'
 
-const client = new DataDragonSDK({
-  apikey: process.env.DATA-DRAGON_APIKEY,
-})
+const client = new DataDragonSDK()
 ```
 
 ### 3. Load a champion
 
 ```ts
-const result = await client.Champion().load({ id: 'example_id' })
+const result = await client.champion.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = DataDragonSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.champion.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new DataDragonSDK({ apikey: '...' })
+const client = new DataDragonSDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.champion
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new DataDragonSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -133,8 +133,7 @@ const client = new DataDragonSDK({
 Create a `.env.local` file at the project root:
 
 ```
-DATA-DRAGON_TEST_LIVE=TRUE
-DATA-DRAGON_APIKEY=<your-key>
+DATA_DRAGON_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new DataDragonSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new DataDragonSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -345,7 +342,7 @@ API path: `/api/versions.json`
 
 ### Champion
 
-Create an instance: `const champion = client.Champion()`
+Create an instance: `const champion = client.champion`
 
 #### Operations
 
@@ -356,13 +353,13 @@ Create an instance: `const champion = client.Champion()`
 #### Example: Load
 
 ```ts
-const champion = await client.Champion().load({ id: 'champion_id' })
+const champion = await client.champion.load({ id: 'champion_id' })
 ```
 
 
 ### DataChampion
 
-Create an instance: `const data_champion = client.DataChampion()`
+Create an instance: `const data_champion = client.data_champion`
 
 #### Operations
 
@@ -382,13 +379,13 @@ Create an instance: `const data_champion = client.DataChampion()`
 #### Example: Load
 
 ```ts
-const data_champion = await client.DataChampion().load({ id: 'data_champion_id' })
+const data_champion = await client.data_champion.load({ id: 'data_champion_id' })
 ```
 
 
 ### DataItem
 
-Create an instance: `const data_item = client.DataItem()`
+Create an instance: `const data_item = client.data_item`
 
 #### Operations
 
@@ -407,13 +404,13 @@ Create an instance: `const data_item = client.DataItem()`
 #### Example: Load
 
 ```ts
-const data_item = await client.DataItem().load({ id: 'data_item_id' })
+const data_item = await client.data_item.load({ id: 'data_item_id' })
 ```
 
 
 ### DataRune
 
-Create an instance: `const data_rune = client.DataRune()`
+Create an instance: `const data_rune = client.data_rune`
 
 #### Operations
 
@@ -424,13 +421,13 @@ Create an instance: `const data_rune = client.DataRune()`
 #### Example: Load
 
 ```ts
-const data_rune = await client.DataRune().load({ id: 'data_rune_id' })
+const data_rune = await client.data_rune.load({ id: 'data_rune_id' })
 ```
 
 
 ### DragontailVersiontgz
 
-Create an instance: `const dragontail_versiontgz = client.DragontailVersiontgz()`
+Create an instance: `const dragontail_versiontgz = client.dragontail_versiontgz`
 
 #### Operations
 
@@ -441,13 +438,13 @@ Create an instance: `const dragontail_versiontgz = client.DragontailVersiontgz()
 #### Example: Load
 
 ```ts
-const dragontail_versiontgz = await client.DragontailVersiontgz().load({ id: 'dragontail_versiontgz_id' })
+const dragontail_versiontgz = await client.dragontail_versiontgz.load({ id: 'dragontail_versiontgz_id' })
 ```
 
 
 ### Item
 
-Create an instance: `const item = client.Item()`
+Create an instance: `const item = client.item`
 
 #### Operations
 
@@ -458,13 +455,13 @@ Create an instance: `const item = client.Item()`
 #### Example: Load
 
 ```ts
-const item = await client.Item().load({ id: 'item_id' })
+const item = await client.item.load({ id: 'item_id' })
 ```
 
 
 ### Region
 
-Create an instance: `const region = client.Region()`
+Create an instance: `const region = client.region`
 
 #### Operations
 
@@ -483,13 +480,13 @@ Create an instance: `const region = client.Region()`
 #### Example: Load
 
 ```ts
-const region = await client.Region().load({ id: 'region_id' })
+const region = await client.region.load({ id: 'region_id' })
 ```
 
 
 ### Version
 
-Create an instance: `const version = client.Version()`
+Create an instance: `const version = client.version`
 
 #### Operations
 
@@ -500,7 +497,7 @@ Create an instance: `const version = client.Version()`
 #### Example: List
 
 ```ts
-const versions = await client.Version().list()
+const versions = await client.version.list()
 ```
 
 
@@ -561,7 +558,7 @@ data-dragon/
 Import the SDK from the package root:
 
 ```ts
-import { DataDragonSDK } from 'data-dragon'
+import { DataDragonSDK } from '@voxgig-sdk/data-dragon'
 ```
 
 ### Entity state
@@ -571,11 +568,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const champion = client.champion
+await champion.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// champion.data() now returns the loaded champion data
+// champion.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

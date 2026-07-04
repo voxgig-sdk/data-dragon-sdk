@@ -43,8 +43,7 @@ class VersionEntityTest < Minitest::Test
     version_ref01_ent = client.Version(nil)
     version_ref01_match = {}
 
-    version_ref01_list_result, err = version_ref01_ent.list(version_ref01_match, nil)
-    assert_nil err
+    version_ref01_list_result = version_ref01_ent.list(version_ref01_match, nil)
     assert version_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def version_basic_setup(extra)
     "DATADRAGON_TEST_VERSION_ENTID" => idmap,
     "DATADRAGON_TEST_LIVE" => "FALSE",
     "DATADRAGON_TEST_EXPLAIN" => "FALSE",
-    "DATADRAGON_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def version_basic_setup(extra)
   if env["DATADRAGON_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["DATADRAGON_APIKEY"],
       },
       extra || {},
     ])

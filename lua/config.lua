@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://ddragon.leagueoflegends.com",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },
@@ -52,6 +49,7 @@ local function make_config()
                       ["orig"] = "champion_image",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                     {
                       ["active"] = true,
@@ -61,6 +59,7 @@ local function make_config()
                       ["orig"] = "version",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 1,
                     },
                   },
                 },
@@ -151,6 +150,7 @@ local function make_config()
                       ["orig"] = "language",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                     {
                       ["active"] = true,
@@ -160,6 +160,7 @@ local function make_config()
                       ["orig"] = "version",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 1,
                     },
                   },
                 },
@@ -239,6 +240,7 @@ local function make_config()
                       ["orig"] = "language",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                     {
                       ["active"] = true,
@@ -248,6 +250,7 @@ local function make_config()
                       ["orig"] = "version",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 1,
                     },
                   },
                 },
@@ -305,6 +308,7 @@ local function make_config()
                       ["orig"] = "language",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                     {
                       ["active"] = true,
@@ -314,6 +318,7 @@ local function make_config()
                       ["orig"] = "version",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 1,
                     },
                   },
                 },
@@ -371,6 +376,7 @@ local function make_config()
                       ["orig"] = "version",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                 },
@@ -419,6 +425,7 @@ local function make_config()
                       ["orig"] = "item_image",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                     {
                       ["active"] = true,
@@ -428,6 +435,7 @@ local function make_config()
                       ["orig"] = "version",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 1,
                     },
                   },
                 },
@@ -511,6 +519,7 @@ local function make_config()
                       ["orig"] = "region",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 0,
                     },
                   },
                 },

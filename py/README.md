@@ -9,11 +9,9 @@ The Python SDK for the DataDragon API — an entity-oriented client following Py
 
 
 ## Install
-```bash
-pip install voxgig-sdk-data-dragon
-```
-
-Or install from source:
+This package is not yet published to PyPI. Install it from the GitHub
+release tag (`py/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/data-dragon-sdk/releases)) or
+from a source checkout:
 
 ```bash
 pip install -e .
@@ -28,21 +26,19 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from datadragon_sdk import DataDragonSDK
 
-client = DataDragonSDK({
-    "apikey": os.environ.get("DATA-DRAGON_APIKEY"),
-})
+client = DataDragonSDK()
 ```
 
 ### 3. Load a champion
 
 ```python
-result, err = client.Champion().load({"id": "example_id"})
-if err:
-    raise Exception(err)
-print(result)
+try:
+    result = client.champion.load({"id": "example_id"})
+    print(result)
+except Exception as err:
+    print(f"load failed: {err}")
 ```
 
 
@@ -53,29 +49,28 @@ print(result)
 For endpoints not covered by entity methods:
 
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
+else:
+    print(result["err"])     # error value
 ```
 
 ### Prepare a request without sending it
 
 ```python
-fetchdef, err = client.prepare({
+# prepare() returns the fetch definition and raises on error.
+fetchdef = client.prepare({
     "path": "/api/resource/{id}",
     "method": "DELETE",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 print(fetchdef["url"])
 print(fetchdef["method"])
@@ -89,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```python
 client = DataDragonSDK.test()
 
-result, err = client.DataDragon().load({"id": "test01"})
+result = client.champion.load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -119,8 +114,7 @@ client = DataDragonSDK({
 Create a `.env.local` file at the project root:
 
 ```
-DATA-DRAGON_TEST_LIVE=TRUE
-DATA-DRAGON_APIKEY=<your-key>
+DATA_DRAGON_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -144,7 +138,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |
@@ -166,8 +159,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | --- | --- | --- |
 | `options_map` | `() -> dict` | Deep copy of current SDK options. |
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
-| `prepare` | `(fetchargs) -> (dict, err)` | Build an HTTP request definition without sending. |
-| `direct` | `(fetchargs) -> (dict, err)` | Build and send an HTTP request. |
+| `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
+| `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Champion` | `(data) -> ChampionEntity` | Create a Champion entity instance. |
 | `DataChampion` | `(data) -> DataChampionEntity` | Create a DataChampion entity instance. |
 | `DataItem` | `(data) -> DataItemEntity` | Create a DataItem entity instance. |
@@ -183,11 +176,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> (any, err)` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> (any, err)` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> (any, err)` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> (any, err)` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> (any, err)` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -197,8 +190,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`dict` with these keys:
+Entity operations return the bare result data (a `dict` for single-entity
+ops, a `list` for `list`) and raise on error. Wrap calls in
+`try`/`except` to handle failures.
+
+The `direct()` escape hatch never raises — it returns a result `dict`
+you branch on via `result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -300,7 +297,7 @@ API path: `/api/versions.json`
 
 ### Champion
 
-Create an instance: `const champion = client.Champion()`
+Create an instance: `const champion = client.champion`
 
 #### Operations
 
@@ -311,13 +308,13 @@ Create an instance: `const champion = client.Champion()`
 #### Example: Load
 
 ```ts
-const champion = await client.Champion().load({ id: 'champion_id' })
+const champion = await client.champion.load({ id: 'champion_id' })
 ```
 
 
 ### DataChampion
 
-Create an instance: `const data_champion = client.DataChampion()`
+Create an instance: `const data_champion = client.data_champion`
 
 #### Operations
 
@@ -337,13 +334,13 @@ Create an instance: `const data_champion = client.DataChampion()`
 #### Example: Load
 
 ```ts
-const data_champion = await client.DataChampion().load({ id: 'data_champion_id' })
+const data_champion = await client.data_champion.load({ id: 'data_champion_id' })
 ```
 
 
 ### DataItem
 
-Create an instance: `const data_item = client.DataItem()`
+Create an instance: `const data_item = client.data_item`
 
 #### Operations
 
@@ -362,13 +359,13 @@ Create an instance: `const data_item = client.DataItem()`
 #### Example: Load
 
 ```ts
-const data_item = await client.DataItem().load({ id: 'data_item_id' })
+const data_item = await client.data_item.load({ id: 'data_item_id' })
 ```
 
 
 ### DataRune
 
-Create an instance: `const data_rune = client.DataRune()`
+Create an instance: `const data_rune = client.data_rune`
 
 #### Operations
 
@@ -379,13 +376,13 @@ Create an instance: `const data_rune = client.DataRune()`
 #### Example: Load
 
 ```ts
-const data_rune = await client.DataRune().load({ id: 'data_rune_id' })
+const data_rune = await client.data_rune.load({ id: 'data_rune_id' })
 ```
 
 
 ### DragontailVersiontgz
 
-Create an instance: `const dragontail_versiontgz = client.DragontailVersiontgz()`
+Create an instance: `const dragontail_versiontgz = client.dragontail_versiontgz`
 
 #### Operations
 
@@ -396,13 +393,13 @@ Create an instance: `const dragontail_versiontgz = client.DragontailVersiontgz()
 #### Example: Load
 
 ```ts
-const dragontail_versiontgz = await client.DragontailVersiontgz().load({ id: 'dragontail_versiontgz_id' })
+const dragontail_versiontgz = await client.dragontail_versiontgz.load({ id: 'dragontail_versiontgz_id' })
 ```
 
 
 ### Item
 
-Create an instance: `const item = client.Item()`
+Create an instance: `const item = client.item`
 
 #### Operations
 
@@ -413,13 +410,13 @@ Create an instance: `const item = client.Item()`
 #### Example: Load
 
 ```ts
-const item = await client.Item().load({ id: 'item_id' })
+const item = await client.item.load({ id: 'item_id' })
 ```
 
 
 ### Region
 
-Create an instance: `const region = client.Region()`
+Create an instance: `const region = client.region`
 
 #### Operations
 
@@ -438,13 +435,13 @@ Create an instance: `const region = client.Region()`
 #### Example: Load
 
 ```ts
-const region = await client.Region().load({ id: 'region_id' })
+const region = await client.region.load({ id: 'region_id' })
 ```
 
 
 ### Version
 
-Create an instance: `const version = client.Version()`
+Create an instance: `const version = client.version`
 
 #### Operations
 
@@ -455,7 +452,7 @@ Create an instance: `const version = client.Version()`
 #### Example: List
 
 ```ts
-const versions = await client.Version().list()
+const versions = await client.version.list()
 ```
 
 
@@ -529,11 +526,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-moon = client.Moon()
-moon.load({"planet_id": "earth", "id": "luna"})
+champion = client.champion
+champion.load({"id": "example_id"})
 
-# moon.data_get() now returns the loaded moon data
-# moon.match_get() returns the last match criteria
+# champion.data_get() now returns the loaded champion data
+# champion.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

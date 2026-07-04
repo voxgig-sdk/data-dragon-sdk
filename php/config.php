@@ -20,9 +20,6 @@ class DataDragonConfig
             ],
             "options" => [
                 "base" => "https://ddragon.leagueoflegends.com",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -58,6 +55,7 @@ class DataDragonConfig
                         'orig' => 'champion_image',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -67,6 +65,7 @@ class DataDragonConfig
                         'orig' => 'version',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -157,6 +156,7 @@ class DataDragonConfig
                         'orig' => 'language',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -166,6 +166,7 @@ class DataDragonConfig
                         'orig' => 'version',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -245,6 +246,7 @@ class DataDragonConfig
                         'orig' => 'language',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -254,6 +256,7 @@ class DataDragonConfig
                         'orig' => 'version',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -311,6 +314,7 @@ class DataDragonConfig
                         'orig' => 'language',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -320,6 +324,7 @@ class DataDragonConfig
                         'orig' => 'version',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -377,6 +382,7 @@ class DataDragonConfig
                         'orig' => 'version',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -425,6 +431,7 @@ class DataDragonConfig
                         'orig' => 'item_image',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -434,6 +441,7 @@ class DataDragonConfig
                         'orig' => 'version',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -517,6 +525,7 @@ class DataDragonConfig
                         'orig' => 'region',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],

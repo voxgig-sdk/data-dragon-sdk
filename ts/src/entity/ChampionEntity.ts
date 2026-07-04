@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Champion,
+  ChampionLoadMatch,
+} from '../DataDragonTypes'
 
 // TODO: needs Entity superclass
-class ChampionEntity extends DataDragonEntityBase {
+class ChampionEntity extends DataDragonEntityBase<Champion> {
 
   constructor(client: DataDragonSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class ChampionEntity extends DataDragonEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: ChampionLoadMatch, ctrl?: Control): Promise<Champion> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class ChampionEntity extends DataDragonEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Champion> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

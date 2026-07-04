@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch VersionListMatch
+---@param ctrl? table
+---@return Version[]
+---@return string? err
 function VersionEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

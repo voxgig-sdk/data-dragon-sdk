@@ -92,7 +92,6 @@ function version_basic_setup(extra)
     ["DATADRAGON_TEST_VERSION_ENTID"] = idmap,
     ["DATADRAGON_TEST_LIVE"] = "FALSE",
     ["DATADRAGON_TEST_EXPLAIN"] = "FALSE",
-    ["DATADRAGON_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function version_basic_setup(extra)
   if env["DATADRAGON_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["DATADRAGON_APIKEY"],
       },
       extra or {},
     })

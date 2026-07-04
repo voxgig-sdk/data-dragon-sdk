@@ -50,8 +50,7 @@ class TestVersionEntity:
         version_ref01_ent = client.Version(None)
         version_ref01_match = {}
 
-        version_ref01_list_result, err = version_ref01_ent.list(version_ref01_match, None)
-        assert err is None
+        version_ref01_list_result = version_ref01_ent.list(version_ref01_match, None)
         assert isinstance(version_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _version_basic_setup(extra):
         "DATADRAGON_TEST_VERSION_ENTID": idmap,
         "DATADRAGON_TEST_LIVE": "FALSE",
         "DATADRAGON_TEST_EXPLAIN": "FALSE",
-        "DATADRAGON_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _version_basic_setup(extra):
     if env.get("DATADRAGON_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DATADRAGON_APIKEY"),
             },
             extra or {},
         ])

@@ -15,9 +15,6 @@ module DataDragonConfig
       },
       "options" => {
         "base" => "https://ddragon.leagueoflegends.com",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -53,6 +50,7 @@ module DataDragonConfig
                         "orig" => "champion_image",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -62,6 +60,7 @@ module DataDragonConfig
                         "orig" => "version",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 1,
                       },
                     ],
                   },
@@ -152,6 +151,7 @@ module DataDragonConfig
                         "orig" => "language",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -161,6 +161,7 @@ module DataDragonConfig
                         "orig" => "version",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 1,
                       },
                     ],
                   },
@@ -240,6 +241,7 @@ module DataDragonConfig
                         "orig" => "language",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -249,6 +251,7 @@ module DataDragonConfig
                         "orig" => "version",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 1,
                       },
                     ],
                   },
@@ -306,6 +309,7 @@ module DataDragonConfig
                         "orig" => "language",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -315,6 +319,7 @@ module DataDragonConfig
                         "orig" => "version",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 1,
                       },
                     ],
                   },
@@ -372,6 +377,7 @@ module DataDragonConfig
                         "orig" => "version",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },
@@ -420,6 +426,7 @@ module DataDragonConfig
                         "orig" => "item_image",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -429,6 +436,7 @@ module DataDragonConfig
                         "orig" => "version",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 1,
                       },
                     ],
                   },
@@ -512,6 +520,7 @@ module DataDragonConfig
                         "orig" => "region",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },

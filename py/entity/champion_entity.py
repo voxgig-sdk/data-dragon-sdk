@@ -1,7 +1,13 @@
 # DataDragon SDK Champion entity
 
+from __future__ import annotations
+
 from utility.voxgig_struct import voxgig_struct as vs
 from core import helpers
+from datadragon_types import (
+    Champion,
+    ChampionLoadMatch,
+)
 
 
 class ChampionEntity:
@@ -44,7 +50,7 @@ class ChampionEntity:
             self._data = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetData")
 
-    def data_get(self):
+    def data_get(self) -> Champion:
         self._utility.feature_hook(self._entctx, "GetData")
         return vs.clone(self._data)
 
@@ -53,12 +59,12 @@ class ChampionEntity:
             self._match = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetMatch")
 
-    def match_get(self):
+    def match_get(self) -> Champion:
         self._utility.feature_hook(self._entctx, "GetMatch")
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch, ctrl=None):
+    def load(self, reqmatch: ChampionLoadMatch, ctrl=None) -> Champion:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "load",

@@ -144,16 +144,23 @@ class DataDragonSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class DataDragonSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,50 +212,138 @@ class DataDragonSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def champion(self):
+        """Idiomatic facade: client.champion.list() / client.champion.load({"id": ...})."""
+        from entity.champion_entity import ChampionEntity
+        cached = getattr(self, "_champion", None)
+        if cached is None:
+            cached = ChampionEntity(self, None)
+            self._champion = cached
+        return cached
 
     def Champion(self, data=None):
+        # Deprecated: use client.champion instead.
         from entity.champion_entity import ChampionEntity
         return ChampionEntity(self, data)
 
 
+    @property
+    def data_champion(self):
+        """Idiomatic facade: client.data_champion.list() / client.data_champion.load({"id": ...})."""
+        from entity.data_champion_entity import DataChampionEntity
+        cached = getattr(self, "_data_champion", None)
+        if cached is None:
+            cached = DataChampionEntity(self, None)
+            self._data_champion = cached
+        return cached
+
     def DataChampion(self, data=None):
+        # Deprecated: use client.data_champion instead.
         from entity.data_champion_entity import DataChampionEntity
         return DataChampionEntity(self, data)
 
 
+    @property
+    def data_item(self):
+        """Idiomatic facade: client.data_item.list() / client.data_item.load({"id": ...})."""
+        from entity.data_item_entity import DataItemEntity
+        cached = getattr(self, "_data_item", None)
+        if cached is None:
+            cached = DataItemEntity(self, None)
+            self._data_item = cached
+        return cached
+
     def DataItem(self, data=None):
+        # Deprecated: use client.data_item instead.
         from entity.data_item_entity import DataItemEntity
         return DataItemEntity(self, data)
 
 
+    @property
+    def data_rune(self):
+        """Idiomatic facade: client.data_rune.list() / client.data_rune.load({"id": ...})."""
+        from entity.data_rune_entity import DataRuneEntity
+        cached = getattr(self, "_data_rune", None)
+        if cached is None:
+            cached = DataRuneEntity(self, None)
+            self._data_rune = cached
+        return cached
+
     def DataRune(self, data=None):
+        # Deprecated: use client.data_rune instead.
         from entity.data_rune_entity import DataRuneEntity
         return DataRuneEntity(self, data)
 
 
+    @property
+    def dragontail_versiontgz(self):
+        """Idiomatic facade: client.dragontail_versiontgz.list() / client.dragontail_versiontgz.load({"id": ...})."""
+        from entity.dragontail_versiontgz_entity import DragontailVersiontgzEntity
+        cached = getattr(self, "_dragontail_versiontgz", None)
+        if cached is None:
+            cached = DragontailVersiontgzEntity(self, None)
+            self._dragontail_versiontgz = cached
+        return cached
+
     def DragontailVersiontgz(self, data=None):
+        # Deprecated: use client.dragontail_versiontgz instead.
         from entity.dragontail_versiontgz_entity import DragontailVersiontgzEntity
         return DragontailVersiontgzEntity(self, data)
 
 
+    @property
+    def item(self):
+        """Idiomatic facade: client.item.list() / client.item.load({"id": ...})."""
+        from entity.item_entity import ItemEntity
+        cached = getattr(self, "_item", None)
+        if cached is None:
+            cached = ItemEntity(self, None)
+            self._item = cached
+        return cached
+
     def Item(self, data=None):
+        # Deprecated: use client.item instead.
         from entity.item_entity import ItemEntity
         return ItemEntity(self, data)
 
 
+    @property
+    def region(self):
+        """Idiomatic facade: client.region.list() / client.region.load({"id": ...})."""
+        from entity.region_entity import RegionEntity
+        cached = getattr(self, "_region", None)
+        if cached is None:
+            cached = RegionEntity(self, None)
+            self._region = cached
+        return cached
+
     def Region(self, data=None):
+        # Deprecated: use client.region instead.
         from entity.region_entity import RegionEntity
         return RegionEntity(self, data)
 
 
+    @property
+    def version(self):
+        """Idiomatic facade: client.version.list() / client.version.load({"id": ...})."""
+        from entity.version_entity import VersionEntity
+        cached = getattr(self, "_version", None)
+        if cached is None:
+            cached = VersionEntity(self, None)
+            self._version = cached
+        return cached
+
     def Version(self, data=None):
+        # Deprecated: use client.version instead.
         from entity.version_entity import VersionEntity
         return VersionEntity(self, data)
 

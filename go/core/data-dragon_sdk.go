@@ -245,41 +245,65 @@ func (sdk *DataDragonSDK) Direct(fetchargs map[string]any) (map[string]any, erro
 }
 
 
+// Champion returns a Champion entity bound to this client.
+// Idiomatic usage: client.Champion(nil).List(nil, nil) or
+// client.Champion(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DataDragonSDK) Champion(data map[string]any) DataDragonEntity {
 	return NewChampionEntityFunc(sdk, data)
 }
 
 
+// DataChampion returns a DataChampion entity bound to this client.
+// Idiomatic usage: client.DataChampion(nil).List(nil, nil) or
+// client.DataChampion(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DataDragonSDK) DataChampion(data map[string]any) DataDragonEntity {
 	return NewDataChampionEntityFunc(sdk, data)
 }
 
 
+// DataItem returns a DataItem entity bound to this client.
+// Idiomatic usage: client.DataItem(nil).List(nil, nil) or
+// client.DataItem(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DataDragonSDK) DataItem(data map[string]any) DataDragonEntity {
 	return NewDataItemEntityFunc(sdk, data)
 }
 
 
+// DataRune returns a DataRune entity bound to this client.
+// Idiomatic usage: client.DataRune(nil).List(nil, nil) or
+// client.DataRune(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DataDragonSDK) DataRune(data map[string]any) DataDragonEntity {
 	return NewDataRuneEntityFunc(sdk, data)
 }
 
 
+// DragontailVersiontgz returns a DragontailVersiontgz entity bound to this client.
+// Idiomatic usage: client.DragontailVersiontgz(nil).List(nil, nil) or
+// client.DragontailVersiontgz(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DataDragonSDK) DragontailVersiontgz(data map[string]any) DataDragonEntity {
 	return NewDragontailVersiontgzEntityFunc(sdk, data)
 }
 
 
+// Item returns a Item entity bound to this client.
+// Idiomatic usage: client.Item(nil).List(nil, nil) or
+// client.Item(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DataDragonSDK) Item(data map[string]any) DataDragonEntity {
 	return NewItemEntityFunc(sdk, data)
 }
 
 
+// Region returns a Region entity bound to this client.
+// Idiomatic usage: client.Region(nil).List(nil, nil) or
+// client.Region(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DataDragonSDK) Region(data map[string]any) DataDragonEntity {
 	return NewRegionEntityFunc(sdk, data)
 }
 
 
+// Version returns a Version entity bound to this client.
+// Idiomatic usage: client.Version(nil).List(nil, nil) or
+// client.Version(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *DataDragonSDK) Version(data map[string]any) DataDragonEntity {
 	return NewVersionEntityFunc(sdk, data)
 }

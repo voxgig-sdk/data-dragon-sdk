@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://ddragon.leagueoflegends.com",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -53,6 +50,7 @@ def make_config():
                       "orig": "champion_image",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -62,6 +60,7 @@ def make_config():
                       "orig": "version",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                   ],
                 },
@@ -152,6 +151,7 @@ def make_config():
                       "orig": "language",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -161,6 +161,7 @@ def make_config():
                       "orig": "version",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                   ],
                 },
@@ -240,6 +241,7 @@ def make_config():
                       "orig": "language",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -249,6 +251,7 @@ def make_config():
                       "orig": "version",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                   ],
                 },
@@ -306,6 +309,7 @@ def make_config():
                       "orig": "language",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -315,6 +319,7 @@ def make_config():
                       "orig": "version",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                   ],
                 },
@@ -372,6 +377,7 @@ def make_config():
                       "orig": "version",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },
@@ -420,6 +426,7 @@ def make_config():
                       "orig": "item_image",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -429,6 +436,7 @@ def make_config():
                       "orig": "version",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                   ],
                 },
@@ -512,6 +520,7 @@ def make_config():
                       "orig": "region",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 0,
                     },
                   ],
                 },

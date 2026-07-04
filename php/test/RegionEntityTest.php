@@ -49,8 +49,7 @@ class RegionEntityTest extends TestCase
         // LOAD
         $region_ref01_ent = $client->Region(null);
         $region_ref01_match_dt0 = [];
-        [$region_ref01_data_dt0_loaded, $err] = $region_ref01_ent->load($region_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $region_ref01_data_dt0_loaded = $region_ref01_ent->load($region_ref01_match_dt0, null);
         $this->assertNotNull($region_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function region_basic_setup($extra)
         "DATADRAGON_TEST_REGION_ENTID" => $idmap,
         "DATADRAGON_TEST_LIVE" => "FALSE",
         "DATADRAGON_TEST_EXPLAIN" => "FALSE",
-        "DATADRAGON_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function region_basic_setup($extra)
     if ($env["DATADRAGON_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["DATADRAGON_APIKEY"],
             ],
             $extra ?? [],
         ]);

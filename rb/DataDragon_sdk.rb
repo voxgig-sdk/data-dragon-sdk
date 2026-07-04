@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'DataDragon_types'
+
 
 class DataDragonSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class DataDragonSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class DataDragonSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue DataDragonError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = DataDragonHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class DataDragonSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,58 +198,114 @@ class DataDragonSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.champion.list / client.champion.load({ "id" => ... })
+  def champion
+    require_relative 'entity/champion_entity'
+    @champion ||= ChampionEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.champion instead.
   def Champion(data = nil)
     require_relative 'entity/champion_entity'
     ChampionEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.data_champion.list / client.data_champion.load({ "id" => ... })
+  def data_champion
+    require_relative 'entity/data_champion_entity'
+    @data_champion ||= DataChampionEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.data_champion instead.
   def DataChampion(data = nil)
     require_relative 'entity/data_champion_entity'
     DataChampionEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.data_item.list / client.data_item.load({ "id" => ... })
+  def data_item
+    require_relative 'entity/data_item_entity'
+    @data_item ||= DataItemEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.data_item instead.
   def DataItem(data = nil)
     require_relative 'entity/data_item_entity'
     DataItemEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.data_rune.list / client.data_rune.load({ "id" => ... })
+  def data_rune
+    require_relative 'entity/data_rune_entity'
+    @data_rune ||= DataRuneEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.data_rune instead.
   def DataRune(data = nil)
     require_relative 'entity/data_rune_entity'
     DataRuneEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.dragontail_versiontgz.list / client.dragontail_versiontgz.load({ "id" => ... })
+  def dragontail_versiontgz
+    require_relative 'entity/dragontail_versiontgz_entity'
+    @dragontail_versiontgz ||= DragontailVersiontgzEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.dragontail_versiontgz instead.
   def DragontailVersiontgz(data = nil)
     require_relative 'entity/dragontail_versiontgz_entity'
     DragontailVersiontgzEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.item.list / client.item.load({ "id" => ... })
+  def item
+    require_relative 'entity/item_entity'
+    @item ||= ItemEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.item instead.
   def Item(data = nil)
     require_relative 'entity/item_entity'
     ItemEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.region.list / client.region.load({ "id" => ... })
+  def region
+    require_relative 'entity/region_entity'
+    @region ||= RegionEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.region instead.
   def Region(data = nil)
     require_relative 'entity/region_entity'
     RegionEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.version.list / client.version.load({ "id" => ... })
+  def version
+    require_relative 'entity/version_entity'
+    @version ||= VersionEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.version instead.
   def Version(data = nil)
     require_relative 'entity/version_entity'
     VersionEntity.new(self, data)

@@ -99,14 +99,12 @@ func dragontail_versiontgzDirectSetup(mockres any) *dragontail_versiontgzDirectS
 	env := envOverride(map[string]any{
 		"DATADRAGON_TEST_DRAGONTAIL_VERSIONTGZ_ENTID": map[string]any{},
 		"DATADRAGON_TEST_LIVE":    "FALSE",
-		"DATADRAGON_APIKEY":       "NONE",
 	})
 
 	live := env["DATADRAGON_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["DATADRAGON_APIKEY"],
 		}
 		client := sdk.NewDataDragonSDK(mergedOpts)
 

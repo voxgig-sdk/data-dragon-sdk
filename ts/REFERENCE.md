@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -194,7 +193,7 @@ Alias for `DataDragonSDK.test()`.
 ## ChampionEntity
 
 ```ts
-const champion = client.Champion()
+const champion = client.champion
 ```
 
 ### Operations
@@ -204,7 +203,7 @@ const champion = client.Champion()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Champion().load({ id: 'champion_id' })
+const result = await client.champion.load({ id: 'champion_id' })
 ```
 
 ### Common Methods
@@ -238,7 +237,7 @@ Return a copy of the entity options.
 ## DataChampionEntity
 
 ```ts
-const data_champion = client.DataChampion()
+const data_champion = client.data_champion
 ```
 
 ### Fields
@@ -257,7 +256,7 @@ const data_champion = client.DataChampion()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.DataChampion().load({ id: 'data_champion_id' })
+const result = await client.data_champion.load({ id: 'data_champion_id' })
 ```
 
 ### Common Methods
@@ -291,7 +290,7 @@ Return a copy of the entity options.
 ## DataItemEntity
 
 ```ts
-const data_item = client.DataItem()
+const data_item = client.data_item
 ```
 
 ### Fields
@@ -309,7 +308,7 @@ const data_item = client.DataItem()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.DataItem().load({ id: 'data_item_id' })
+const result = await client.data_item.load({ id: 'data_item_id' })
 ```
 
 ### Common Methods
@@ -343,7 +342,7 @@ Return a copy of the entity options.
 ## DataRuneEntity
 
 ```ts
-const data_rune = client.DataRune()
+const data_rune = client.data_rune
 ```
 
 ### Operations
@@ -353,7 +352,7 @@ const data_rune = client.DataRune()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.DataRune().load({ id: 'data_rune_id' })
+const result = await client.data_rune.load({ id: 'data_rune_id' })
 ```
 
 ### Common Methods
@@ -387,7 +386,7 @@ Return a copy of the entity options.
 ## DragontailVersiontgzEntity
 
 ```ts
-const dragontail_versiontgz = client.DragontailVersiontgz()
+const dragontail_versiontgz = client.dragontail_versiontgz
 ```
 
 ### Operations
@@ -397,7 +396,7 @@ const dragontail_versiontgz = client.DragontailVersiontgz()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.DragontailVersiontgz().load({ id: 'dragontail_versiontgz_id' })
+const result = await client.dragontail_versiontgz.load({ id: 'dragontail_versiontgz_id' })
 ```
 
 ### Common Methods
@@ -431,7 +430,7 @@ Return a copy of the entity options.
 ## ItemEntity
 
 ```ts
-const item = client.Item()
+const item = client.item
 ```
 
 ### Operations
@@ -441,7 +440,7 @@ const item = client.Item()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Item().load({ id: 'item_id' })
+const result = await client.item.load({ id: 'item_id' })
 ```
 
 ### Common Methods
@@ -475,7 +474,7 @@ Return a copy of the entity options.
 ## RegionEntity
 
 ```ts
-const region = client.Region()
+const region = client.region
 ```
 
 ### Fields
@@ -493,7 +492,7 @@ const region = client.Region()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Region().load({ id: 'region_id' })
+const result = await client.region.load({ id: 'region_id' })
 ```
 
 ### Common Methods
@@ -527,7 +526,7 @@ Return a copy of the entity options.
 ## VersionEntity
 
 ```ts
-const version = client.Version()
+const version = client.version
 ```
 
 ### Operations
@@ -537,7 +536,7 @@ const version = client.Version()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Version().list()
+const results = await client.version.list()
 ```
 
 ### Common Methods

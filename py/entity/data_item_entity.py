@@ -1,7 +1,13 @@
 # DataDragon SDK DataItem entity
 
+from __future__ import annotations
+
 from utility.voxgig_struct import voxgig_struct as vs
 from core import helpers
+from datadragon_types import (
+    DataItem,
+    DataItemLoadMatch,
+)
 
 
 class DataItemEntity:
@@ -44,7 +50,7 @@ class DataItemEntity:
             self._data = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetData")
 
-    def data_get(self):
+    def data_get(self) -> DataItem:
         self._utility.feature_hook(self._entctx, "GetData")
         return vs.clone(self._data)
 
@@ -53,12 +59,12 @@ class DataItemEntity:
             self._match = helpers.to_map(vs.clone(args)) or {}
             self._utility.feature_hook(self._entctx, "SetMatch")
 
-    def match_get(self):
+    def match_get(self) -> DataItem:
         self._utility.feature_hook(self._entctx, "GetMatch")
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch, ctrl=None):
+    def load(self, reqmatch: DataItemLoadMatch, ctrl=None) -> DataItem:
         utility = self._utility
         ctx = utility.make_context({
             "opname": "load",

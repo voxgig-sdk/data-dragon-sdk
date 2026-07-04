@@ -42,8 +42,7 @@ class ChampionEntityTest < Minitest::Test
     # LOAD
     champion_ref01_ent = client.Champion(nil)
     champion_ref01_match_dt0 = {}
-    champion_ref01_data_dt0_loaded, err = champion_ref01_ent.load(champion_ref01_match_dt0, nil)
-    assert_nil err
+    champion_ref01_data_dt0_loaded = champion_ref01_ent.load(champion_ref01_match_dt0, nil)
     assert !champion_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def champion_basic_setup(extra)
     "DATADRAGON_TEST_CHAMPION_ENTID" => idmap,
     "DATADRAGON_TEST_LIVE" => "FALSE",
     "DATADRAGON_TEST_EXPLAIN" => "FALSE",
-    "DATADRAGON_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def champion_basic_setup(extra)
   if env["DATADRAGON_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["DATADRAGON_APIKEY"],
       },
       extra || {},
     ])

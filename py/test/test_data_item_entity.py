@@ -49,8 +49,7 @@ class TestDataItemEntity:
         # LOAD
         data_item_ref01_ent = client.DataItem(None)
         data_item_ref01_match_dt0 = {}
-        data_item_ref01_data_dt0_loaded, err = data_item_ref01_ent.load(data_item_ref01_match_dt0, None)
-        assert err is None
+        data_item_ref01_data_dt0_loaded = data_item_ref01_ent.load(data_item_ref01_match_dt0, None)
         assert data_item_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _data_item_basic_setup(extra):
         "DATADRAGON_TEST_DATA_ITEM_ENTID": idmap,
         "DATADRAGON_TEST_LIVE": "FALSE",
         "DATADRAGON_TEST_EXPLAIN": "FALSE",
-        "DATADRAGON_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _data_item_basic_setup(extra):
     if env.get("DATADRAGON_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DATADRAGON_APIKEY"),
             },
             extra or {},
         ])

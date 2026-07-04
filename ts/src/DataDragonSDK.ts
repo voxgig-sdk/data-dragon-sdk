@@ -9,6 +9,8 @@ import { ItemEntity } from './entity/ItemEntity'
 import { RegionEntity } from './entity/RegionEntity'
 import { VersionEntity } from './entity/VersionEntity'
 
+export type * from './DataDragonTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -209,48 +211,112 @@ class DataDragonSDK {
 
 
 
+  _champion?: ChampionEntity
+
+  // Idiomatic facade: `client.champion.list()` / `client.champion.load({ id })`.
+  get champion(): ChampionEntity {
+    return (this._champion ??= new ChampionEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.champion` instead. */
   Champion(data?: any) {
     const self = this
     return new ChampionEntity(self,data)
   }
 
 
+  _data_champion?: DataChampionEntity
+
+  // Idiomatic facade: `client.data_champion.list()` / `client.data_champion.load({ id })`.
+  get data_champion(): DataChampionEntity {
+    return (this._data_champion ??= new DataChampionEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.data_champion` instead. */
   DataChampion(data?: any) {
     const self = this
     return new DataChampionEntity(self,data)
   }
 
 
+  _data_item?: DataItemEntity
+
+  // Idiomatic facade: `client.data_item.list()` / `client.data_item.load({ id })`.
+  get data_item(): DataItemEntity {
+    return (this._data_item ??= new DataItemEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.data_item` instead. */
   DataItem(data?: any) {
     const self = this
     return new DataItemEntity(self,data)
   }
 
 
+  _data_rune?: DataRuneEntity
+
+  // Idiomatic facade: `client.data_rune.list()` / `client.data_rune.load({ id })`.
+  get data_rune(): DataRuneEntity {
+    return (this._data_rune ??= new DataRuneEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.data_rune` instead. */
   DataRune(data?: any) {
     const self = this
     return new DataRuneEntity(self,data)
   }
 
 
+  _dragontail_versiontgz?: DragontailVersiontgzEntity
+
+  // Idiomatic facade: `client.dragontail_versiontgz.list()` / `client.dragontail_versiontgz.load({ id })`.
+  get dragontail_versiontgz(): DragontailVersiontgzEntity {
+    return (this._dragontail_versiontgz ??= new DragontailVersiontgzEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.dragontail_versiontgz` instead. */
   DragontailVersiontgz(data?: any) {
     const self = this
     return new DragontailVersiontgzEntity(self,data)
   }
 
 
+  _item?: ItemEntity
+
+  // Idiomatic facade: `client.item.list()` / `client.item.load({ id })`.
+  get item(): ItemEntity {
+    return (this._item ??= new ItemEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.item` instead. */
   Item(data?: any) {
     const self = this
     return new ItemEntity(self,data)
   }
 
 
+  _region?: RegionEntity
+
+  // Idiomatic facade: `client.region.list()` / `client.region.load({ id })`.
+  get region(): RegionEntity {
+    return (this._region ??= new RegionEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.region` instead. */
   Region(data?: any) {
     const self = this
     return new RegionEntity(self,data)
   }
 
 
+  _version?: VersionEntity
+
+  // Idiomatic facade: `client.version.list()` / `client.version.load({ id })`.
+  get version(): VersionEntity {
+    return (this._version ??= new VersionEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.version` instead. */
   Version(data?: any) {
     const self = this
     return new VersionEntity(self,data)

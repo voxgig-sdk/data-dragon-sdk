@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       contact: {
         url: "https://riot-api-libraries.readthedocs.io/en/latest/ddragon.html"
       }

@@ -42,8 +42,7 @@ class DragontailVersiontgzEntityTest < Minitest::Test
     # LOAD
     dragontail_versiontgz_ref01_ent = client.DragontailVersiontgz(nil)
     dragontail_versiontgz_ref01_match_dt0 = {}
-    dragontail_versiontgz_ref01_data_dt0_loaded, err = dragontail_versiontgz_ref01_ent.load(dragontail_versiontgz_ref01_match_dt0, nil)
-    assert_nil err
+    dragontail_versiontgz_ref01_data_dt0_loaded = dragontail_versiontgz_ref01_ent.load(dragontail_versiontgz_ref01_match_dt0, nil)
     assert !dragontail_versiontgz_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def dragontail_versiontgz_basic_setup(extra)
     "DATADRAGON_TEST_DRAGONTAIL_VERSIONTGZ_ENTID" => idmap,
     "DATADRAGON_TEST_LIVE" => "FALSE",
     "DATADRAGON_TEST_EXPLAIN" => "FALSE",
-    "DATADRAGON_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def dragontail_versiontgz_basic_setup(extra)
   if env["DATADRAGON_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["DATADRAGON_APIKEY"],
       },
       extra || {},
     ])

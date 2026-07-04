@@ -244,48 +244,152 @@ end
 
 
 
+-- Idiomatic facade: client:champion():list() / client:champion():load({ id = ... })
+function DataDragonSDK:champion(data)
+  local EntityMod = require("entity.champion_entity")
+  if data == nil then
+    if self._champion == nil then
+      self._champion = EntityMod.new(self, nil)
+    end
+    return self._champion
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:champion() instead.
 function DataDragonSDK:Champion(data)
   local EntityMod = require("entity.champion_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:data_champion():list() / client:data_champion():load({ id = ... })
+function DataDragonSDK:data_champion(data)
+  local EntityMod = require("entity.data_champion_entity")
+  if data == nil then
+    if self._data_champion == nil then
+      self._data_champion = EntityMod.new(self, nil)
+    end
+    return self._data_champion
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:data_champion() instead.
 function DataDragonSDK:DataChampion(data)
   local EntityMod = require("entity.data_champion_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:data_item():list() / client:data_item():load({ id = ... })
+function DataDragonSDK:data_item(data)
+  local EntityMod = require("entity.data_item_entity")
+  if data == nil then
+    if self._data_item == nil then
+      self._data_item = EntityMod.new(self, nil)
+    end
+    return self._data_item
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:data_item() instead.
 function DataDragonSDK:DataItem(data)
   local EntityMod = require("entity.data_item_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:data_rune():list() / client:data_rune():load({ id = ... })
+function DataDragonSDK:data_rune(data)
+  local EntityMod = require("entity.data_rune_entity")
+  if data == nil then
+    if self._data_rune == nil then
+      self._data_rune = EntityMod.new(self, nil)
+    end
+    return self._data_rune
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:data_rune() instead.
 function DataDragonSDK:DataRune(data)
   local EntityMod = require("entity.data_rune_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:dragontail_versiontgz():list() / client:dragontail_versiontgz():load({ id = ... })
+function DataDragonSDK:dragontail_versiontgz(data)
+  local EntityMod = require("entity.dragontail_versiontgz_entity")
+  if data == nil then
+    if self._dragontail_versiontgz == nil then
+      self._dragontail_versiontgz = EntityMod.new(self, nil)
+    end
+    return self._dragontail_versiontgz
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:dragontail_versiontgz() instead.
 function DataDragonSDK:DragontailVersiontgz(data)
   local EntityMod = require("entity.dragontail_versiontgz_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:item():list() / client:item():load({ id = ... })
+function DataDragonSDK:item(data)
+  local EntityMod = require("entity.item_entity")
+  if data == nil then
+    if self._item == nil then
+      self._item = EntityMod.new(self, nil)
+    end
+    return self._item
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:item() instead.
 function DataDragonSDK:Item(data)
   local EntityMod = require("entity.item_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:region():list() / client:region():load({ id = ... })
+function DataDragonSDK:region(data)
+  local EntityMod = require("entity.region_entity")
+  if data == nil then
+    if self._region == nil then
+      self._region = EntityMod.new(self, nil)
+    end
+    return self._region
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:region() instead.
 function DataDragonSDK:Region(data)
   local EntityMod = require("entity.region_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:version():list() / client:version():load({ id = ... })
+function DataDragonSDK:version(data)
+  local EntityMod = require("entity.version_entity")
+  if data == nil then
+    if self._version == nil then
+      self._version = EntityMod.new(self, nil)
+    end
+    return self._version
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:version() instead.
 function DataDragonSDK:Version(data)
   local EntityMod = require("entity.version_entity")
   return EntityMod.new(self, data)

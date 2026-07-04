@@ -72,14 +72,12 @@ function data_champion_direct_setup(mockres)
   local env = runner.env_override({
     ["DATADRAGON_TEST_DATA_CHAMPION_ENTID"] = {},
     ["DATADRAGON_TEST_LIVE"] = "FALSE",
-    ["DATADRAGON_APIKEY"] = "NONE",
   })
 
   local live = env["DATADRAGON_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["DATADRAGON_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

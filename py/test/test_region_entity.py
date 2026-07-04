@@ -49,8 +49,7 @@ class TestRegionEntity:
         # LOAD
         region_ref01_ent = client.Region(None)
         region_ref01_match_dt0 = {}
-        region_ref01_data_dt0_loaded, err = region_ref01_ent.load(region_ref01_match_dt0, None)
-        assert err is None
+        region_ref01_data_dt0_loaded = region_ref01_ent.load(region_ref01_match_dt0, None)
         assert region_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _region_basic_setup(extra):
         "DATADRAGON_TEST_REGION_ENTID": idmap,
         "DATADRAGON_TEST_LIVE": "FALSE",
         "DATADRAGON_TEST_EXPLAIN": "FALSE",
-        "DATADRAGON_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _region_basic_setup(extra):
     if env.get("DATADRAGON_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("DATADRAGON_APIKEY"),
             },
             extra or {},
         ])

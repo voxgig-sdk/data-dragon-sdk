@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Version,
+  VersionListMatch,
+} from '../DataDragonTypes'
 
 // TODO: needs Entity superclass
-class VersionEntity extends DataDragonEntityBase {
+class VersionEntity extends DataDragonEntityBase<Version> {
 
   constructor(client: DataDragonSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class VersionEntity extends DataDragonEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: VersionListMatch, ctrl?: Control): Promise<Version[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class VersionEntity extends DataDragonEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Version[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

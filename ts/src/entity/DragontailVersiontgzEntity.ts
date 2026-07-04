@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  DragontailVersiontgz,
+  DragontailVersiontgzLoadMatch,
+} from '../DataDragonTypes'
 
 // TODO: needs Entity superclass
-class DragontailVersiontgzEntity extends DataDragonEntityBase {
+class DragontailVersiontgzEntity extends DataDragonEntityBase<DragontailVersiontgz> {
 
   constructor(client: DataDragonSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class DragontailVersiontgzEntity extends DataDragonEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: DragontailVersiontgzLoadMatch, ctrl?: Control): Promise<DragontailVersiontgz> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class DragontailVersiontgzEntity extends DataDragonEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<DragontailVersiontgz> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

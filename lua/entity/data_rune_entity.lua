@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch DataRuneLoadMatch
+---@param ctrl? table
+---@return DataRune
+---@return string? err
 function DataRuneEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

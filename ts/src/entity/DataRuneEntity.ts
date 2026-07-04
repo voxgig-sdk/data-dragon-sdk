@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  DataRune,
+  DataRuneLoadMatch,
+} from '../DataDragonTypes'
 
 // TODO: needs Entity superclass
-class DataRuneEntity extends DataDragonEntityBase {
+class DataRuneEntity extends DataDragonEntityBase<DataRune> {
 
   constructor(client: DataDragonSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class DataRuneEntity extends DataDragonEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: DataRuneLoadMatch, ctrl?: Control): Promise<DataRune> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class DataRuneEntity extends DataDragonEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<DataRune> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

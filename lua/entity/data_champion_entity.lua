@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch DataChampionLoadMatch
+---@param ctrl? table
+---@return DataChampion
+---@return string? err
 function DataChampionEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

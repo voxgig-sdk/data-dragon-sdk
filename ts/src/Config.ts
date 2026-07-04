@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://ddragon.leagueoflegends.com',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -96,7 +92,8 @@ class Config {
                     "name": "id",
                     "orig": "champion_image",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -105,7 +102,8 @@ class Config {
                     "name": "version",
                     "orig": "version",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -195,7 +193,8 @@ class Config {
                     "name": "language",
                     "orig": "language",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -204,7 +203,8 @@ class Config {
                     "name": "version",
                     "orig": "version",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -283,7 +283,8 @@ class Config {
                     "name": "language",
                     "orig": "language",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -292,7 +293,8 @@ class Config {
                     "name": "version",
                     "orig": "version",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -349,7 +351,8 @@ class Config {
                     "name": "language",
                     "orig": "language",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -358,7 +361,8 @@ class Config {
                     "name": "version",
                     "orig": "version",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -415,7 +419,8 @@ class Config {
                     "name": "version",
                     "orig": "version",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -463,7 +468,8 @@ class Config {
                     "name": "id",
                     "orig": "item_image",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -472,7 +478,8 @@ class Config {
                     "name": "version",
                     "orig": "version",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -555,7 +562,8 @@ class Config {
                     "name": "region",
                     "orig": "region",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
