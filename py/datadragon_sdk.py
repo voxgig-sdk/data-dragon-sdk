@@ -221,49 +221,49 @@ class DataDragonSDK:
 
 
     def Champion(self, data=None) -> "ChampionEntity":
-        """Entity factory: client.Champion().list({}) / client.Champion().load({"id": ...})."""
+        """Entity factory: client.Champion().list() / client.Champion().load({"id": ...})."""
         from entity.champion_entity import ChampionEntity
         return ChampionEntity(self, data)
 
 
     def DataChampion(self, data=None) -> "DataChampionEntity":
-        """Entity factory: client.DataChampion().list({}) / client.DataChampion().load({"id": ...})."""
+        """Entity factory: client.DataChampion().list() / client.DataChampion().load({"id": ...})."""
         from entity.data_champion_entity import DataChampionEntity
         return DataChampionEntity(self, data)
 
 
     def DataItem(self, data=None) -> "DataItemEntity":
-        """Entity factory: client.DataItem().list({}) / client.DataItem().load({"id": ...})."""
+        """Entity factory: client.DataItem().list() / client.DataItem().load({"id": ...})."""
         from entity.data_item_entity import DataItemEntity
         return DataItemEntity(self, data)
 
 
     def DataRune(self, data=None) -> "DataRuneEntity":
-        """Entity factory: client.DataRune().list({}) / client.DataRune().load({"id": ...})."""
+        """Entity factory: client.DataRune().list() / client.DataRune().load({"id": ...})."""
         from entity.data_rune_entity import DataRuneEntity
         return DataRuneEntity(self, data)
 
 
     def DragontailVersiontgz(self, data=None) -> "DragontailVersiontgzEntity":
-        """Entity factory: client.DragontailVersiontgz().list({}) / client.DragontailVersiontgz().load({"id": ...})."""
+        """Entity factory: client.DragontailVersiontgz().list() / client.DragontailVersiontgz().load({"id": ...})."""
         from entity.dragontail_versiontgz_entity import DragontailVersiontgzEntity
         return DragontailVersiontgzEntity(self, data)
 
 
     def Item(self, data=None) -> "ItemEntity":
-        """Entity factory: client.Item().list({}) / client.Item().load({"id": ...})."""
+        """Entity factory: client.Item().list() / client.Item().load({"id": ...})."""
         from entity.item_entity import ItemEntity
         return ItemEntity(self, data)
 
 
     def Region(self, data=None) -> "RegionEntity":
-        """Entity factory: client.Region().list({}) / client.Region().load({"id": ...})."""
+        """Entity factory: client.Region().list() / client.Region().load({"id": ...})."""
         from entity.region_entity import RegionEntity
         return RegionEntity(self, data)
 
 
     def Version(self, data=None) -> "VersionEntity":
-        """Entity factory: client.Version().list({}) / client.Version().load({"id": ...})."""
+        """Entity factory: client.Version().list() / client.Version().load({"id": ...})."""
         from entity.version_entity import VersionEntity
         return VersionEntity(self, data)
 

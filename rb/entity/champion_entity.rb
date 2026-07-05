@@ -67,10 +67,12 @@ class ChampionEntity
   
   # Load a single Champion.
   #
-  # @param reqmatch [ChampionLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param reqmatch [ChampionLoadMatch, Hash, nil] match criteria (id/query fields);
+  #   optional — an entity with no id-like key loads with no match (nil is treated
+  #   as an empty match, so client.Champion.load works with no args).
   # @param ctrl [Object, nil] optional per-call control
   # @return [Champion, Hash] the loaded Champion; raises DataDragonError on failure
-  def load(reqmatch, ctrl = nil)
+  def load(reqmatch = nil, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
       "opname" => "load",

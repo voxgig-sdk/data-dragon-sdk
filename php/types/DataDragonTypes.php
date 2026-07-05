@@ -109,7 +109,7 @@ class Version
 {
 }
 
-/** Match filter for Version#list (any subset of Version fields). */
+/** Request payload for Version#list. */
 class VersionListMatch
 {
 }

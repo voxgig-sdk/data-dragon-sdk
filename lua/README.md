@@ -4,6 +4,8 @@
 
 The Lua SDK for the DataDragon API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:Champion()` — each with the same small set of operations (`list`, `load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -37,6 +39,28 @@ local client = sdk.new()
 local champion, err = client:Champion():load({ id = "example_id" })
 if err then error(err) end
 print(champion)
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local champion, err = client:Champion():load({ id = "example_id" })
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -83,7 +107,7 @@ Create a mock client for unit testing — no server required:
 local client = sdk.test()
 
 local result, err = client:Champion():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -178,9 +202,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
 | `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -195,7 +216,7 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `load` | the entity record (a `table`) |
 | `list` | an array (`table`) of entity records |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
@@ -327,15 +348,15 @@ Create an instance: `local data_champion = client:DataChampion(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `format` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `version` | ``$STRING`` |  |
+| `data` | `table` |  |
+| `format` | `string` |  |
+| `type` | `string` |  |
+| `version` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local data_champion, err = client:DataChampion():load({ id = "data_champion_id" })
+local data_champion, err = client:DataChampion():load()
 ```
 
 
@@ -353,14 +374,14 @@ Create an instance: `local data_item = client:DataItem(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
-| `version` | ``$STRING`` |  |
+| `data` | `table` |  |
+| `type` | `string` |  |
+| `version` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local data_item, err = client:DataItem():load({ id = "data_item_id" })
+local data_item, err = client:DataItem():load()
 ```
 
 
@@ -377,7 +398,7 @@ Create an instance: `local data_rune = client:DataRune(nil)`
 #### Example: Load
 
 ```lua
-local data_rune, err = client:DataRune():load({ id = "data_rune_id" })
+local data_rune, err = client:DataRune():load()
 ```
 
 
@@ -394,7 +415,7 @@ Create an instance: `local dragontail_versiontgz = client:DragontailVersiontgz(n
 #### Example: Load
 
 ```lua
-local dragontail_versiontgz, err = client:DragontailVersiontgz():load({ id = "dragontail_versiontgz_id" })
+local dragontail_versiontgz, err = client:DragontailVersiontgz():load()
 ```
 
 
@@ -429,14 +450,14 @@ Create an instance: `local region = client:Region(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cdn` | ``$STRING`` |  |
-| `n` | ``$OBJECT`` |  |
-| `v` | ``$STRING`` |  |
+| `cdn` | `string` |  |
+| `n` | `table` |  |
+| `v` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local region, err = client:Region():load({ id = "region_id" })
+local region, err = client:Region():load()
 ```
 
 
@@ -457,12 +478,16 @@ local versions, err = client:Version():list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -479,8 +504,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -531,7 +557,7 @@ stores the returned data and match criteria internally.
 local champion = client:Champion()
 champion:load({ id = "example_id" })
 
--- champion:data_get() now returns the loaded champion data
+-- champion:data_get() now returns the champion data from the last load
 -- champion:match_get() returns the last match criteria
 ```
 

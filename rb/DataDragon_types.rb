@@ -166,7 +166,7 @@ RegionLoadMatch = Struct.new(
 class Version
 end
 
-# Match filter for Version#list (any subset of Version fields).
+# Request payload for Version#list.
 class VersionListMatch
 end
 

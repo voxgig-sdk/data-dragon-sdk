@@ -8,7 +8,7 @@ Complete API reference for the DataDragon Python SDK.
 ### Constructor
 
 ```python
-from data-dragon_sdk import DataDragonSDK
+from datadragon_sdk import DataDragonSDK
 
 client = DataDragonSDK(options)
 ```
@@ -160,10 +160,10 @@ data_champion = client.DataChampion()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `format` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data` | `dict` | No |  |
+| `format` | `str` | No |  |
+| `type` | `str` | No |  |
+| `version` | `str` | No |  |
 
 ### Operations
 
@@ -172,7 +172,7 @@ data_champion = client.DataChampion()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.DataChampion().load({"id": "data_champion_id"})
+result = client.DataChampion().load()
 ```
 
 ### Common Methods
@@ -214,9 +214,9 @@ data_item = client.DataItem()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data` | `dict` | No |  |
+| `type` | `str` | No |  |
+| `version` | `str` | No |  |
 
 ### Operations
 
@@ -225,7 +225,7 @@ data_item = client.DataItem()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.DataItem().load({"id": "data_item_id"})
+result = client.DataItem().load()
 ```
 
 ### Common Methods
@@ -270,7 +270,7 @@ data_rune = client.DataRune()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.DataRune().load({"id": "data_rune_id"})
+result = client.DataRune().load()
 ```
 
 ### Common Methods
@@ -315,7 +315,7 @@ dragontail_versiontgz = client.DragontailVersiontgz()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.DragontailVersiontgz().load({"id": "dragontail_versiontgz_id"})
+result = client.DragontailVersiontgz().load()
 ```
 
 ### Common Methods
@@ -402,9 +402,9 @@ region = client.Region()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cdn` | ``$STRING`` | No |  |
-| `n` | ``$OBJECT`` | No |  |
-| `v` | ``$STRING`` | No |  |
+| `cdn` | `str` | No |  |
+| `n` | `dict` | No |  |
+| `v` | `str` | No |  |
 
 ### Operations
 
@@ -413,7 +413,7 @@ region = client.Region()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Region().load({"id": "region_id"})
+result = client.Region().load()
 ```
 
 ### Common Methods
@@ -453,12 +453,12 @@ version = client.Version()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Version().list({})
+results = client.Version().list()
 for version in results:
     print(version)
 ```

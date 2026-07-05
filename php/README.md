@@ -4,6 +4,8 @@
 
 The PHP SDK for the DataDragon API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Champion()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -42,6 +44,37 @@ try {
 ```
 
 
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $champion = $client->Champion()->load(["id" => "example_id"]);
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
+}
+```
+
+
 ## How-to guides
 
 ### Make a direct HTTP request
@@ -61,7 +94,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -90,7 +126,7 @@ $client = DataDragonSDK::test([
     "entity" => ["champion" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// load() returns the bare mock record (throws on error).
+// Entity ops return the bare mock record (throws on error).
 $champion = $client->Champion()->load(["id" => "test01"]);
 print_r($champion);
 ```
@@ -187,10 +223,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -337,16 +370,16 @@ Create an instance: `$data_champion = $client->DataChampion();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `format` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
-| `version` | ``$STRING`` |  |
+| `data` | `array` |  |
+| `format` | `string` |  |
+| `type` | `string` |  |
+| `version` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare DataChampion record (throws on error).
-$data_champion = $client->DataChampion()->load(["id" => "data_champion_id"]);
+$data_champion = $client->DataChampion()->load();
 ```
 
 
@@ -364,15 +397,15 @@ Create an instance: `$data_item = $client->DataItem();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | ``$OBJECT`` |  |
-| `type` | ``$STRING`` |  |
-| `version` | ``$STRING`` |  |
+| `data` | `array` |  |
+| `type` | `string` |  |
+| `version` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare DataItem record (throws on error).
-$data_item = $client->DataItem()->load(["id" => "data_item_id"]);
+$data_item = $client->DataItem()->load();
 ```
 
 
@@ -390,7 +423,7 @@ Create an instance: `$data_rune = $client->DataRune();`
 
 ```php
 // load() returns the bare DataRune record (throws on error).
-$data_rune = $client->DataRune()->load(["id" => "data_rune_id"]);
+$data_rune = $client->DataRune()->load();
 ```
 
 
@@ -408,7 +441,7 @@ Create an instance: `$dragontail_versiontgz = $client->DragontailVersiontgz();`
 
 ```php
 // load() returns the bare DragontailVersiontgz record (throws on error).
-$dragontail_versiontgz = $client->DragontailVersiontgz()->load(["id" => "dragontail_versiontgz_id"]);
+$dragontail_versiontgz = $client->DragontailVersiontgz()->load();
 ```
 
 
@@ -444,15 +477,15 @@ Create an instance: `$region = $client->Region();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cdn` | ``$STRING`` |  |
-| `n` | ``$OBJECT`` |  |
-| `v` | ``$STRING`` |  |
+| `cdn` | `string` |  |
+| `n` | `array` |  |
+| `v` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Region record (throws on error).
-$region = $client->Region()->load(["id" => "region_id"]);
+$region = $client->Region()->load();
 ```
 
 
@@ -474,12 +507,16 @@ $versions = $client->Version()->list();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -496,8 +533,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -548,8 +586,8 @@ stores the returned data and match criteria internally.
 $champion = $client->Champion();
 $champion->load(["id" => "example_id"]);
 
-// $champion->dataGet() now returns the loaded champion data
-// $champion->matchGet() returns the last match criteria
+// $champion->data_get() now returns the champion data from the last load
+// $champion->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

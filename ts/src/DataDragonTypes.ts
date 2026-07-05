@@ -72,5 +72,6 @@ export interface RegionLoadMatch {
 export interface Version {
 }
 
-export type VersionListMatch = Partial<Version>
+export interface VersionListMatch {
+}
 

@@ -244,10 +244,10 @@ const data_champion = client.DataChampion()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `format` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data` | `Record<string, any>` | No |  |
+| `format` | `string` | No |  |
+| `type` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
@@ -256,7 +256,7 @@ const data_champion = client.DataChampion()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.DataChampion().load({ id: 'data_champion_id' })
+const result = await client.DataChampion().load()
 ```
 
 ### Common Methods
@@ -297,9 +297,9 @@ const data_item = client.DataItem()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data` | `Record<string, any>` | No |  |
+| `type` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
@@ -308,7 +308,7 @@ const data_item = client.DataItem()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.DataItem().load({ id: 'data_item_id' })
+const result = await client.DataItem().load()
 ```
 
 ### Common Methods
@@ -352,7 +352,7 @@ const data_rune = client.DataRune()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.DataRune().load({ id: 'data_rune_id' })
+const result = await client.DataRune().load()
 ```
 
 ### Common Methods
@@ -396,7 +396,7 @@ const dragontail_versiontgz = client.DragontailVersiontgz()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.DragontailVersiontgz().load({ id: 'dragontail_versiontgz_id' })
+const result = await client.DragontailVersiontgz().load()
 ```
 
 ### Common Methods
@@ -481,9 +481,9 @@ const region = client.Region()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cdn` | ``$STRING`` | No |  |
-| `n` | ``$OBJECT`` | No |  |
-| `v` | ``$STRING`` | No |  |
+| `cdn` | `string` | No |  |
+| `n` | `Record<string, any>` | No |  |
+| `v` | `string` | No |  |
 
 ### Operations
 
@@ -492,7 +492,7 @@ const region = client.Region()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Region().load({ id: 'region_id' })
+const result = await client.Region().load()
 ```
 
 ### Common Methods

@@ -165,10 +165,10 @@ data_champion := client.DataChampion(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `format` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data` | `map[string]any` | No |  |
+| `format` | `string` | No |  |
+| `type` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
@@ -177,7 +177,7 @@ data_champion := client.DataChampion(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.DataChampion(nil).Load(map[string]any{"id": "data_champion_id"}, nil)
+result, err := client.DataChampion(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -214,9 +214,9 @@ data_item := client.DataItem(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data` | `map[string]any` | No |  |
+| `type` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
@@ -225,7 +225,7 @@ data_item := client.DataItem(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.DataItem(nil).Load(map[string]any{"id": "data_item_id"}, nil)
+result, err := client.DataItem(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -265,7 +265,7 @@ data_rune := client.DataRune(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.DataRune(nil).Load(map[string]any{"id": "data_rune_id"}, nil)
+result, err := client.DataRune(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -305,7 +305,7 @@ dragontail_versiontgz := client.DragontailVersiontgz(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.DragontailVersiontgz(nil).Load(map[string]any{"id": "dragontail_versiontgz_id"}, nil)
+result, err := client.DragontailVersiontgz(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -382,9 +382,9 @@ region := client.Region(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cdn` | ``$STRING`` | No |  |
-| `n` | ``$OBJECT`` | No |  |
-| `v` | ``$STRING`` | No |  |
+| `cdn` | `string` | No |  |
+| `n` | `map[string]any` | No |  |
+| `v` | `string` | No |  |
 
 ### Operations
 
@@ -393,7 +393,7 @@ region := client.Region(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Region(nil).Load(map[string]any{"id": "region_id"}, nil)
+result, err := client.Region(nil).Load(nil, nil)
 ```
 
 ### Common Methods

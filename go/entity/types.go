@@ -90,8 +90,7 @@ type RegionLoadMatch struct {
 type Version struct {
 }
 
-// VersionListMatch mirrors the version fields as an all-optional match
-// filter (Go analog of Partial<Version>).
+// VersionListMatch is the typed request payload for Version.ListTyped.
 type VersionListMatch struct {
 }
 

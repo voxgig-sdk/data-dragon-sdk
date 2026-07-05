@@ -8,7 +8,7 @@ Complete API reference for the DataDragon PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/data-dragon_sdk.php';
+require_once __DIR__ . '/datadragon_sdk.php';
 
 $client = new DataDragonSDK($options);
 ```
@@ -73,11 +73,11 @@ Create a new `RegionEntity` instance. Pass `null` for no initial data.
 
 Create a new `VersionEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): DataDragonUtility`
 
 Return a copy of the SDK utility object.
 
@@ -128,19 +128,19 @@ $result = $client->Champion()->load(["id" => "champion_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -149,7 +149,7 @@ Set the entity match criteria.
 Create a new `ChampionEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -166,10 +166,10 @@ $data_champion = $client->DataChampion();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `format` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data` | `array` | No |  |
+| `format` | `string` | No |  |
+| `type` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
@@ -178,24 +178,24 @@ $data_champion = $client->DataChampion();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->DataChampion()->load(["id" => "data_champion_id"]);
+$result = $client->DataChampion()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -204,7 +204,7 @@ Set the entity match criteria.
 Create a new `DataChampionEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -221,9 +221,9 @@ $data_item = $client->DataItem();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data` | `array` | No |  |
+| `type` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
@@ -232,24 +232,24 @@ $data_item = $client->DataItem();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->DataItem()->load(["id" => "data_item_id"]);
+$result = $client->DataItem()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -258,7 +258,7 @@ Set the entity match criteria.
 Create a new `DataItemEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -278,24 +278,24 @@ $data_rune = $client->DataRune();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->DataRune()->load(["id" => "data_rune_id"]);
+$result = $client->DataRune()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -304,7 +304,7 @@ Set the entity match criteria.
 Create a new `DataRuneEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -324,24 +324,24 @@ $dragontail_versiontgz = $client->DragontailVersiontgz();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->DragontailVersiontgz()->load(["id" => "dragontail_versiontgz_id"]);
+$result = $client->DragontailVersiontgz()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -350,7 +350,7 @@ Set the entity match criteria.
 Create a new `DragontailVersiontgzEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -375,19 +375,19 @@ $result = $client->Item()->load(["id" => "item_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -396,7 +396,7 @@ Set the entity match criteria.
 Create a new `ItemEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -413,9 +413,9 @@ $region = $client->Region();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cdn` | ``$STRING`` | No |  |
-| `n` | ``$OBJECT`` | No |  |
-| `v` | ``$STRING`` | No |  |
+| `cdn` | `string` | No |  |
+| `n` | `array` | No |  |
+| `v` | `string` | No |  |
 
 ### Operations
 
@@ -424,24 +424,24 @@ $region = $client->Region();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Region()->load(["id" => "region_id"]);
+$result = $client->Region()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -450,7 +450,7 @@ Set the entity match criteria.
 Create a new `RegionEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -465,29 +465,29 @@ $version = $client->Version();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Version()->list([]);
+$results = $client->Version()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -496,7 +496,7 @@ Set the entity match criteria.
 Create a new `VersionEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

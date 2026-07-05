@@ -164,10 +164,10 @@ local data_champion = client:DataChampion(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `format` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data` | `table` | No |  |
+| `format` | `string` | No |  |
+| `type` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
@@ -176,7 +176,7 @@ local data_champion = client:DataChampion(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:DataChampion():load({ id = "data_champion_id" })
+local result, err = client:DataChampion():load()
 ```
 
 ### Common Methods
@@ -219,9 +219,9 @@ local data_item = client:DataItem(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data` | `table` | No |  |
+| `type` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
@@ -230,7 +230,7 @@ local data_item = client:DataItem(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:DataItem():load({ id = "data_item_id" })
+local result, err = client:DataItem():load()
 ```
 
 ### Common Methods
@@ -276,7 +276,7 @@ local data_rune = client:DataRune(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:DataRune():load({ id = "data_rune_id" })
+local result, err = client:DataRune():load()
 ```
 
 ### Common Methods
@@ -322,7 +322,7 @@ local dragontail_versiontgz = client:DragontailVersiontgz(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:DragontailVersiontgz():load({ id = "dragontail_versiontgz_id" })
+local result, err = client:DragontailVersiontgz():load()
 ```
 
 ### Common Methods
@@ -411,9 +411,9 @@ local region = client:Region(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cdn` | ``$STRING`` | No |  |
-| `n` | ``$OBJECT`` | No |  |
-| `v` | ``$STRING`` | No |  |
+| `cdn` | `string` | No |  |
+| `n` | `table` | No |  |
+| `v` | `string` | No |  |
 
 ### Operations
 
@@ -422,7 +422,7 @@ local region = client:Region(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Region():load({ id = "region_id" })
+local result, err = client:Region():load()
 ```
 
 ### Common Methods

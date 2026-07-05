@@ -8,7 +8,7 @@ Complete API reference for the DataDragon Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'data-dragon_sdk'
+require_relative 'DataDragon_sdk'
 
 client = DataDragonSDK.new(options)
 ```
@@ -167,10 +167,10 @@ data_champion = client.DataChampion
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `format` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data` | `Hash` | No |  |
+| `format` | `String` | No |  |
+| `type` | `String` | No |  |
+| `version` | `String` | No |  |
 
 ### Operations
 
@@ -179,7 +179,7 @@ data_champion = client.DataChampion
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.DataChampion.load({ "id" => "data_champion_id" })
+result = client.DataChampion.load()
 ```
 
 ### Common Methods
@@ -222,9 +222,9 @@ data_item = client.DataItem
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `type` | ``$STRING`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data` | `Hash` | No |  |
+| `type` | `String` | No |  |
+| `version` | `String` | No |  |
 
 ### Operations
 
@@ -233,7 +233,7 @@ data_item = client.DataItem
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.DataItem.load({ "id" => "data_item_id" })
+result = client.DataItem.load()
 ```
 
 ### Common Methods
@@ -279,7 +279,7 @@ data_rune = client.DataRune
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.DataRune.load({ "id" => "data_rune_id" })
+result = client.DataRune.load()
 ```
 
 ### Common Methods
@@ -325,7 +325,7 @@ dragontail_versiontgz = client.DragontailVersiontgz
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.DragontailVersiontgz.load({ "id" => "dragontail_versiontgz_id" })
+result = client.DragontailVersiontgz.load()
 ```
 
 ### Common Methods
@@ -414,9 +414,9 @@ region = client.Region
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cdn` | ``$STRING`` | No |  |
-| `n` | ``$OBJECT`` | No |  |
-| `v` | ``$STRING`` | No |  |
+| `cdn` | `String` | No |  |
+| `n` | `Hash` | No |  |
+| `v` | `String` | No |  |
 
 ### Operations
 
@@ -425,7 +425,7 @@ region = client.Region
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Region.load({ "id" => "region_id" })
+result = client.Region.load()
 ```
 
 ### Common Methods
@@ -466,12 +466,12 @@ version = client.Version
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Version.list(nil)
+results = client.Version.list
 ```
 
 ### Common Methods
