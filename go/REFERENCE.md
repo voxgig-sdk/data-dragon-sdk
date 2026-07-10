@@ -119,6 +119,7 @@ same parameters as `Direct()`.
 
 ```go
 champion := client.Champion(nil)
+fmt.Println(champion.GetName()) // "champion"
 ```
 
 ### Operations
@@ -128,7 +129,11 @@ champion := client.Champion(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Champion(nil).Load(map[string]any{"id": "champion_id"}, nil)
+result, err := client.Champion(nil).Load(map[string]any{"id": "champion_id", "version": "version"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -158,7 +163,8 @@ Return the entity name.
 ## DataChampionEntity
 
 ```go
-data_champion := client.DataChampion(nil)
+dataChampion := client.DataChampion(nil)
+fmt.Println(dataChampion.GetName()) // "data_champion"
 ```
 
 ### Fields
@@ -177,7 +183,11 @@ data_champion := client.DataChampion(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.DataChampion(nil).Load(nil, nil)
+result, err := client.DataChampion(nil).Load(map[string]any{"language": "language", "version": "version"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -207,7 +217,8 @@ Return the entity name.
 ## DataItemEntity
 
 ```go
-data_item := client.DataItem(nil)
+dataItem := client.DataItem(nil)
+fmt.Println(dataItem.GetName()) // "data_item"
 ```
 
 ### Fields
@@ -225,7 +236,11 @@ data_item := client.DataItem(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.DataItem(nil).Load(nil, nil)
+result, err := client.DataItem(nil).Load(map[string]any{"language": "language", "version": "version"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -255,7 +270,8 @@ Return the entity name.
 ## DataRuneEntity
 
 ```go
-data_rune := client.DataRune(nil)
+dataRune := client.DataRune(nil)
+fmt.Println(dataRune.GetName()) // "data_rune"
 ```
 
 ### Operations
@@ -265,7 +281,11 @@ data_rune := client.DataRune(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.DataRune(nil).Load(nil, nil)
+result, err := client.DataRune(nil).Load(map[string]any{"language": "language", "version": "version"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -295,7 +315,8 @@ Return the entity name.
 ## DragontailVersiontgzEntity
 
 ```go
-dragontail_versiontgz := client.DragontailVersiontgz(nil)
+dragontailVersiontgz := client.DragontailVersiontgz(nil)
+fmt.Println(dragontailVersiontgz.GetName()) // "dragontail_versiontgz"
 ```
 
 ### Operations
@@ -305,7 +326,11 @@ dragontail_versiontgz := client.DragontailVersiontgz(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.DragontailVersiontgz(nil).Load(nil, nil)
+result, err := client.DragontailVersiontgz(nil).Load(map[string]any{"version": "version"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -336,6 +361,7 @@ Return the entity name.
 
 ```go
 item := client.Item(nil)
+fmt.Println(item.GetName()) // "item"
 ```
 
 ### Operations
@@ -345,7 +371,11 @@ item := client.Item(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Item(nil).Load(map[string]any{"id": "item_id"}, nil)
+result, err := client.Item(nil).Load(map[string]any{"id": "item_id", "version": "version"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -376,6 +406,7 @@ Return the entity name.
 
 ```go
 region := client.Region(nil)
+fmt.Println(region.GetName()) // "region"
 ```
 
 ### Fields
@@ -393,7 +424,11 @@ region := client.Region(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Region(nil).Load(nil, nil)
+result, err := client.Region(nil).Load(map[string]any{"region": "region"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -424,6 +459,7 @@ Return the entity name.
 
 ```go
 version := client.Version(nil)
+fmt.Println(version.GetName()) // "version"
 ```
 
 ### Operations
@@ -434,6 +470,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Version(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

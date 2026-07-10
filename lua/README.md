@@ -35,8 +35,10 @@ local client = sdk.new()
 
 ### 3. Load a champion
 
+Champion is nested under version, so provide the `version`.
+
 ```lua
-local champion, err = client:Champion():load({ id = "example_id" })
+local champion, err = client:Champion():load({ version = "example_version", id = "example_id" })
 if err then error(err) end
 print(champion)
 ```
@@ -330,7 +332,7 @@ Create an instance: `local champion = client:Champion(nil)`
 #### Example: Load
 
 ```lua
-local champion, err = client:Champion():load({ id = "champion_id" })
+local champion, err = client:Champion():load({ id = "champion_id", version = "version" })
 ```
 
 
@@ -356,7 +358,7 @@ Create an instance: `local data_champion = client:DataChampion(nil)`
 #### Example: Load
 
 ```lua
-local data_champion, err = client:DataChampion():load()
+local data_champion, err = client:DataChampion():load({ language = "language", version = "version" })
 ```
 
 
@@ -381,7 +383,7 @@ Create an instance: `local data_item = client:DataItem(nil)`
 #### Example: Load
 
 ```lua
-local data_item, err = client:DataItem():load()
+local data_item, err = client:DataItem():load({ language = "language", version = "version" })
 ```
 
 
@@ -398,7 +400,7 @@ Create an instance: `local data_rune = client:DataRune(nil)`
 #### Example: Load
 
 ```lua
-local data_rune, err = client:DataRune():load()
+local data_rune, err = client:DataRune():load({ language = "language", version = "version" })
 ```
 
 
@@ -415,7 +417,7 @@ Create an instance: `local dragontail_versiontgz = client:DragontailVersiontgz(n
 #### Example: Load
 
 ```lua
-local dragontail_versiontgz, err = client:DragontailVersiontgz():load()
+local dragontail_versiontgz, err = client:DragontailVersiontgz():load({ version = "version" })
 ```
 
 
@@ -432,7 +434,7 @@ Create an instance: `local item = client:Item(nil)`
 #### Example: Load
 
 ```lua
-local item, err = client:Item():load({ id = "item_id" })
+local item, err = client:Item():load({ id = "item_id", version = "version" })
 ```
 
 
@@ -457,7 +459,7 @@ Create an instance: `local region = client:Region(nil)`
 #### Example: Load
 
 ```lua
-local region, err = client:Region():load()
+local region, err = client:Region():load({ region = "region" })
 ```
 
 

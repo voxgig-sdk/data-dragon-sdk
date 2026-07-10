@@ -121,7 +121,7 @@ local champion = client:Champion(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Champion():load({ id = "champion_id" })
+local result, err = client:Champion():load({ id = "champion_id", version = "version" })
 ```
 
 ### Common Methods
@@ -176,7 +176,7 @@ local data_champion = client:DataChampion(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:DataChampion():load()
+local result, err = client:DataChampion():load({ language = "language", version = "version" })
 ```
 
 ### Common Methods
@@ -230,7 +230,7 @@ local data_item = client:DataItem(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:DataItem():load()
+local result, err = client:DataItem():load({ language = "language", version = "version" })
 ```
 
 ### Common Methods
@@ -276,7 +276,7 @@ local data_rune = client:DataRune(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:DataRune():load()
+local result, err = client:DataRune():load({ language = "language", version = "version" })
 ```
 
 ### Common Methods
@@ -322,7 +322,7 @@ local dragontail_versiontgz = client:DragontailVersiontgz(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:DragontailVersiontgz():load()
+local result, err = client:DragontailVersiontgz():load({ version = "version" })
 ```
 
 ### Common Methods
@@ -368,7 +368,7 @@ local item = client:Item(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Item():load({ id = "item_id" })
+local result, err = client:Item():load({ id = "item_id", version = "version" })
 ```
 
 ### Common Methods
@@ -422,7 +422,7 @@ local region = client:Region(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Region():load()
+local result, err = client:Region():load({ region = "region" })
 ```
 
 ### Common Methods

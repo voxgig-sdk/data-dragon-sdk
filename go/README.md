@@ -51,7 +51,7 @@ func main() {
     client := sdk.New()
 
     // Load a single champion — the value is the loaded record.
-    champion, err := client.Champion(nil).Load(map[string]any{"id": "example"}, nil)
+    champion, err := client.Champion(nil).Load(map[string]any{"id": "example_id", "version": "example_version"}, nil)
     if err != nil {
         panic(err)
     }
@@ -363,7 +363,7 @@ Create an instance: `champion := client.Champion(nil)`
 #### Example: Load
 
 ```go
-champion, err := client.Champion(nil).Load(map[string]any{"id": "champion_id"}, nil)
+champion, err := client.Champion(nil).Load(map[string]any{"id": "champion_id", "version": "version"}, nil)
 if err != nil {
     panic(err)
 }
@@ -373,7 +373,7 @@ fmt.Println(champion) // the loaded record
 
 ### DataChampion
 
-Create an instance: `data_champion := client.DataChampion(nil)`
+Create an instance: `dataChampion := client.DataChampion(nil)`
 
 #### Operations
 
@@ -393,17 +393,17 @@ Create an instance: `data_champion := client.DataChampion(nil)`
 #### Example: Load
 
 ```go
-data_champion, err := client.DataChampion(nil).Load(nil, nil)
+dataChampion, err := client.DataChampion(nil).Load(map[string]any{"language": "language", "version": "version"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(data_champion) // the loaded record
+fmt.Println(dataChampion) // the loaded record
 ```
 
 
 ### DataItem
 
-Create an instance: `data_item := client.DataItem(nil)`
+Create an instance: `dataItem := client.DataItem(nil)`
 
 #### Operations
 
@@ -422,17 +422,17 @@ Create an instance: `data_item := client.DataItem(nil)`
 #### Example: Load
 
 ```go
-data_item, err := client.DataItem(nil).Load(nil, nil)
+dataItem, err := client.DataItem(nil).Load(map[string]any{"language": "language", "version": "version"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(data_item) // the loaded record
+fmt.Println(dataItem) // the loaded record
 ```
 
 
 ### DataRune
 
-Create an instance: `data_rune := client.DataRune(nil)`
+Create an instance: `dataRune := client.DataRune(nil)`
 
 #### Operations
 
@@ -443,17 +443,17 @@ Create an instance: `data_rune := client.DataRune(nil)`
 #### Example: Load
 
 ```go
-data_rune, err := client.DataRune(nil).Load(nil, nil)
+dataRune, err := client.DataRune(nil).Load(map[string]any{"language": "language", "version": "version"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(data_rune) // the loaded record
+fmt.Println(dataRune) // the loaded record
 ```
 
 
 ### DragontailVersiontgz
 
-Create an instance: `dragontail_versiontgz := client.DragontailVersiontgz(nil)`
+Create an instance: `dragontailVersiontgz := client.DragontailVersiontgz(nil)`
 
 #### Operations
 
@@ -464,11 +464,11 @@ Create an instance: `dragontail_versiontgz := client.DragontailVersiontgz(nil)`
 #### Example: Load
 
 ```go
-dragontail_versiontgz, err := client.DragontailVersiontgz(nil).Load(nil, nil)
+dragontailVersiontgz, err := client.DragontailVersiontgz(nil).Load(map[string]any{"version": "version"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(dragontail_versiontgz) // the loaded record
+fmt.Println(dragontailVersiontgz) // the loaded record
 ```
 
 
@@ -485,7 +485,7 @@ Create an instance: `item := client.Item(nil)`
 #### Example: Load
 
 ```go
-item, err := client.Item(nil).Load(map[string]any{"id": "item_id"}, nil)
+item, err := client.Item(nil).Load(map[string]any{"id": "item_id", "version": "version"}, nil)
 if err != nil {
     panic(err)
 }
@@ -514,7 +514,7 @@ Create an instance: `region := client.Region(nil)`
 #### Example: Load
 
 ```go
-region, err := client.Region(nil).Load(nil, nil)
+region, err := client.Region(nil).Load(map[string]any{"region": "region"}, nil)
 if err != nil {
     panic(err)
 }

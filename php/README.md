@@ -33,10 +33,12 @@ $client = new DataDragonSDK();
 
 ### 3. Load a champion
 
+Champion is nested under version, so provide the `version`.
+
 ```php
 try {
     // load() returns the bare Champion record (throws on error).
-    $champion = $client->Champion()->load(["id" => "example_id"]);
+    $champion = $client->Champion()->load(["version" => "example_version", "id" => "example_id"]);
     print_r($champion);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -352,7 +354,7 @@ Create an instance: `$champion = $client->Champion();`
 
 ```php
 // load() returns the bare Champion record (throws on error).
-$champion = $client->Champion()->load(["id" => "champion_id"]);
+$champion = $client->Champion()->load(["id" => "champion_id", "version" => "version"]);
 ```
 
 
@@ -379,7 +381,7 @@ Create an instance: `$data_champion = $client->DataChampion();`
 
 ```php
 // load() returns the bare DataChampion record (throws on error).
-$data_champion = $client->DataChampion()->load();
+$data_champion = $client->DataChampion()->load(["language" => "language", "version" => "version"]);
 ```
 
 
@@ -405,7 +407,7 @@ Create an instance: `$data_item = $client->DataItem();`
 
 ```php
 // load() returns the bare DataItem record (throws on error).
-$data_item = $client->DataItem()->load();
+$data_item = $client->DataItem()->load(["language" => "language", "version" => "version"]);
 ```
 
 
@@ -423,7 +425,7 @@ Create an instance: `$data_rune = $client->DataRune();`
 
 ```php
 // load() returns the bare DataRune record (throws on error).
-$data_rune = $client->DataRune()->load();
+$data_rune = $client->DataRune()->load(["language" => "language", "version" => "version"]);
 ```
 
 
@@ -441,7 +443,7 @@ Create an instance: `$dragontail_versiontgz = $client->DragontailVersiontgz();`
 
 ```php
 // load() returns the bare DragontailVersiontgz record (throws on error).
-$dragontail_versiontgz = $client->DragontailVersiontgz()->load();
+$dragontail_versiontgz = $client->DragontailVersiontgz()->load(["version" => "version"]);
 ```
 
 
@@ -459,7 +461,7 @@ Create an instance: `$item = $client->Item();`
 
 ```php
 // load() returns the bare Item record (throws on error).
-$item = $client->Item()->load(["id" => "item_id"]);
+$item = $client->Item()->load(["id" => "item_id", "version" => "version"]);
 ```
 
 
@@ -485,7 +487,7 @@ Create an instance: `$region = $client->Region();`
 
 ```php
 // load() returns the bare Region record (throws on error).
-$region = $client->Region()->load();
+$region = $client->Region()->load(["region" => "region"]);
 ```
 
 

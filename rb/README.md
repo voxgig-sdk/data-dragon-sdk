@@ -32,10 +32,12 @@ client = DataDragonSDK.new
 
 ### 3. Load a champion
 
+Champion is nested under version, so provide the `version`.
+
 ```ruby
 begin
   # load returns the bare Champion record (raises on error).
-  champion = client.Champion.load({ "id" => "example_id" })
+  champion = client.Champion.load({ "version" => "example_version", "id" => "example_id" })
   puts champion
 rescue => err
   warn "load failed: #{err}"
@@ -342,7 +344,7 @@ Create an instance: `champion = client.Champion`
 
 ```ruby
 # load returns the bare Champion record (raises on error).
-champion = client.Champion.load({ "id" => "champion_id" })
+champion = client.Champion.load({ "id" => "champion_id", "version" => "version" })
 ```
 
 
@@ -369,7 +371,7 @@ Create an instance: `data_champion = client.DataChampion`
 
 ```ruby
 # load returns the bare DataChampion record (raises on error).
-data_champion = client.DataChampion.load()
+data_champion = client.DataChampion.load({ "language" => "language", "version" => "version" })
 ```
 
 
@@ -395,7 +397,7 @@ Create an instance: `data_item = client.DataItem`
 
 ```ruby
 # load returns the bare DataItem record (raises on error).
-data_item = client.DataItem.load()
+data_item = client.DataItem.load({ "language" => "language", "version" => "version" })
 ```
 
 
@@ -413,7 +415,7 @@ Create an instance: `data_rune = client.DataRune`
 
 ```ruby
 # load returns the bare DataRune record (raises on error).
-data_rune = client.DataRune.load()
+data_rune = client.DataRune.load({ "language" => "language", "version" => "version" })
 ```
 
 
@@ -431,7 +433,7 @@ Create an instance: `dragontail_versiontgz = client.DragontailVersiontgz`
 
 ```ruby
 # load returns the bare DragontailVersiontgz record (raises on error).
-dragontail_versiontgz = client.DragontailVersiontgz.load()
+dragontail_versiontgz = client.DragontailVersiontgz.load({ "version" => "version" })
 ```
 
 
@@ -449,7 +451,7 @@ Create an instance: `item = client.Item`
 
 ```ruby
 # load returns the bare Item record (raises on error).
-item = client.Item.load({ "id" => "item_id" })
+item = client.Item.load({ "id" => "item_id", "version" => "version" })
 ```
 
 
@@ -475,7 +477,7 @@ Create an instance: `region = client.Region`
 
 ```ruby
 # load returns the bare Region record (raises on error).
-region = client.Region.load()
+region = client.Region.load({ "region" => "region" })
 ```
 
 

@@ -203,7 +203,7 @@ const champion = client.Champion()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Champion().load({ id: 'champion_id' })
+const result = await client.Champion().load({ id: 'champion_id', version: 'version' })
 ```
 
 ### Common Methods
@@ -256,7 +256,7 @@ const data_champion = client.DataChampion()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.DataChampion().load()
+const result = await client.DataChampion().load({ language: 'language', version: 'version' })
 ```
 
 ### Common Methods
@@ -308,7 +308,7 @@ const data_item = client.DataItem()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.DataItem().load()
+const result = await client.DataItem().load({ language: 'language', version: 'version' })
 ```
 
 ### Common Methods
@@ -352,7 +352,7 @@ const data_rune = client.DataRune()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.DataRune().load()
+const result = await client.DataRune().load({ language: 'language', version: 'version' })
 ```
 
 ### Common Methods
@@ -396,7 +396,7 @@ const dragontail_versiontgz = client.DragontailVersiontgz()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.DragontailVersiontgz().load()
+const result = await client.DragontailVersiontgz().load({ version: 'version' })
 ```
 
 ### Common Methods
@@ -440,7 +440,7 @@ const item = client.Item()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Item().load({ id: 'item_id' })
+const result = await client.Item().load({ id: 'item_id', version: 'version' })
 ```
 
 ### Common Methods
@@ -492,7 +492,7 @@ const region = client.Region()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Region().load()
+const result = await client.Region().load({ region: 'region' })
 ```
 
 ### Common Methods

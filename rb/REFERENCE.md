@@ -124,7 +124,7 @@ champion = client.Champion
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Champion.load({ "id" => "champion_id" })
+result = client.Champion.load({ "id" => "champion_id", "version" => "version" })
 ```
 
 ### Common Methods
@@ -179,7 +179,7 @@ data_champion = client.DataChampion
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.DataChampion.load()
+result = client.DataChampion.load({ "language" => "language", "version" => "version" })
 ```
 
 ### Common Methods
@@ -233,7 +233,7 @@ data_item = client.DataItem
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.DataItem.load()
+result = client.DataItem.load({ "language" => "language", "version" => "version" })
 ```
 
 ### Common Methods
@@ -279,7 +279,7 @@ data_rune = client.DataRune
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.DataRune.load()
+result = client.DataRune.load({ "language" => "language", "version" => "version" })
 ```
 
 ### Common Methods
@@ -325,7 +325,7 @@ dragontail_versiontgz = client.DragontailVersiontgz
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.DragontailVersiontgz.load()
+result = client.DragontailVersiontgz.load({ "version" => "version" })
 ```
 
 ### Common Methods
@@ -371,7 +371,7 @@ item = client.Item
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Item.load({ "id" => "item_id" })
+result = client.Item.load({ "id" => "item_id", "version" => "version" })
 ```
 
 ### Common Methods
@@ -425,7 +425,7 @@ region = client.Region
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Region.load()
+result = client.Region.load({ "region" => "region" })
 ```
 
 ### Common Methods

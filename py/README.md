@@ -38,11 +38,12 @@ client = DataDragonSDK()
 
 ### 3. Load a champion
 
+Champion is nested under version, so provide the `version`.
 `load()` returns the bare record (a `dict`) and raises on error.
 
 ```python
 try:
-    champion = client.Champion().load({"id": "example_id"})
+    champion = client.Champion().load({"version": "example_version", "id": "example_id"})
     print(champion)
 except Exception as err:
     print(f"load failed: {err}")
@@ -344,7 +345,7 @@ Create an instance: `champion = client.Champion()`
 #### Example: Load
 
 ```python
-champion = client.Champion().load({"id": "champion_id"})
+champion = client.Champion().load({"id": "champion_id", "version": "version"})
 ```
 
 
@@ -370,7 +371,7 @@ Create an instance: `data_champion = client.DataChampion()`
 #### Example: Load
 
 ```python
-data_champion = client.DataChampion().load()
+data_champion = client.DataChampion().load({"language": "language", "version": "version"})
 ```
 
 
@@ -395,7 +396,7 @@ Create an instance: `data_item = client.DataItem()`
 #### Example: Load
 
 ```python
-data_item = client.DataItem().load()
+data_item = client.DataItem().load({"language": "language", "version": "version"})
 ```
 
 
@@ -412,7 +413,7 @@ Create an instance: `data_rune = client.DataRune()`
 #### Example: Load
 
 ```python
-data_rune = client.DataRune().load()
+data_rune = client.DataRune().load({"language": "language", "version": "version"})
 ```
 
 
@@ -429,7 +430,7 @@ Create an instance: `dragontail_versiontgz = client.DragontailVersiontgz()`
 #### Example: Load
 
 ```python
-dragontail_versiontgz = client.DragontailVersiontgz().load()
+dragontail_versiontgz = client.DragontailVersiontgz().load({"version": "version"})
 ```
 
 
@@ -446,7 +447,7 @@ Create an instance: `item = client.Item()`
 #### Example: Load
 
 ```python
-item = client.Item().load({"id": "item_id"})
+item = client.Item().load({"id": "item_id", "version": "version"})
 ```
 
 
@@ -471,7 +472,7 @@ Create an instance: `region = client.Region()`
 #### Example: Load
 
 ```python
-region = client.Region().load()
+region = client.Region().load({"region": "region"})
 ```
 
 

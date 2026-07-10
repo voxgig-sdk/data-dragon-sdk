@@ -35,11 +35,15 @@ const client = new DataDragonSDK()
 
 ### 3. Load a champion
 
+Champion is nested under version, so provide the `version`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const champion = await client.Champion().load({ id: 'example_id' })
+  const champion = await client.Champion().load({
+    version: 'example_version',
+    id: 'example_id',
+  })
   console.log(champion)
 } catch (err) {
   console.error('load failed:', err)
@@ -390,7 +394,7 @@ Create an instance: `const champion = client.Champion()`
 #### Example: Load
 
 ```ts
-const champion = await client.Champion().load({ id: 'champion_id' })
+const champion = await client.Champion().load({ id: 'champion_id', version: 'version' })
 ```
 
 
@@ -416,7 +420,7 @@ Create an instance: `const data_champion = client.DataChampion()`
 #### Example: Load
 
 ```ts
-const data_champion = await client.DataChampion().load()
+const data_champion = await client.DataChampion().load({ language: 'language', version: 'version' })
 ```
 
 
@@ -441,7 +445,7 @@ Create an instance: `const data_item = client.DataItem()`
 #### Example: Load
 
 ```ts
-const data_item = await client.DataItem().load()
+const data_item = await client.DataItem().load({ language: 'language', version: 'version' })
 ```
 
 
@@ -458,7 +462,7 @@ Create an instance: `const data_rune = client.DataRune()`
 #### Example: Load
 
 ```ts
-const data_rune = await client.DataRune().load()
+const data_rune = await client.DataRune().load({ language: 'language', version: 'version' })
 ```
 
 
@@ -475,7 +479,7 @@ Create an instance: `const dragontail_versiontgz = client.DragontailVersiontgz()
 #### Example: Load
 
 ```ts
-const dragontail_versiontgz = await client.DragontailVersiontgz().load()
+const dragontail_versiontgz = await client.DragontailVersiontgz().load({ version: 'version' })
 ```
 
 
@@ -492,7 +496,7 @@ Create an instance: `const item = client.Item()`
 #### Example: Load
 
 ```ts
-const item = await client.Item().load({ id: 'item_id' })
+const item = await client.Item().load({ id: 'item_id', version: 'version' })
 ```
 
 
@@ -517,7 +521,7 @@ Create an instance: `const region = client.Region()`
 #### Example: Load
 
 ```ts
-const region = await client.Region().load()
+const region = await client.Region().load({ region: 'region' })
 ```
 
 

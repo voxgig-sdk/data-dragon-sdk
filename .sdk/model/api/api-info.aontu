@@ -15,9 +15,9 @@ main: {
           url: "https://ddragon.leagueoflegends.com"
         }
       ]
+      summary: "Data Dragon is a static data API providing information and images related to champions, runes, and items in League of Legends."
       title: "Data Dragon API"
       version: "1.0.0"
+      website: "https://riot-api-libraries.readthedocs.io/en/latest/ddragon.html"
     }
   }
-}
-

@@ -1,0 +1,10 @@
+# Entity Models
+
+@"champion.aontu"
+@"data_champion.aontu"
+@"data_item.aontu"
+@"data_rune.aontu"
+@"dragontail_versiontgz.aontu"
+@"item.aontu"
+@"region.aontu"
+@"version.aontu"
