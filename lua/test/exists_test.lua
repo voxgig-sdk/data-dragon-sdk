@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- DataDragon SDK exists test
 
 local sdk = require("data-dragon_sdk")
 
