@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from datadragon_sdk.utility.voxgig_struct import voxgig_struct as vs
 from datadragon_sdk import DataDragonSDK
-from core import helpers
+from datadragon_sdk.core import helpers
 from test import runner
 
 
@@ -65,11 +65,11 @@ def _item_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "DATADRAGON_TEST_ITEM_ENTID": {},
-        "DATADRAGON_TEST_LIVE": "FALSE",
+        "DATA_DRAGON_TEST_ITEM_ENTID": {},
+        "DATA_DRAGON_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("DATADRAGON_TEST_LIVE") == "TRUE"
+    live = env.get("DATA_DRAGON_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

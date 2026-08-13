@@ -39,7 +39,7 @@ client = DataDragonSDK()
 ### 3. Load a champion
 
 Champion is nested under version, so provide the `version`.
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -56,7 +56,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    champion = client.Champion().load({"id": "example_id"})
+    champion = client.Champion().load({"id": "example_id", "version": "example"})
     print(champion)
 except Exception as err:
     print(f"load failed: {err}")
@@ -123,8 +123,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = DataDragonSDK.test()
 
-# Entity ops return the bare record and raise on error.
-champion = client.Champion().load({"id": "test01"})
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+champion = client.Champion().load({"id": "test01", "version": "example"})
 # champion contains the mock response record
 ```
 
@@ -227,7 +228,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -258,10 +259,10 @@ API path: `/cdn/{version}/img/champion/{championImage}`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `format` |  |
-| `type` |  |
-| `version` |  |
+| `image` |  |
+| `key` |  |
+| `name` |  |
+| `title` |  |
 
 Operations: Load.
 
@@ -271,9 +272,9 @@ API path: `/cdn/{version}/data/{language}/champion.json`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `type` |  |
-| `version` |  |
+| `description` |  |
+| `image` |  |
+| `name` |  |
 
 Operations: Load.
 
@@ -310,9 +311,9 @@ API path: `/cdn/{version}/img/item/{itemImage}`
 
 | Field | Description |
 | --- | --- |
-| `cdn` |  |
-| `n` |  |
-| `v` |  |
+| `champion` |  |
+| `item` |  |
+| `rune` |  |
 
 Operations: Load.
 
@@ -363,10 +364,10 @@ Create an instance: `data_champion = client.DataChampion()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `dict` |  |
-| `format` | `str` |  |
-| `type` | `str` |  |
-| `version` | `str` |  |
+| `image` | `dict` |  |
+| `key` | `str` |  |
+| `name` | `str` |  |
+| `title` | `str` |  |
 
 #### Example: Load
 
@@ -389,9 +390,9 @@ Create an instance: `data_item = client.DataItem()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `dict` |  |
-| `type` | `str` |  |
-| `version` | `str` |  |
+| `description` | `str` |  |
+| `image` | `dict` |  |
+| `name` | `str` |  |
 
 #### Example: Load
 
@@ -465,9 +466,9 @@ Create an instance: `region = client.Region()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cdn` | `str` |  |
-| `n` | `dict` |  |
-| `v` | `str` |  |
+| `champion` | `str` |  |
+| `item` | `str` |  |
+| `rune` | `str` |  |
 
 #### Example: Load
 
@@ -569,7 +570,7 @@ stores the returned data and match criteria internally.
 
 ```python
 champion = client.Champion()
-champion.load({"id": "example_id"})
+champion.load({"id": "example_id", "version": "example"})
 
 # champion.data_get() now returns the champion data from the last load
 # champion.match_get() returns the last match criteria

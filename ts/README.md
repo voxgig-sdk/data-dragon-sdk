@@ -57,7 +57,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const champion = await client.Champion().load({ id: "example_id" })
+  const champion = await client.Champion().load({ id: "example_id", version: "example" })
   console.log(champion)
 } catch (err) {
   console.error('load failed:', err)
@@ -124,8 +124,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = DataDragonSDK.test()
 
-const champion = await client.Champion().load({ id: 'test01' })
-// champion is a bare entity populated with mock response data
+const champion = await client.Champion().load({ id: 'test01', version: 'example_version' })
+// champion is the entity, populated with mock response data
+// — call champion.data() for the record itself
 console.log(champion)
 ```
 
@@ -144,7 +145,7 @@ Entity instances remember their last match and data:
 const entity = client.Champion()
 
 // First call runs the operation and stores its result
-await entity.load({ id: 'example' })
+await entity.load({ id: 'example', version: 'example_version' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -307,10 +308,10 @@ API path: `/cdn/{version}/img/champion/{championImage}`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `format` |  |
-| `type` |  |
-| `version` |  |
+| `image` |  |
+| `key` |  |
+| `name` |  |
+| `title` |  |
 
 Operations: load.
 
@@ -320,9 +321,9 @@ API path: `/cdn/{version}/data/{language}/champion.json`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `type` |  |
-| `version` |  |
+| `description` |  |
+| `image` |  |
+| `name` |  |
 
 Operations: load.
 
@@ -359,9 +360,9 @@ API path: `/cdn/{version}/img/item/{itemImage}`
 
 | Field | Description |
 | --- | --- |
-| `cdn` |  |
-| `n` |  |
-| `v` |  |
+| `champion` |  |
+| `item` |  |
+| `rune` |  |
 
 Operations: load.
 
@@ -412,10 +413,10 @@ Create an instance: `const data_champion = client.DataChampion()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Record<string, any>` |  |
-| `format` | `string` |  |
-| `type` | `string` |  |
-| `version` | `string` |  |
+| `image` | `Record<string, any>` |  |
+| `key` | `string` |  |
+| `name` | `string` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
@@ -438,9 +439,9 @@ Create an instance: `const data_item = client.DataItem()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Record<string, any>` |  |
-| `type` | `string` |  |
-| `version` | `string` |  |
+| `description` | `string` |  |
+| `image` | `Record<string, any>` |  |
+| `name` | `string` |  |
 
 #### Example: Load
 
@@ -514,9 +515,9 @@ Create an instance: `const region = client.Region()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cdn` | `string` |  |
-| `n` | `Record<string, any>` |  |
-| `v` | `string` |  |
+| `champion` | `string` |  |
+| `item` | `string` |  |
+| `rune` | `string` |  |
 
 #### Example: Load
 
@@ -612,7 +613,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const champion = client.Champion()
-await champion.load({ id: "example_id" })
+await champion.load({ id: "example_id", version: "example" })
 
 // champion.data() now returns the champion data from the last `load`
 // champion.match() returns { id: "example_id" }

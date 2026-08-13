@@ -160,10 +160,10 @@ data_champion = client.DataChampion()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | No |  |
-| `format` | `str` | No |  |
-| `type` | `str` | No |  |
-| `version` | `str` | No |  |
+| `image` | `dict` | No |  |
+| `key` | `str` | No |  |
+| `name` | `str` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
@@ -214,9 +214,9 @@ data_item = client.DataItem()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | No |  |
-| `type` | `str` | No |  |
-| `version` | `str` | No |  |
+| `description` | `str` | No |  |
+| `image` | `dict` | No |  |
+| `name` | `str` | No |  |
 
 ### Operations
 
@@ -402,9 +402,9 @@ region = client.Region()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cdn` | `str` | No |  |
-| `n` | `dict` | No |  |
-| `v` | `str` | No |  |
+| `champion` | `str` | No |  |
+| `item` | `str` | No |  |
+| `rune` | `str` | No |  |
 
 ### Operations
 

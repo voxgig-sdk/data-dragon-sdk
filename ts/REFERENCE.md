@@ -244,10 +244,10 @@ const data_champion = client.DataChampion()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Record<string, any>` | No |  |
-| `format` | `string` | No |  |
-| `type` | `string` | No |  |
-| `version` | `string` | No |  |
+| `image` | `Record<string, any>` | No |  |
+| `key` | `string` | No |  |
+| `name` | `string` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -297,9 +297,9 @@ const data_item = client.DataItem()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Record<string, any>` | No |  |
-| `type` | `string` | No |  |
-| `version` | `string` | No |  |
+| `description` | `string` | No |  |
+| `image` | `Record<string, any>` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -481,9 +481,9 @@ const region = client.Region()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cdn` | `string` | No |  |
-| `n` | `Record<string, any>` | No |  |
-| `v` | `string` | No |  |
+| `champion` | `string` | No |  |
+| `item` | `string` | No |  |
+| `rune` | `string` | No |  |
 
 ### Operations
 

@@ -43,8 +43,8 @@ class DataDragonTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('DATADRAGON_TEST_LIVE');
-        $override = self::getenv('DATADRAGON_TEST_OVERRIDE');
+        $live = self::getenv('DATA_DRAGON_TEST_LIVE');
+        $override = self::getenv('DATA_DRAGON_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class DataDragonTestRunner
             }
         }
 
-        $explain = self::getenv('DATADRAGON_TEST_EXPLAIN');
+        $explain = self::getenv('DATA_DRAGON_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['DATADRAGON_TEST_EXPLAIN'] = $explain;
+            $m['DATA_DRAGON_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

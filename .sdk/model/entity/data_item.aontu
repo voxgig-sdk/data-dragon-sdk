@@ -6,17 +6,17 @@ main: kit: entity: data_item: {
 
   fields: [
     {
-      name: "data"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "type"
+      name: "description"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "version"
+      name: "image"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "name"
       req: false
       type: "`$STRING`"
     }
@@ -65,7 +65,7 @@ main: kit: entity: data_item: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

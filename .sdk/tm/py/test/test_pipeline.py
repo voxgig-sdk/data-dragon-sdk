@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import DataDragonSDK
-from core.error import DataDragonError
-from core.result import DataDragonResult
-from core.response import DataDragonResponse
-from core.spec import DataDragonSpec
-from feature.base_feature import DataDragonBaseFeature
+from projectname_sdk.core.error import DataDragonError
+from projectname_sdk.core.result import DataDragonResult
+from projectname_sdk.core.response import DataDragonResponse
+from projectname_sdk.core.spec import DataDragonSpec
+from projectname_sdk.feature.base_feature import DataDragonBaseFeature
 
 
 def _client():

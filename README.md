@@ -23,7 +23,7 @@ support (`list`, `load`):
 
 ```ts
 const client = new DataDragonSDK()
-const champion = await client.Champion().load()
+const champion = await client.Champion().load({ id: "example_id", version: "example" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = DataDragonSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = DataDragonSDK.test({
+  entity: {
+    champion: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const champion = await client.Champion().load({ id: 'test01', version: 'example_version' })
-// champion is a bare Champion populated with mock data
+// champion is the Champion entity, populated with mock data
+// — call champion.data() for the record itself
 console.log(champion)
 ```
 
@@ -193,7 +202,7 @@ require_once 'datadragon_sdk.php';
 $client = new DataDragonSDK();
 
 
-// Load a specific champion (returns the bare record; throws on error)
+// Load a specific champion (returns the ENTITY; call data_get() for the record; throws on error)
 $champion = $client->Champion()->load(["id" => "example_id", "version" => "example_version"]);
 print_r($champion);
 ```
@@ -224,7 +233,7 @@ require_relative "DataDragon_sdk"
 client = DataDragonSDK.new
 
 
-# Load a specific champion (returns the bare record; raises on error)
+# Load a specific champion (returns the ENTITY; call data_get for the record)
 champion = client.Champion.load({ "id" => "example_id", "version" => "example_version" })
 puts champion
 ```
@@ -358,6 +367,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://riot-api-libraries.readthedocs.io/en/latest/ddragon.html](https://riot-api-libraries.readthedocs.io/en/latest/ddragon.html)
 

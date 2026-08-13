@@ -26,8 +26,8 @@ import {
 describe('DataItemEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when DATADRAGON_TEST_LIVE=TRUE.
-  afterEach(liveDelay('DATADRAGON_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when DATA_DRAGON_TEST_LIVE=TRUE.
+  afterEach(liveDelay('DATA_DRAGON_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = DataDragonSDK.test()

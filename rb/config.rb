@@ -64,6 +64,7 @@ module DataDragonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cdn/{version}/img/champion/{championImage}",
                   "parts" => [
@@ -106,28 +107,28 @@ module DataDragonConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "data",
+              "name" => "image",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 0,
             },
             {
               "active" => true,
-              "name" => "format",
+              "name" => "key",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 1,
             },
             {
               "active" => true,
-              "name" => "type",
+              "name" => "name",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 2,
             },
             {
               "active" => true,
-              "name" => "version",
+              "name" => "title",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 3,
@@ -165,6 +166,7 @@ module DataDragonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cdn/{version}/data/{language}/champion.json",
                   "parts" => [
@@ -182,7 +184,7 @@ module DataDragonConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.data`",
                   },
                   "index$" => 0,
                 },
@@ -203,21 +205,21 @@ module DataDragonConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "data",
+              "name" => "description",
               "req" => false,
-              "type" => "`$OBJECT`",
+              "type" => "`$STRING`",
               "index$" => 0,
             },
             {
               "active" => true,
-              "name" => "type",
+              "name" => "image",
               "req" => false,
-              "type" => "`$STRING`",
+              "type" => "`$OBJECT`",
               "index$" => 1,
             },
             {
               "active" => true,
-              "name" => "version",
+              "name" => "name",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 2,
@@ -255,6 +257,7 @@ module DataDragonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cdn/{version}/data/{language}/item.json",
                   "parts" => [
@@ -272,7 +275,7 @@ module DataDragonConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.data`",
                   },
                   "index$" => 0,
                 },
@@ -323,6 +326,7 @@ module DataDragonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cdn/{version}/data/{language}/rune.json",
                   "parts" => [
@@ -381,6 +385,7 @@ module DataDragonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cdn/dragontail-{version}.tgz",
                   "parts" => [
@@ -440,6 +445,7 @@ module DataDragonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cdn/{version}/img/item/{itemImage}",
                   "parts" => [
@@ -482,21 +488,21 @@ module DataDragonConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "cdn",
+              "name" => "champion",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 0,
             },
             {
               "active" => true,
-              "name" => "n",
+              "name" => "item",
               "req" => false,
-              "type" => "`$OBJECT`",
+              "type" => "`$STRING`",
               "index$" => 1,
             },
             {
               "active" => true,
-              "name" => "v",
+              "name" => "rune",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 2,
@@ -524,6 +530,7 @@ module DataDragonConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/realms/{region}.json",
                   "parts" => [
@@ -537,7 +544,7 @@ module DataDragonConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.n`",
                   },
                   "index$" => 0,
                 },
@@ -564,6 +571,7 @@ module DataDragonConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/versions.json",
                   "parts" => [

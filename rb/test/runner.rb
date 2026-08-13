@@ -23,8 +23,8 @@ module DataDragonTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("DATADRAGON_TEST_LIVE")
-    override = getenv("DATADRAGON_TEST_OVERRIDE")
+    live = getenv("DATA_DRAGON_TEST_LIVE")
+    override = getenv("DATA_DRAGON_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module DataDragonTestRunner
       end
     end
 
-    explain = getenv("DATADRAGON_TEST_EXPLAIN")
-    m["DATADRAGON_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("DATA_DRAGON_TEST_EXPLAIN")
+    m["DATA_DRAGON_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

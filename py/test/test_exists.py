@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# DataDragon SDK exists test
 
 import pytest
 from datadragon_sdk import DataDragonSDK

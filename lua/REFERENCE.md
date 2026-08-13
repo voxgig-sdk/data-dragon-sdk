@@ -164,10 +164,10 @@ local data_champion = client:DataChampion(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | No |  |
-| `format` | `string` | No |  |
-| `type` | `string` | No |  |
-| `version` | `string` | No |  |
+| `image` | `table` | No |  |
+| `key` | `string` | No |  |
+| `name` | `string` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -219,9 +219,9 @@ local data_item = client:DataItem(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | No |  |
-| `type` | `string` | No |  |
-| `version` | `string` | No |  |
+| `description` | `string` | No |  |
+| `image` | `table` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -411,9 +411,9 @@ local region = client:Region(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cdn` | `string` | No |  |
-| `n` | `table` | No |  |
-| `v` | `string` | No |  |
+| `champion` | `string` | No |  |
+| `item` | `string` | No |  |
+| `rune` | `string` | No |  |
 
 ### Operations
 

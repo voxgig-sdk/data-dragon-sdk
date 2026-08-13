@@ -166,10 +166,10 @@ $data_champion = $client->DataChampion();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | No |  |
-| `format` | `string` | No |  |
-| `type` | `string` | No |  |
-| `version` | `string` | No |  |
+| `image` | `array` | No |  |
+| `key` | `string` | No |  |
+| `name` | `string` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -221,9 +221,9 @@ $data_item = $client->DataItem();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | No |  |
-| `type` | `string` | No |  |
-| `version` | `string` | No |  |
+| `description` | `string` | No |  |
+| `image` | `array` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -413,9 +413,9 @@ $region = $client->Region();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cdn` | `string` | No |  |
-| `n` | `array` | No |  |
-| `v` | `string` | No |  |
+| `champion` | `string` | No |  |
+| `item` | `string` | No |  |
+| `rune` | `string` | No |  |
 
 ### Operations
 

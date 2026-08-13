@@ -6,7 +6,11 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/data-dragon-sdk/go/core"
+)
 
 // Champion is the typed data model for the champion entity.
 type Champion struct {
@@ -20,10 +24,10 @@ type ChampionLoadMatch struct {
 
 // DataChampion is the typed data model for the data_champion entity.
 type DataChampion struct {
-	Data *map[string]any `json:"data,omitempty"`
-	Format *string `json:"format,omitempty"`
-	Type *string `json:"type,omitempty"`
-	Version *string `json:"version,omitempty"`
+	Image *map[string]any `json:"image,omitempty"`
+	Key *string `json:"key,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Title *string `json:"title,omitempty"`
 }
 
 // DataChampionLoadMatch is the typed request payload for DataChampion.LoadTyped.
@@ -34,9 +38,9 @@ type DataChampionLoadMatch struct {
 
 // DataItem is the typed data model for the data_item entity.
 type DataItem struct {
-	Data *map[string]any `json:"data,omitempty"`
-	Type *string `json:"type,omitempty"`
-	Version *string `json:"version,omitempty"`
+	Description *string `json:"description,omitempty"`
+	Image *map[string]any `json:"image,omitempty"`
+	Name *string `json:"name,omitempty"`
 }
 
 // DataItemLoadMatch is the typed request payload for DataItem.LoadTyped.
@@ -76,9 +80,9 @@ type ItemLoadMatch struct {
 
 // Region is the typed data model for the region entity.
 type Region struct {
-	Cdn *string `json:"cdn,omitempty"`
-	N *map[string]any `json:"n,omitempty"`
-	V *string `json:"v,omitempty"`
+	Champion *string `json:"champion,omitempty"`
+	Item *string `json:"item,omitempty"`
+	Rune *string `json:"rune,omitempty"`
 }
 
 // RegionLoadMatch is the typed request payload for Region.LoadTyped.
@@ -106,12 +110,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -123,12 +141,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

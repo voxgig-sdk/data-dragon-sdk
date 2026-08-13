@@ -2,27 +2,30 @@
   "existing": {
     "data_champion": {
       "DATA_CHAMPION00": {
-        "data": {},
-        "format": "s29",
-        "type": "s2a",
-        "version": "s2b",
+        "image": {},
+        "key": "s29",
+        "name": "s2a",
+        "title": "s2b",
         "language": "LANGUAGE01",
+        "version": "VERSION01",
         "id": "DATA_CHAMPION00"
       },
       "DATA_CHAMPION01": {
-        "data": {},
-        "format": "s51",
-        "type": "s52",
-        "version": "s53",
+        "image": {},
+        "key": "s51",
+        "name": "s52",
+        "title": "s53",
         "language": "LANGUAGE01",
+        "version": "VERSION01",
         "id": "DATA_CHAMPION01"
       },
       "DATA_CHAMPION02": {
-        "data": {},
-        "format": "s79",
-        "type": "s7a",
-        "version": "s7b",
+        "image": {},
+        "key": "s79",
+        "name": "s7a",
+        "title": "s7b",
         "language": "LANGUAGE01",
+        "version": "VERSION01",
         "id": "DATA_CHAMPION02"
       }
     }
@@ -30,10 +33,10 @@
   "new": {
     "data_champion": {
       "data_champion_ref01": {
-        "data": {},
-        "format": "sa1",
-        "type": "sa2",
-        "version": "sa3"
+        "image": {},
+        "key": "sa1",
+        "name": "sa2",
+        "title": "sa3"
       }
     }
   }

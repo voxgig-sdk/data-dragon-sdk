@@ -62,7 +62,7 @@ class VersionEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set DATADRAGON_TEST_VERSION_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set DATA_DRAGON_TEST_VERSION_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -111,22 +111,22 @@ def version_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["DATADRAGON_TEST_VERSION_ENTID"]
+  entid_env_raw = ENV["DATA_DRAGON_TEST_VERSION_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "DATADRAGON_TEST_VERSION_ENTID" => idmap,
-    "DATADRAGON_TEST_LIVE" => "FALSE",
-    "DATADRAGON_TEST_EXPLAIN" => "FALSE",
+    "DATA_DRAGON_TEST_VERSION_ENTID" => idmap,
+    "DATA_DRAGON_TEST_LIVE" => "FALSE",
+    "DATA_DRAGON_TEST_EXPLAIN" => "FALSE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["DATADRAGON_TEST_VERSION_ENTID"])
+    env["DATA_DRAGON_TEST_VERSION_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["DATADRAGON_TEST_LIVE"] == "TRUE"
+  if env["DATA_DRAGON_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
       },
@@ -135,13 +135,13 @@ def version_basic_setup(extra)
     client = DataDragonSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["DATADRAGON_TEST_LIVE"] == "TRUE"
+  live = env["DATA_DRAGON_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["DATADRAGON_TEST_EXPLAIN"] == "TRUE",
+    explain: env["DATA_DRAGON_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

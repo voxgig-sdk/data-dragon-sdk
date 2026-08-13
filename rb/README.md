@@ -36,7 +36,7 @@ Champion is nested under version, so provide the `version`.
 
 ```ruby
 begin
-  # load returns the bare Champion record (raises on error).
+  # load returns the ENTITY — call data_get for the Champion record (raises on error).
   champion = client.Champion.load({ "version" => "example_version", "id" => "example_id" })
   puts champion
 rescue => err
@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  champion = client.Champion.load({ "id" => "example_id" })
+  champion = client.Champion.load({ "id" => "example_id", "version" => "example" })
 rescue => err
   warn "load failed: #{err}"
 end
@@ -122,8 +122,9 @@ client = DataDragonSDK.test({
   "entity" => { "champion" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
-champion = client.Champion.load({ "id" => "test01" })
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+champion = client.Champion.load({ "id" => "test01", "version" => "example" })
 puts champion
 ```
 
@@ -256,10 +257,10 @@ API path: `/cdn/{version}/img/champion/{championImage}`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `format` |  |
-| `type` |  |
-| `version` |  |
+| `image` |  |
+| `key` |  |
+| `name` |  |
+| `title` |  |
 
 Operations: Load.
 
@@ -269,9 +270,9 @@ API path: `/cdn/{version}/data/{language}/champion.json`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `type` |  |
-| `version` |  |
+| `description` |  |
+| `image` |  |
+| `name` |  |
 
 Operations: Load.
 
@@ -308,9 +309,9 @@ API path: `/cdn/{version}/img/item/{itemImage}`
 
 | Field | Description |
 | --- | --- |
-| `cdn` |  |
-| `n` |  |
-| `v` |  |
+| `champion` |  |
+| `item` |  |
+| `rune` |  |
 
 Operations: Load.
 
@@ -343,7 +344,7 @@ Create an instance: `champion = client.Champion`
 #### Example: Load
 
 ```ruby
-# load returns the bare Champion record (raises on error).
+# load returns the ENTITY — call data_get for the Champion record (raises on error).
 champion = client.Champion.load({ "id" => "champion_id", "version" => "version" })
 ```
 
@@ -362,15 +363,15 @@ Create an instance: `data_champion = client.DataChampion`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
-| `format` | `String` |  |
-| `type` | `String` |  |
-| `version` | `String` |  |
+| `image` | `Hash` |  |
+| `key` | `String` |  |
+| `name` | `String` |  |
+| `title` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare DataChampion record (raises on error).
+# load returns the ENTITY — call data_get for the DataChampion record (raises on error).
 data_champion = client.DataChampion.load({ "language" => "language", "version" => "version" })
 ```
 
@@ -389,14 +390,14 @@ Create an instance: `data_item = client.DataItem`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
-| `type` | `String` |  |
-| `version` | `String` |  |
+| `description` | `String` |  |
+| `image` | `Hash` |  |
+| `name` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare DataItem record (raises on error).
+# load returns the ENTITY — call data_get for the DataItem record (raises on error).
 data_item = client.DataItem.load({ "language" => "language", "version" => "version" })
 ```
 
@@ -414,7 +415,7 @@ Create an instance: `data_rune = client.DataRune`
 #### Example: Load
 
 ```ruby
-# load returns the bare DataRune record (raises on error).
+# load returns the ENTITY — call data_get for the DataRune record (raises on error).
 data_rune = client.DataRune.load({ "language" => "language", "version" => "version" })
 ```
 
@@ -432,7 +433,7 @@ Create an instance: `dragontail_versiontgz = client.DragontailVersiontgz`
 #### Example: Load
 
 ```ruby
-# load returns the bare DragontailVersiontgz record (raises on error).
+# load returns the ENTITY — call data_get for the DragontailVersiontgz record (raises on error).
 dragontail_versiontgz = client.DragontailVersiontgz.load({ "version" => "version" })
 ```
 
@@ -450,7 +451,7 @@ Create an instance: `item = client.Item`
 #### Example: Load
 
 ```ruby
-# load returns the bare Item record (raises on error).
+# load returns the ENTITY — call data_get for the Item record (raises on error).
 item = client.Item.load({ "id" => "item_id", "version" => "version" })
 ```
 
@@ -469,14 +470,14 @@ Create an instance: `region = client.Region`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cdn` | `String` |  |
-| `n` | `Hash` |  |
-| `v` | `String` |  |
+| `champion` | `String` |  |
+| `item` | `String` |  |
+| `rune` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Region record (raises on error).
+# load returns the ENTITY — call data_get for the Region record (raises on error).
 region = client.Region.load({ "region" => "region" })
 ```
 
@@ -576,7 +577,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 champion = client.Champion
-champion.load({ "id" => "example_id" })
+champion.load({ "id" => "example_id", "version" => "example" })
 
 # champion.data_get now returns the champion data from the last load
 # champion.match_get returns the last match criteria

@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import DataDragonControl
-from core.error import DataDragonError
-from core.result import DataDragonResult
-from core.spec import DataDragonSpec
+from datadragon_sdk.config import make_config
+from datadragon_sdk.features import _make_feature
+from datadragon_sdk.core.control import DataDragonControl
+from datadragon_sdk.core.error import DataDragonError
+from datadragon_sdk.core.result import DataDragonResult
+from datadragon_sdk.core.spec import DataDragonSpec
 
 
 # True when this SDK was generated with the named feature.

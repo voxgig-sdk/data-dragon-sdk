@@ -50,7 +50,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local champion, err = client:Champion():load({ id = "example_id" })
+local champion, err = client:Champion():load({ id = "example_id", version = "example" })
 if err then error(err) end
 ```
 
@@ -108,7 +108,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Champion():load({ id = "test01" })
+local result, err = client:Champion():load({ id = "test01", version = "example" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -245,10 +245,10 @@ API path: `/cdn/{version}/img/champion/{championImage}`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `format` |  |
-| `type` |  |
-| `version` |  |
+| `image` |  |
+| `key` |  |
+| `name` |  |
+| `title` |  |
 
 Operations: Load.
 
@@ -258,9 +258,9 @@ API path: `/cdn/{version}/data/{language}/champion.json`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `type` |  |
-| `version` |  |
+| `description` |  |
+| `image` |  |
+| `name` |  |
 
 Operations: Load.
 
@@ -297,9 +297,9 @@ API path: `/cdn/{version}/img/item/{itemImage}`
 
 | Field | Description |
 | --- | --- |
-| `cdn` |  |
-| `n` |  |
-| `v` |  |
+| `champion` |  |
+| `item` |  |
+| `rune` |  |
 
 Operations: Load.
 
@@ -350,10 +350,10 @@ Create an instance: `local data_champion = client:DataChampion(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
-| `format` | `string` |  |
-| `type` | `string` |  |
-| `version` | `string` |  |
+| `image` | `table` |  |
+| `key` | `string` |  |
+| `name` | `string` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
@@ -376,9 +376,9 @@ Create an instance: `local data_item = client:DataItem(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
-| `type` | `string` |  |
-| `version` | `string` |  |
+| `description` | `string` |  |
+| `image` | `table` |  |
+| `name` | `string` |  |
 
 #### Example: Load
 
@@ -452,9 +452,9 @@ Create an instance: `local region = client:Region(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cdn` | `string` |  |
-| `n` | `table` |  |
-| `v` | `string` |  |
+| `champion` | `string` |  |
+| `item` | `string` |  |
+| `rune` | `string` |  |
 
 #### Example: Load
 
@@ -557,7 +557,7 @@ stores the returned data and match criteria internally.
 
 ```lua
 local champion = client:Champion()
-champion:load({ id = "example_id" })
+champion:load({ id = "example_id", version = "example" })
 
 -- champion:data_get() now returns the champion data from the last load
 -- champion:match_get() returns the last match criteria

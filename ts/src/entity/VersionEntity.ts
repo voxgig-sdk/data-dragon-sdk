@@ -37,7 +37,7 @@ class VersionEntity extends DataDragonEntityBase<Version> {
 
 
 
-  async list(this: any, reqmatch?: VersionListMatch, ctrl?: Control): Promise<Version[]> {
+  async list(this: any, reqmatch?: VersionListMatch, ctrl?: Control): Promise<VersionEntity[]> {
 
     const utility = this._utility
 

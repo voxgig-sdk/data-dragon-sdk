@@ -69,11 +69,11 @@ def data_item_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "DATADRAGON_TEST_DATA_ITEM_ENTID" => {},
-    "DATADRAGON_TEST_LIVE" => "FALSE",
+    "DATA_DRAGON_TEST_DATA_ITEM_ENTID" => {},
+    "DATA_DRAGON_TEST_LIVE" => "FALSE",
   })
 
-  live = env["DATADRAGON_TEST_LIVE"] == "TRUE"
+  live = env["DATA_DRAGON_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

@@ -15,12 +15,14 @@ guide: {
   entity: data_champion: {
     path: "/cdn/{version}/data/{language}/champion.json": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
   entity: data_item: {
     path: "/cdn/{version}/data/{language}/item.json": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
@@ -46,6 +48,7 @@ guide: {
   entity: region: {
     path: "/realms/{region}.json": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.n`")|top
     }
   }
 

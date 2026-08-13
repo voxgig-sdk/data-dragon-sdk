@@ -66,7 +66,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-champion, err := client.Champion(nil).Load(map[string]any{"id": "example_id"}, nil)
+champion, err := client.Champion(nil).Load(map[string]any{"id": "example_id", "version": "example"}, nil)
 if err != nil {
     // handle err
     return
@@ -136,7 +136,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 champion, err := client.Champion(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+    map[string]any{"id": "test01", "version": "example"}, nil,
 )
 if err != nil {
     panic(err)
@@ -276,10 +276,10 @@ API path: `/cdn/{version}/img/champion/{championImage}`
 
 | Field | Description |
 | --- | --- |
-| `"data"` |  |
-| `"format"` |  |
-| `"type"` |  |
-| `"version"` |  |
+| `"image"` |  |
+| `"key"` |  |
+| `"name"` |  |
+| `"title"` |  |
 
 Operations: Load.
 
@@ -289,9 +289,9 @@ API path: `/cdn/{version}/data/{language}/champion.json`
 
 | Field | Description |
 | --- | --- |
-| `"data"` |  |
-| `"type"` |  |
-| `"version"` |  |
+| `"description"` |  |
+| `"image"` |  |
+| `"name"` |  |
 
 Operations: Load.
 
@@ -328,9 +328,9 @@ API path: `/cdn/{version}/img/item/{itemImage}`
 
 | Field | Description |
 | --- | --- |
-| `"cdn"` |  |
-| `"n"` |  |
-| `"v"` |  |
+| `"champion"` |  |
+| `"item"` |  |
+| `"rune"` |  |
 
 Operations: Load.
 
@@ -385,10 +385,10 @@ Create an instance: `dataChampion := client.DataChampion(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `map[string]any` |  |
-| `format` | `string` |  |
-| `type` | `string` |  |
-| `version` | `string` |  |
+| `image` | `map[string]any` |  |
+| `key` | `string` |  |
+| `name` | `string` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
@@ -415,9 +415,9 @@ Create an instance: `dataItem := client.DataItem(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `map[string]any` |  |
-| `type` | `string` |  |
-| `version` | `string` |  |
+| `description` | `string` |  |
+| `image` | `map[string]any` |  |
+| `name` | `string` |  |
 
 #### Example: Load
 
@@ -507,9 +507,9 @@ Create an instance: `region := client.Region(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cdn` | `string` |  |
-| `n` | `map[string]any` |  |
-| `v` | `string` |  |
+| `champion` | `string` |  |
+| `item` | `string` |  |
+| `rune` | `string` |  |
 
 #### Example: Load
 
@@ -617,7 +617,7 @@ stores the returned data and match criteria internally.
 
 ```go
 champion := client.Champion(nil)
-champion.Load(map[string]any{"id": "example_id"}, nil)
+champion.Load(map[string]any{"id": "example_id", "version": "example"}, nil)
 
 // champion.Data() now returns the champion data from the last load
 // champion.Match() returns the last match criteria

@@ -70,11 +70,11 @@ function champion_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["DATADRAGON_TEST_CHAMPION_ENTID"] = {},
-    ["DATADRAGON_TEST_LIVE"] = "FALSE",
+    ["DATA_DRAGON_TEST_CHAMPION_ENTID"] = {},
+    ["DATA_DRAGON_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["DATADRAGON_TEST_LIVE"] == "TRUE"
+  local live = env["DATA_DRAGON_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

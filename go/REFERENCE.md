@@ -171,10 +171,10 @@ fmt.Println(dataChampion.GetName()) // "data_champion"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | No |  |
-| `format` | `string` | No |  |
-| `type` | `string` | No |  |
-| `version` | `string` | No |  |
+| `image` | `map[string]any` | No |  |
+| `key` | `string` | No |  |
+| `name` | `string` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -225,9 +225,9 @@ fmt.Println(dataItem.GetName()) // "data_item"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | No |  |
-| `type` | `string` | No |  |
-| `version` | `string` | No |  |
+| `description` | `string` | No |  |
+| `image` | `map[string]any` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
@@ -413,9 +413,9 @@ fmt.Println(region.GetName()) // "region"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cdn` | `string` | No |  |
-| `n` | `map[string]any` | No |  |
-| `v` | `string` | No |  |
+| `champion` | `string` | No |  |
+| `item` | `string` | No |  |
+| `rune` | `string` | No |  |
 
 ### Operations
 

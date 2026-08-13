@@ -26,8 +26,8 @@ import {
 describe('VersionEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when DATADRAGON_TEST_LIVE=TRUE.
-  afterEach(liveDelay('DATADRAGON_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when DATA_DRAGON_TEST_LIVE=TRUE.
+  afterEach(liveDelay('DATA_DRAGON_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = DataDragonSDK.test()
@@ -63,7 +63,7 @@ describe('VersionEntity', async () => {
     const version_ref01_ent = client.Version()
     const version_ref01_match: any = {}
 
-    const version_ref01_list = await version_ref01_ent.list(version_ref01_match)
+    const version_ref01_list = (await version_ref01_ent.list(version_ref01_match)).map((e: any) => e.data())
 
 
   })

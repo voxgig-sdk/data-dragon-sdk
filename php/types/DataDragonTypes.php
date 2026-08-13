@@ -27,10 +27,10 @@ class ChampionLoadMatch
 /** DataChampion entity data model. */
 class DataChampion
 {
-    public ?array $data = null;
-    public ?string $format = null;
-    public ?string $type = null;
-    public ?string $version = null;
+    public ?array $image = null;
+    public ?string $key = null;
+    public ?string $name = null;
+    public ?string $title = null;
 }
 
 /** Request payload for DataChampion#load. */
@@ -43,9 +43,9 @@ class DataChampionLoadMatch
 /** DataItem entity data model. */
 class DataItem
 {
-    public ?array $data = null;
-    public ?string $type = null;
-    public ?string $version = null;
+    public ?string $description = null;
+    public ?array $image = null;
+    public ?string $name = null;
 }
 
 /** Request payload for DataItem#load. */
@@ -93,9 +93,9 @@ class ItemLoadMatch
 /** Region entity data model. */
 class Region
 {
-    public ?string $cdn = null;
-    public ?array $n = null;
-    public ?string $v = null;
+    public ?string $champion = null;
+    public ?string $item = null;
+    public ?string $rune = null;
 }
 
 /** Request payload for Region#load. */

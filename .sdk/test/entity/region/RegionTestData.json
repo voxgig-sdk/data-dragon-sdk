@@ -2,23 +2,23 @@
   "existing": {
     "region": {
       "REGION00": {
-        "cdn": "s1e",
-        "n": {},
-        "v": "s20",
+        "champion": "s1e",
+        "item": "s1f",
+        "rune": "s20",
         "region": "REGION01",
         "id": "REGION00"
       },
       "REGION01": {
-        "cdn": "s3c",
-        "n": {},
-        "v": "s3e",
+        "champion": "s3c",
+        "item": "s3d",
+        "rune": "s3e",
         "region": "REGION01",
         "id": "REGION01"
       },
       "REGION02": {
-        "cdn": "s5a",
-        "n": {},
-        "v": "s5c",
+        "champion": "s5a",
+        "item": "s5b",
+        "rune": "s5c",
         "region": "REGION01",
         "id": "REGION02"
       }
@@ -27,9 +27,9 @@
   "new": {
     "region": {
       "region_ref01": {
-        "cdn": "s78",
-        "n": {},
-        "v": "s7a"
+        "champion": "s78",
+        "item": "s79",
+        "rune": "s7a"
       }
     }
   }

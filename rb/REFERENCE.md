@@ -167,10 +167,10 @@ data_champion = client.DataChampion
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | No |  |
-| `format` | `String` | No |  |
-| `type` | `String` | No |  |
-| `version` | `String` | No |  |
+| `image` | `Hash` | No |  |
+| `key` | `String` | No |  |
+| `name` | `String` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
@@ -222,9 +222,9 @@ data_item = client.DataItem
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | No |  |
-| `type` | `String` | No |  |
-| `version` | `String` | No |  |
+| `description` | `String` | No |  |
+| `image` | `Hash` | No |  |
+| `name` | `String` | No |  |
 
 ### Operations
 
@@ -414,9 +414,9 @@ region = client.Region
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cdn` | `String` | No |  |
-| `n` | `Hash` | No |  |
-| `v` | `String` | No |  |
+| `champion` | `String` | No |  |
+| `item` | `String` | No |  |
+| `rune` | `String` | No |  |
 
 ### Operations
 

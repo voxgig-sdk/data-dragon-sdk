@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ DataDragonUtility.registrar = ->(u) {
   u.prepare_params = DataDragonUtilities::PrepareParams
   u.prepare_path = DataDragonUtilities::PreparePath
   u.prepare_query = DataDragonUtilities::PrepareQuery
+  u.graphql_body = DataDragonUtilities::GraphqlBody
+  u.graphql_errors = DataDragonUtilities::GraphqlErrors
   u.result_basic = DataDragonUtilities::ResultBasic
   u.result_body = DataDragonUtilities::ResultBody
   u.result_headers = DataDragonUtilities::ResultHeaders

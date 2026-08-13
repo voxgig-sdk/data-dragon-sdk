@@ -35,8 +35,8 @@ end
 
 
 function runner.env_override(m)
-  local live = runner.getenv("DATADRAGON_TEST_LIVE")
-  local override = runner.getenv("DATADRAGON_TEST_OVERRIDE")
+  local live = runner.getenv("DATA_DRAGON_TEST_LIVE")
+  local override = runner.getenv("DATA_DRAGON_TEST_OVERRIDE")
 
   if live == "TRUE" or override == "TRUE" then
     for key, _ in pairs(m) do
@@ -56,9 +56,9 @@ function runner.env_override(m)
     end
   end
 
-  local explain = runner.getenv("DATADRAGON_TEST_EXPLAIN")
+  local explain = runner.getenv("DATA_DRAGON_TEST_EXPLAIN")
   if explain ~= nil and explain ~= "" then
-    m["DATADRAGON_TEST_EXPLAIN"] = explain
+    m["DATA_DRAGON_TEST_EXPLAIN"] = explain
   end
 
   return m
