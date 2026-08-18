@@ -23,6 +23,7 @@ build = {
   modules = {
     ["data-dragon_sdk"] = "data-dragon_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }

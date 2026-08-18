@@ -15,7 +15,7 @@ require_relative "../DataDragon_sdk"
 module DataDragonFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = DataDragonConfig.make_config["feature"]
+    f = DataDragonConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

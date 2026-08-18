@@ -40,7 +40,7 @@ class DataDragonSDK
         $utility = new DataDragonUtility();
         $this->_utility = $utility;
 
-        $config = DataDragonConfig::make_config();
+        $config = DataDragonConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

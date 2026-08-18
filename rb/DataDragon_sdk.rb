@@ -28,7 +28,7 @@ class DataDragonSDK
     utility = DataDragonUtility.new
     @_utility = utility
 
-    config = DataDragonConfig.make_config
+    config = DataDragonConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
