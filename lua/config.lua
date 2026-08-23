@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "DataDragon",
+      slug = "data-dragon",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -106,14 +109,17 @@ local function make_config()
           },
           {
             ["name"] = "key",
+            ["short"] = "Champion ID",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "name",
+            ["short"] = "Champion name",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "title",
+            ["short"] = "Champion title",
             ["type"] = "`$STRING`",
           },
         },

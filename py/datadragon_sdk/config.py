@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "DataDragon",
+            "slug": "data-dragon",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -127,14 +130,17 @@ def make_config():
           },
           {
             "name": "key",
+            "short": "Champion ID",
             "type": "`$STRING`",
           },
           {
             "name": "name",
+            "short": "Champion name",
             "type": "`$STRING`",
           },
           {
             "name": "title",
+            "short": "Champion title",
             "type": "`$STRING`",
           },
         ],

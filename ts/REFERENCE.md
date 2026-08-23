@@ -245,9 +245,9 @@ const data_champion = client.DataChampion()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `image` | `Record<string, any>` | No |  |
-| `key` | `string` | No |  |
-| `name` | `string` | No |  |
-| `title` | `string` | No |  |
+| `key` | `string` | No | Champion ID |
+| `name` | `string` | No | Champion name |
+| `title` | `string` | No | Champion title |
 
 ### Operations
 

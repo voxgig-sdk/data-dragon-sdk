@@ -161,9 +161,9 @@ data_champion = client.DataChampion()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `image` | `dict` | No |  |
-| `key` | `str` | No |  |
-| `name` | `str` | No |  |
-| `title` | `str` | No |  |
+| `key` | `str` | No | Champion ID |
+| `name` | `str` | No | Champion name |
+| `title` | `str` | No | Champion title |
 
 ### Operations
 

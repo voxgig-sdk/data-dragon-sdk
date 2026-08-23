@@ -260,9 +260,9 @@ API path: `/cdn/{version}/img/champion/{championImage}`
 | Field | Description |
 | --- | --- |
 | `image` |  |
-| `key` |  |
-| `name` |  |
-| `title` |  |
+| `key` | Champion ID |
+| `name` | Champion name |
+| `title` | Champion title |
 
 Operations: Load.
 
@@ -365,9 +365,9 @@ Create an instance: `data_champion = client.DataChampion()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `image` | `dict` |  |
-| `key` | `str` |  |
-| `name` | `str` |  |
-| `title` | `str` |  |
+| `key` | `str` | Champion ID |
+| `name` | `str` | Champion name |
+| `title` | `str` | Champion title |
 
 #### Example: Load
 

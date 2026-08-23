@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -309,9 +309,9 @@ API path: `/cdn/{version}/img/champion/{championImage}`
 | Field | Description |
 | --- | --- |
 | `image` |  |
-| `key` |  |
-| `name` |  |
-| `title` |  |
+| `key` | Champion ID |
+| `name` | Champion name |
+| `title` | Champion title |
 
 Operations: load.
 
@@ -414,9 +414,9 @@ Create an instance: `const data_champion = client.DataChampion()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `image` | `Record<string, any>` |  |
-| `key` | `string` |  |
-| `name` | `string` |  |
-| `title` | `string` |  |
+| `key` | `string` | Champion ID |
+| `name` | `string` | Champion name |
+| `title` | `string` | Champion title |
 
 #### Example: Load
 

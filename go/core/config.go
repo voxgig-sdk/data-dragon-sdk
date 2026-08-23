@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "DataDragon",
+			"slug": "data-dragon",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -110,14 +113,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "key",
+						"short": "Champion ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Champion name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "Champion title",
 						"type": "`$STRING`",
 					},
 				},

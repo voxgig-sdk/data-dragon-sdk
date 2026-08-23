@@ -268,9 +268,9 @@ API path: `/cdn/{version}/img/champion/{championImage}`
 | Field | Description |
 | --- | --- |
 | `image` |  |
-| `key` |  |
-| `name` |  |
-| `title` |  |
+| `key` | Champion ID |
+| `name` | Champion name |
+| `title` | Champion title |
 
 Operations: Load.
 
@@ -374,9 +374,9 @@ Create an instance: `$data_champion = $client->DataChampion();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `image` | `array` |  |
-| `key` | `string` |  |
-| `name` | `string` |  |
-| `title` | `string` |  |
+| `key` | `string` | Champion ID |
+| `name` | `string` | Champion name |
+| `title` | `string` | Champion title |
 
 #### Example: Load
 

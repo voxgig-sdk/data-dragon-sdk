@@ -6,7 +6,7 @@ The Golang SDK for the DataDragon API — an entity-oriented client using standa
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Champion(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -277,9 +277,9 @@ API path: `/cdn/{version}/img/champion/{championImage}`
 | Field | Description |
 | --- | --- |
 | `"image"` |  |
-| `"key"` |  |
-| `"name"` |  |
-| `"title"` |  |
+| `"key"` | Champion ID |
+| `"name"` | Champion name |
+| `"title"` | Champion title |
 
 Operations: Load.
 
@@ -386,9 +386,9 @@ Create an instance: `dataChampion := client.DataChampion(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `image` | `map[string]any` |  |
-| `key` | `string` |  |
-| `name` | `string` |  |
-| `title` | `string` |  |
+| `key` | `string` | Champion ID |
+| `name` | `string` | Champion name |
+| `title` | `string` | Champion title |
 
 #### Example: Load
 

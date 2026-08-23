@@ -172,9 +172,9 @@ fmt.Println(dataChampion.GetName()) // "data_champion"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `image` | `map[string]any` | No |  |
-| `key` | `string` | No |  |
-| `name` | `string` | No |  |
-| `title` | `string` | No |  |
+| `key` | `string` | No | Champion ID |
+| `name` | `string` | No | Champion name |
+| `title` | `string` | No | Champion title |
 
 ### Operations
 

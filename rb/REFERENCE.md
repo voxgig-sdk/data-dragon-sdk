@@ -168,9 +168,9 @@ data_champion = client.DataChampion
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `image` | `Hash` | No |  |
-| `key` | `String` | No |  |
-| `name` | `String` | No |  |
-| `title` | `String` | No |  |
+| `key` | `String` | No | Champion ID |
+| `name` | `String` | No | Champion name |
+| `title` | `String` | No | Champion title |
 
 ### Operations
 

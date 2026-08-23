@@ -13,16 +13,19 @@ main: kit: entity: data_champion: {
     {
       name: "key"
       req: false
+      short: "Champion ID"
       type: "`$STRING`"
     }
     {
       name: "name"
       req: false
+      short: "Champion name"
       type: "`$STRING`"
     }
     {
       name: "title"
       req: false
+      short: "Champion title"
       type: "`$STRING`"
     }
   ]

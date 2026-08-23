@@ -19,6 +19,9 @@ module DataDragonConfig
     {
       "main" => {
         "name" => "DataDragon",
+        "slug" => "data-dragon",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -118,14 +121,17 @@ module DataDragonConfig
             },
             {
               "name" => "key",
+              "short" => "Champion ID",
               "type" => "`$STRING`",
             },
             {
               "name" => "name",
+              "short" => "Champion name",
               "type" => "`$STRING`",
             },
             {
               "name" => "title",
+              "short" => "Champion title",
               "type" => "`$STRING`",
             },
           ],
