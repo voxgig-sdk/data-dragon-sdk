@@ -2,16 +2,16 @@
   "existing": {
     "champion": {
       "CHAMPION00": {
-        "version": "VERSION01",
-        "id": "CHAMPION00"
+        "id": "CHAMPION00",
+        "version": "VERSION01"
       },
       "CHAMPION01": {
-        "version": "VERSION01",
-        "id": "CHAMPION01"
+        "id": "CHAMPION01",
+        "version": "VERSION01"
       },
       "CHAMPION02": {
-        "version": "VERSION01",
-        "id": "CHAMPION02"
+        "id": "CHAMPION02",
+        "version": "VERSION01"
       }
     }
   },

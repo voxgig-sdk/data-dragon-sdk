@@ -42,6 +42,7 @@ class DataDragonConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -62,7 +63,12 @@ class DataDragonConfig
             ],
             "entity" => [
         'champion' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'champion',
           'op' => [
             'load' => [
@@ -392,7 +398,12 @@ class DataDragonConfig
           ],
         ],
         'item' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'item',
           'op' => [
             'load' => [

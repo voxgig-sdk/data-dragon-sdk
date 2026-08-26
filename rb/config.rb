@@ -28,6 +28,7 @@ module DataDragonConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -48,7 +49,12 @@ module DataDragonConfig
       },
       "entity" => {
         "champion" => {
-          "fields" => [],
+          "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+          ],
           "name" => "champion",
           "op" => {
             "load" => {
@@ -378,7 +384,12 @@ module DataDragonConfig
           },
         },
         "item" => {
-          "fields" => [],
+          "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+          ],
           "name" => "item",
           "op" => {
             "load" => {

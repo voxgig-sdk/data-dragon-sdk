@@ -9,8 +9,13 @@
 # annotations document the shapes. Do not edit by hand.
 
 # Champion entity data model.
-class Champion
-end
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+Champion = Struct.new(
+  :id,
+  keyword_init: true
+)
 
 # Request payload for Champion#load.
 #
@@ -120,8 +125,13 @@ DragontailVersiontgzLoadMatch = Struct.new(
 )
 
 # Item entity data model.
-class Item
-end
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+Item = Struct.new(
+  :id,
+  keyword_init: true
+)
 
 # Request payload for Item#load.
 #

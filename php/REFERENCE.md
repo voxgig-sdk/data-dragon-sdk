@@ -116,6 +116,12 @@ Prepare a fetch definition without sending the request. Returns the
 $champion = $client->Champion();
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -362,6 +368,12 @@ Return the entity name.
 ```php
 $item = $client->Item();
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 

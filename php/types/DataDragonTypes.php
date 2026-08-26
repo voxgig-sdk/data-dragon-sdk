@@ -15,6 +15,7 @@ declare(strict_types=1);
 /** Champion entity data model. */
 class Champion
 {
+    public ?string $id = null;
 }
 
 /** Request payload for Champion#load. */
@@ -81,6 +82,7 @@ class DragontailVersiontgzLoadMatch
 /** Item entity data model. */
 class Item
 {
+    public ?string $id = null;
 }
 
 /** Request payload for Item#load. */

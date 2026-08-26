@@ -16,6 +16,7 @@ local function make_config()
         ["options"] = {
           ["active"] = false,
         },
+        ["transport"] = "base",
       },
     },
     options = {
@@ -36,7 +37,12 @@ local function make_config()
     },
     entity = {
       ["champion"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "champion",
         ["op"] = {
           ["load"] = {
@@ -366,7 +372,12 @@ local function make_config()
         },
       },
       ["item"] = {
-        ["fields"] = {},
+        ["fields"] = {
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
+          },
+        },
         ["name"] = "item",
         ["op"] = {
           ["load"] = {

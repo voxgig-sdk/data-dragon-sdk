@@ -44,10 +44,14 @@ describe("ChampionEntity", function()
 
     -- LOAD
     local champion_ref01_ent = client:Champion(nil)
-    local champion_ref01_match_dt0 = {}
+    local champion_ref01_match_dt0 = {
+      id = champion_ref01_data["id"],
+    }
     local champion_ref01_data_dt0_loaded, err = champion_ref01_ent:load(champion_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(champion_ref01_data_dt0_loaded)
+    local champion_ref01_data_dt0_load_result = helpers.to_map(type(champion_ref01_data_dt0_loaded) == 'table' and champion_ref01_data_dt0_loaded.data_get and champion_ref01_data_dt0_loaded:data_get() or champion_ref01_data_dt0_loaded)
+    assert.is_not_nil(champion_ref01_data_dt0_load_result)
+    assert.are.equal(champion_ref01_data_dt0_load_result["id"], champion_ref01_data["id"])
 
   end)
 end)

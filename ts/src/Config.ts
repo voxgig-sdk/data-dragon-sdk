@@ -40,7 +40,8 @@ class Config {
      test:     {
       "options": {
         "active": false
-      }
+      },
+      "transport": "base"
     },
 
   }
@@ -85,7 +86,12 @@ class Config {
 
   entity = {
     "champion": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "champion",
       "op": {
         "load": {
@@ -415,7 +421,12 @@ class Config {
       }
     },
     "item": {
-      "fields": [],
+      "fields": [
+        {
+          "name": "id",
+          "type": "`$STRING`"
+        }
+      ],
       "name": "item",
       "op": {
         "load": {

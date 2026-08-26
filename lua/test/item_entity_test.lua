@@ -44,10 +44,14 @@ describe("ItemEntity", function()
 
     -- LOAD
     local item_ref01_ent = client:Item(nil)
-    local item_ref01_match_dt0 = {}
+    local item_ref01_match_dt0 = {
+      id = item_ref01_data["id"],
+    }
     local item_ref01_data_dt0_loaded, err = item_ref01_ent:load(item_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(item_ref01_data_dt0_loaded)
+    local item_ref01_data_dt0_load_result = helpers.to_map(type(item_ref01_data_dt0_loaded) == 'table' and item_ref01_data_dt0_loaded.data_get and item_ref01_data_dt0_loaded:data_get() or item_ref01_data_dt0_loaded)
+    assert.is_not_nil(item_ref01_data_dt0_load_result)
+    assert.are.equal(item_ref01_data_dt0_load_result["id"], item_ref01_data["id"])
 
   end)
 end)

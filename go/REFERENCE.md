@@ -122,6 +122,12 @@ champion := client.Champion(nil)
 fmt.Println(champion.GetName()) // "champion"
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -363,6 +369,12 @@ Return the entity name.
 item := client.Item(nil)
 fmt.Println(item.GetName()) // "item"
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 

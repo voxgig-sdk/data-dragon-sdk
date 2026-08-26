@@ -41,9 +41,13 @@ class ItemEntityTest < Minitest::Test
 
     # LOAD
     item_ref01_ent = client.Item(nil)
-    item_ref01_match_dt0 = {}
+    item_ref01_match_dt0 = {
+      "id" => item_ref01_data["id"],
+    }
     item_ref01_data_dt0_loaded = item_ref01_ent.load(item_ref01_match_dt0, nil)
-    assert !item_ref01_data_dt0_loaded.nil?
+    item_ref01_data_dt0_load_result = Helpers.to_map(item_ref01_data_dt0_loaded.respond_to?(:data_get) ? item_ref01_data_dt0_loaded.data_get : item_ref01_data_dt0_loaded)
+    assert !item_ref01_data_dt0_load_result.nil?
+    assert_equal item_ref01_data_dt0_load_result["id"], item_ref01_data["id"]
 
   end
 end

@@ -7,6 +7,7 @@
 -- edit by hand.
 
 ---@class Champion
+---@field id? string
 
 ---@class ChampionLoadMatch
 ---@field id string
@@ -43,6 +44,7 @@
 ---@field version string
 
 ---@class Item
+---@field id? string
 
 ---@class ItemLoadMatch
 ---@field id string

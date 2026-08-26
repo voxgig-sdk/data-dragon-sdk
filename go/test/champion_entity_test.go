@@ -61,13 +61,19 @@ func TestChampionEntity(t *testing.T) {
 
 		// LOAD
 		championRef01Ent := client.Champion(nil)
-		championRef01MatchDt0 := map[string]any{}
+		championRef01MatchDt0 := map[string]any{
+			"id": championRef01Data["id"],
+		}
 		championRef01DataDt0Loaded, err := championRef01Ent.Load(championRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if championRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		championRef01DataDt0LoadResult := core.ToMapAny(entityData(championRef01DataDt0Loaded))
+		if championRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if championRef01DataDt0LoadResult["id"] != championRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

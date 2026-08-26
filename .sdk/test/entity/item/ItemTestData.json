@@ -2,16 +2,16 @@
   "existing": {
     "item": {
       "ITEM00": {
-        "version": "VERSION01",
-        "id": "ITEM00"
+        "id": "ITEM00",
+        "version": "VERSION01"
       },
       "ITEM01": {
-        "version": "VERSION01",
-        "id": "ITEM01"
+        "id": "ITEM01",
+        "version": "VERSION01"
       },
       "ITEM02": {
-        "version": "VERSION01",
-        "id": "ITEM02"
+        "id": "ITEM02",
+        "version": "VERSION01"
       }
     }
   },

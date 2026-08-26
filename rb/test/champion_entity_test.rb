@@ -41,9 +41,13 @@ class ChampionEntityTest < Minitest::Test
 
     # LOAD
     champion_ref01_ent = client.Champion(nil)
-    champion_ref01_match_dt0 = {}
+    champion_ref01_match_dt0 = {
+      "id" => champion_ref01_data["id"],
+    }
     champion_ref01_data_dt0_loaded = champion_ref01_ent.load(champion_ref01_match_dt0, nil)
-    assert !champion_ref01_data_dt0_loaded.nil?
+    champion_ref01_data_dt0_load_result = Helpers.to_map(champion_ref01_data_dt0_loaded.respond_to?(:data_get) ? champion_ref01_data_dt0_loaded.data_get : champion_ref01_data_dt0_loaded)
+    assert !champion_ref01_data_dt0_load_result.nil?
+    assert_equal champion_ref01_data_dt0_load_result["id"], champion_ref01_data["id"]
 
   end
 end

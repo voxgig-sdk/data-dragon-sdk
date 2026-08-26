@@ -16,8 +16,8 @@ from __future__ import annotations
 from typing import TypedDict, Any
 
 
-class Champion(TypedDict):
-    pass
+class Champion(TypedDict, total=False):
+    id: str
 
 
 class ChampionLoadMatch(TypedDict):
@@ -65,8 +65,8 @@ class DragontailVersiontgzLoadMatch(TypedDict):
     version: str
 
 
-class Item(TypedDict):
-    pass
+class Item(TypedDict, total=False):
+    id: str
 
 
 class ItemLoadMatch(TypedDict):

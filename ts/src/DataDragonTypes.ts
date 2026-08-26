@@ -6,6 +6,7 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Champion {
+  id?: string
 }
 
 export interface ChampionLoadMatch {
@@ -52,6 +53,7 @@ export interface DragontailVersiontgzLoadMatch {
 }
 
 export interface Item {
+  id?: string
 }
 
 export interface ItemLoadMatch {

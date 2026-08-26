@@ -14,6 +14,7 @@ import (
 
 // Champion is the typed data model for the champion entity.
 type Champion struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // ChampionLoadMatch is the typed request payload for Champion.LoadTyped.
@@ -70,6 +71,7 @@ type DragontailVersiontgzLoadMatch struct {
 
 // Item is the typed data model for the item entity.
 type Item struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // ItemLoadMatch is the typed request payload for Item.LoadTyped.

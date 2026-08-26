@@ -37,6 +37,7 @@ def make_config():
         "options": {
           "active": False,
         },
+        "transport": "base",
       },
         },
         "options": {
@@ -57,7 +58,12 @@ def make_config():
         },
         "entity": {
       "champion": {
-        "fields": [],
+        "fields": [
+          {
+            "name": "id",
+            "type": "`$STRING`",
+          },
+        ],
         "name": "champion",
         "op": {
           "load": {
@@ -387,7 +393,12 @@ def make_config():
         },
       },
       "item": {
-        "fields": [],
+        "fields": [
+          {
+            "name": "id",
+            "type": "`$STRING`",
+          },
+        ],
         "name": "item",
         "op": {
           "load": {

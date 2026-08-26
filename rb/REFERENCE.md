@@ -117,6 +117,12 @@ same parameters as `direct()`. Raises on error.
 champion = client.Champion
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `String` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -363,6 +369,12 @@ Return the entity name.
 ```ruby
 item = client.Item
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `String` | No |  |
 
 ### Operations
 

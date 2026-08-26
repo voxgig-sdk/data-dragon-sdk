@@ -111,6 +111,12 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 champion = client.Champion()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
+
 ### Operations
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -352,6 +358,12 @@ Return the entity name.
 ```python
 item = client.Item()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `str` | No |  |
 
 ### Operations
 

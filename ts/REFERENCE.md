@@ -196,6 +196,12 @@ Alias for `DataDragonSDK.test()`.
 const champion = client.Champion()
 ```
 
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
+
 ### Operations
 
 #### `load(match: object, ctrl?: object)`
@@ -432,6 +438,12 @@ Return a copy of the entity options.
 ```ts
 const item = client.Item()
 ```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `id` | `string` | No |  |
 
 ### Operations
 
