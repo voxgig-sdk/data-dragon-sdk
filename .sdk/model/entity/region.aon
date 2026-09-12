@@ -42,9 +42,13 @@ main: kit: entity: region: {
           }
           method: "GET"
           orig: "/realms/{region}.json"
-          parts: [
-            "realms"
-            "{region}.json"
+          segments: [
+            {
+              lit: "realms"
+            }
+            {
+              lit: "{region}.json"
+            }
           ]
           select: {
             exist: [
@@ -58,14 +62,6 @@ main: kit: entity: region: {
         }
       ]
     }
-  }
-
-  relations: {
-    ancestors: [
-      [
-        "realm"
-      ]
-    ]
   }
 
 

@@ -1,6 +1,14 @@
 # DataDragon SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -64,6 +72,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "champion",
         "op": {
           "load": {
@@ -94,18 +106,28 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cdn/{version}/img/champion/{championImage}",
-                "parts": [
-                  "cdn",
-                  "{version}",
-                  "img",
-                  "champion",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "championImage": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "cdn",
+                  },
+                  {
+                    "var": "version",
+                  },
+                  {
+                    "lit": "img",
+                  },
+                  {
+                    "lit": "champion",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -116,6 +138,13 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "cdn",
+                  "{version}",
+                  "img",
+                  "champion",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -180,12 +209,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cdn/{version}/data/{language}/champion.json",
-                "parts": [
-                  "cdn",
-                  "{version}",
-                  "data",
-                  "{language}",
-                  "champion.json",
+                "segments": [
+                  {
+                    "lit": "cdn",
+                  },
+                  {
+                    "var": "version",
+                  },
+                  {
+                    "lit": "data",
+                  },
+                  {
+                    "var": "language",
+                  },
+                  {
+                    "lit": "champion.json",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -197,6 +236,13 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "cdn",
+                  "{version}",
+                  "data",
+                  "{language}",
+                  "champion.json",
+                ],
               },
             ],
           },
@@ -255,12 +301,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cdn/{version}/data/{language}/item.json",
-                "parts": [
-                  "cdn",
-                  "{version}",
-                  "data",
-                  "{language}",
-                  "item.json",
+                "segments": [
+                  {
+                    "lit": "cdn",
+                  },
+                  {
+                    "var": "version",
+                  },
+                  {
+                    "lit": "data",
+                  },
+                  {
+                    "var": "language",
+                  },
+                  {
+                    "lit": "item.json",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -272,6 +328,13 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "cdn",
+                  "{version}",
+                  "data",
+                  "{language}",
+                  "item.json",
+                ],
               },
             ],
           },
@@ -317,12 +380,22 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cdn/{version}/data/{language}/rune.json",
-                "parts": [
-                  "cdn",
-                  "{version}",
-                  "data",
-                  "{language}",
-                  "rune.json",
+                "segments": [
+                  {
+                    "lit": "cdn",
+                  },
+                  {
+                    "var": "version",
+                  },
+                  {
+                    "lit": "data",
+                  },
+                  {
+                    "var": "language",
+                  },
+                  {
+                    "lit": "rune.json",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -334,6 +407,13 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "cdn",
+                  "{version}",
+                  "data",
+                  "{language}",
+                  "rune.json",
+                ],
               },
             ],
           },
@@ -371,9 +451,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cdn/dragontail-{version}.tgz",
-                "parts": [
-                  "cdn",
-                  "dragontail-{version}.tgz",
+                "segments": [
+                  {
+                    "lit": "cdn",
+                  },
+                  {
+                    "lit": "dragontail-{version}.tgz",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -384,6 +468,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "cdn",
+                  "dragontail-{version}.tgz",
+                ],
               },
             ],
           },
@@ -399,6 +487,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "item",
         "op": {
           "load": {
@@ -429,18 +521,28 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/cdn/{version}/img/item/{itemImage}",
-                "parts": [
-                  "cdn",
-                  "{version}",
-                  "img",
-                  "item",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "itemImage": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "cdn",
+                  },
+                  {
+                    "var": "version",
+                  },
+                  {
+                    "lit": "img",
+                  },
+                  {
+                    "lit": "item",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -451,6 +553,13 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "cdn",
+                  "{version}",
+                  "img",
+                  "item",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -500,9 +609,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/realms/{region}.json",
-                "parts": [
-                  "realms",
-                  "{region}.json",
+                "segments": [
+                  {
+                    "lit": "realms",
+                  },
+                  {
+                    "lit": "{region}.json",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -513,16 +626,16 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.n`",
                 },
+                "parts": [
+                  "realms",
+                  "{region}.json",
+                ],
               },
             ],
           },
         },
         "relations": {
-          "ancestors": [
-            [
-              "realm",
-            ],
-          ],
+          "ancestors": [],
         },
       },
       "version": {
@@ -538,15 +651,23 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/versions.json",
-                "parts": [
-                  "api",
-                  "versions.json",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "versions.json",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "api",
+                  "versions.json",
+                ],
               },
             ],
           },

@@ -45,18 +45,28 @@ main: kit: entity: champion: {
           }
           method: "GET"
           orig: "/cdn/{version}/img/champion/{championImage}"
-          parts: [
-            "cdn"
-            "{version}"
-            "img"
-            "champion"
-            "{id}"
-          ]
           rename: {
             param: {
               championImage: "id"
             }
           }
+          segments: [
+            {
+              lit: "cdn"
+            }
+            {
+              var: "version"
+            }
+            {
+              lit: "img"
+            }
+            {
+              lit: "champion"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

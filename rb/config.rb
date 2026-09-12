@@ -55,6 +55,10 @@ module DataDragonConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "champion",
           "op" => {
             "load" => {
@@ -85,18 +89,28 @@ module DataDragonConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cdn/{version}/img/champion/{championImage}",
-                  "parts" => [
-                    "cdn",
-                    "{version}",
-                    "img",
-                    "champion",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "championImage" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "cdn",
+                    },
+                    {
+                      "var" => "version",
+                    },
+                    {
+                      "lit" => "img",
+                    },
+                    {
+                      "lit" => "champion",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -107,6 +121,13 @@ module DataDragonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "cdn",
+                    "{version}",
+                    "img",
+                    "champion",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -171,12 +192,22 @@ module DataDragonConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cdn/{version}/data/{language}/champion.json",
-                  "parts" => [
-                    "cdn",
-                    "{version}",
-                    "data",
-                    "{language}",
-                    "champion.json",
+                  "segments" => [
+                    {
+                      "lit" => "cdn",
+                    },
+                    {
+                      "var" => "version",
+                    },
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "var" => "language",
+                    },
+                    {
+                      "lit" => "champion.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -188,6 +219,13 @@ module DataDragonConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "cdn",
+                    "{version}",
+                    "data",
+                    "{language}",
+                    "champion.json",
+                  ],
                 },
               ],
             },
@@ -246,12 +284,22 @@ module DataDragonConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cdn/{version}/data/{language}/item.json",
-                  "parts" => [
-                    "cdn",
-                    "{version}",
-                    "data",
-                    "{language}",
-                    "item.json",
+                  "segments" => [
+                    {
+                      "lit" => "cdn",
+                    },
+                    {
+                      "var" => "version",
+                    },
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "var" => "language",
+                    },
+                    {
+                      "lit" => "item.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -263,6 +311,13 @@ module DataDragonConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "cdn",
+                    "{version}",
+                    "data",
+                    "{language}",
+                    "item.json",
+                  ],
                 },
               ],
             },
@@ -308,12 +363,22 @@ module DataDragonConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cdn/{version}/data/{language}/rune.json",
-                  "parts" => [
-                    "cdn",
-                    "{version}",
-                    "data",
-                    "{language}",
-                    "rune.json",
+                  "segments" => [
+                    {
+                      "lit" => "cdn",
+                    },
+                    {
+                      "var" => "version",
+                    },
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "var" => "language",
+                    },
+                    {
+                      "lit" => "rune.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -325,6 +390,13 @@ module DataDragonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "cdn",
+                    "{version}",
+                    "data",
+                    "{language}",
+                    "rune.json",
+                  ],
                 },
               ],
             },
@@ -362,9 +434,13 @@ module DataDragonConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cdn/dragontail-{version}.tgz",
-                  "parts" => [
-                    "cdn",
-                    "dragontail-{version}.tgz",
+                  "segments" => [
+                    {
+                      "lit" => "cdn",
+                    },
+                    {
+                      "lit" => "dragontail-{version}.tgz",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -375,6 +451,10 @@ module DataDragonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "cdn",
+                    "dragontail-{version}.tgz",
+                  ],
                 },
               ],
             },
@@ -390,6 +470,10 @@ module DataDragonConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "item",
           "op" => {
             "load" => {
@@ -420,18 +504,28 @@ module DataDragonConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/cdn/{version}/img/item/{itemImage}",
-                  "parts" => [
-                    "cdn",
-                    "{version}",
-                    "img",
-                    "item",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "itemImage" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "cdn",
+                    },
+                    {
+                      "var" => "version",
+                    },
+                    {
+                      "lit" => "img",
+                    },
+                    {
+                      "lit" => "item",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -442,6 +536,13 @@ module DataDragonConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "cdn",
+                    "{version}",
+                    "img",
+                    "item",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -491,9 +592,13 @@ module DataDragonConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/realms/{region}.json",
-                  "parts" => [
-                    "realms",
-                    "{region}.json",
+                  "segments" => [
+                    {
+                      "lit" => "realms",
+                    },
+                    {
+                      "lit" => "{region}.json",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -504,16 +609,16 @@ module DataDragonConfig
                     "req" => "`reqdata`",
                     "res" => "`body.n`",
                   },
+                  "parts" => [
+                    "realms",
+                    "{region}.json",
+                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "realm",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
         "version" => {
@@ -529,15 +634,23 @@ module DataDragonConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/versions.json",
-                  "parts" => [
-                    "api",
-                    "versions.json",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "versions.json",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "versions.json",
+                  ],
                 },
               ],
             },

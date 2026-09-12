@@ -45,18 +45,28 @@ main: kit: entity: item: {
           }
           method: "GET"
           orig: "/cdn/{version}/img/item/{itemImage}"
-          parts: [
-            "cdn"
-            "{version}"
-            "img"
-            "item"
-            "{id}"
-          ]
           rename: {
             param: {
               itemImage: "id"
             }
           }
+          segments: [
+            {
+              lit: "cdn"
+            }
+            {
+              var: "version"
+            }
+            {
+              lit: "img"
+            }
+            {
+              lit: "item"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

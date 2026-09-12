@@ -47,6 +47,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "champion",
 				"op": map[string]any{
 					"load": map[string]any{
@@ -77,16 +81,26 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cdn/{version}/img/champion/{championImage}",
-								"parts": []any{
-									"cdn",
-									"{version}",
-									"img",
-									"champion",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"championImage": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "cdn",
+									},
+									map[string]any{
+										"var": "version",
+									},
+									map[string]any{
+										"lit": "img",
+									},
+									map[string]any{
+										"lit": "champion",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -98,6 +112,13 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"cdn",
+									"{version}",
+									"img",
+									"champion",
+									"{id}",
 								},
 							},
 						},
@@ -163,12 +184,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cdn/{version}/data/{language}/champion.json",
-								"parts": []any{
-									"cdn",
-									"{version}",
-									"data",
-									"{language}",
-									"champion.json",
+								"segments": []any{
+									map[string]any{
+										"lit": "cdn",
+									},
+									map[string]any{
+										"var": "version",
+									},
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"var": "language",
+									},
+									map[string]any{
+										"lit": "champion.json",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -179,6 +210,13 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"cdn",
+									"{version}",
+									"data",
+									"{language}",
+									"champion.json",
 								},
 							},
 						},
@@ -238,12 +276,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cdn/{version}/data/{language}/item.json",
-								"parts": []any{
-									"cdn",
-									"{version}",
-									"data",
-									"{language}",
-									"item.json",
+								"segments": []any{
+									map[string]any{
+										"lit": "cdn",
+									},
+									map[string]any{
+										"var": "version",
+									},
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"var": "language",
+									},
+									map[string]any{
+										"lit": "item.json",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -254,6 +302,13 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.data`",
+								},
+								"parts": []any{
+									"cdn",
+									"{version}",
+									"data",
+									"{language}",
+									"item.json",
 								},
 							},
 						},
@@ -300,12 +355,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cdn/{version}/data/{language}/rune.json",
-								"parts": []any{
-									"cdn",
-									"{version}",
-									"data",
-									"{language}",
-									"rune.json",
+								"segments": []any{
+									map[string]any{
+										"lit": "cdn",
+									},
+									map[string]any{
+										"var": "version",
+									},
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"var": "language",
+									},
+									map[string]any{
+										"lit": "rune.json",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -316,6 +381,13 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"cdn",
+									"{version}",
+									"data",
+									"{language}",
+									"rune.json",
 								},
 							},
 						},
@@ -354,9 +426,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cdn/dragontail-{version}.tgz",
-								"parts": []any{
-									"cdn",
-									"dragontail-{version}.tgz",
+								"segments": []any{
+									map[string]any{
+										"lit": "cdn",
+									},
+									map[string]any{
+										"lit": "dragontail-{version}.tgz",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -366,6 +442,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"cdn",
+									"dragontail-{version}.tgz",
 								},
 							},
 						},
@@ -381,6 +461,10 @@ func MakeConfig() map[string]any {
 						"name": "id",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "item",
 				"op": map[string]any{
@@ -412,16 +496,26 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cdn/{version}/img/item/{itemImage}",
-								"parts": []any{
-									"cdn",
-									"{version}",
-									"img",
-									"item",
-									"{id}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"itemImage": "id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "cdn",
+									},
+									map[string]any{
+										"var": "version",
+									},
+									map[string]any{
+										"lit": "img",
+									},
+									map[string]any{
+										"lit": "item",
+									},
+									map[string]any{
+										"var": "id",
 									},
 								},
 								"select": map[string]any{
@@ -433,6 +527,13 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"cdn",
+									"{version}",
+									"img",
+									"item",
+									"{id}",
 								},
 							},
 						},
@@ -483,9 +584,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/realms/{region}.json",
-								"parts": []any{
-									"realms",
-									"{region}.json",
+								"segments": []any{
+									map[string]any{
+										"lit": "realms",
+									},
+									map[string]any{
+										"lit": "{region}.json",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -496,16 +601,16 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body.n`",
 								},
+								"parts": []any{
+									"realms",
+									"{region}.json",
+								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"realm",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 			"version": map[string]any{
@@ -521,14 +626,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/versions.json",
-								"parts": []any{
-									"api",
-									"versions.json",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "versions.json",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"api",
+									"versions.json",
 								},
 							},
 						},
@@ -540,6 +653,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

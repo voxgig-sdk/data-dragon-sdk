@@ -43,6 +43,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "champion",
         ["op"] = {
           ["load"] = {
@@ -73,16 +77,26 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cdn/{version}/img/champion/{championImage}",
-                ["parts"] = {
-                  "cdn",
-                  "{version}",
-                  "img",
-                  "champion",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["championImage"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "cdn",
+                  },
+                  {
+                    ["var"] = "version",
+                  },
+                  {
+                    ["lit"] = "img",
+                  },
+                  {
+                    ["lit"] = "champion",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -94,6 +108,13 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "cdn",
+                  "{version}",
+                  "img",
+                  "champion",
+                  "{id}",
                 },
               },
             },
@@ -159,12 +180,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cdn/{version}/data/{language}/champion.json",
-                ["parts"] = {
-                  "cdn",
-                  "{version}",
-                  "data",
-                  "{language}",
-                  "champion.json",
+                ["segments"] = {
+                  {
+                    ["lit"] = "cdn",
+                  },
+                  {
+                    ["var"] = "version",
+                  },
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["var"] = "language",
+                  },
+                  {
+                    ["lit"] = "champion.json",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -175,6 +206,13 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "cdn",
+                  "{version}",
+                  "data",
+                  "{language}",
+                  "champion.json",
                 },
               },
             },
@@ -234,12 +272,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cdn/{version}/data/{language}/item.json",
-                ["parts"] = {
-                  "cdn",
-                  "{version}",
-                  "data",
-                  "{language}",
-                  "item.json",
+                ["segments"] = {
+                  {
+                    ["lit"] = "cdn",
+                  },
+                  {
+                    ["var"] = "version",
+                  },
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["var"] = "language",
+                  },
+                  {
+                    ["lit"] = "item.json",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -250,6 +298,13 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "cdn",
+                  "{version}",
+                  "data",
+                  "{language}",
+                  "item.json",
                 },
               },
             },
@@ -296,12 +351,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cdn/{version}/data/{language}/rune.json",
-                ["parts"] = {
-                  "cdn",
-                  "{version}",
-                  "data",
-                  "{language}",
-                  "rune.json",
+                ["segments"] = {
+                  {
+                    ["lit"] = "cdn",
+                  },
+                  {
+                    ["var"] = "version",
+                  },
+                  {
+                    ["lit"] = "data",
+                  },
+                  {
+                    ["var"] = "language",
+                  },
+                  {
+                    ["lit"] = "rune.json",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -312,6 +377,13 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "cdn",
+                  "{version}",
+                  "data",
+                  "{language}",
+                  "rune.json",
                 },
               },
             },
@@ -350,9 +422,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cdn/dragontail-{version}.tgz",
-                ["parts"] = {
-                  "cdn",
-                  "dragontail-{version}.tgz",
+                ["segments"] = {
+                  {
+                    ["lit"] = "cdn",
+                  },
+                  {
+                    ["lit"] = "dragontail-{version}.tgz",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -362,6 +438,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "cdn",
+                  "dragontail-{version}.tgz",
                 },
               },
             },
@@ -377,6 +457,10 @@ local function make_config()
             ["name"] = "id",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "item",
         ["op"] = {
@@ -408,16 +492,26 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cdn/{version}/img/item/{itemImage}",
-                ["parts"] = {
-                  "cdn",
-                  "{version}",
-                  "img",
-                  "item",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["itemImage"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "cdn",
+                  },
+                  {
+                    ["var"] = "version",
+                  },
+                  {
+                    ["lit"] = "img",
+                  },
+                  {
+                    ["lit"] = "item",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -429,6 +523,13 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "cdn",
+                  "{version}",
+                  "img",
+                  "item",
+                  "{id}",
                 },
               },
             },
@@ -479,9 +580,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/realms/{region}.json",
-                ["parts"] = {
-                  "realms",
-                  "{region}.json",
+                ["segments"] = {
+                  {
+                    ["lit"] = "realms",
+                  },
+                  {
+                    ["lit"] = "{region}.json",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -492,16 +597,16 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.n`",
                 },
+                ["parts"] = {
+                  "realms",
+                  "{region}.json",
+                },
               },
             },
           },
         },
         ["relations"] = {
-          ["ancestors"] = {
-            {
-              "realm",
-            },
-          },
+          ["ancestors"] = {},
         },
       },
       ["version"] = {
@@ -517,14 +622,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/versions.json",
-                ["parts"] = {
-                  "api",
-                  "versions.json",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "versions.json",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "api",
+                  "versions.json",
                 },
               },
             },

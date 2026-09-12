@@ -32,12 +32,22 @@ main: kit: entity: data_rune: {
           }
           method: "GET"
           orig: "/cdn/{version}/data/{language}/rune.json"
-          parts: [
-            "cdn"
-            "{version}"
-            "data"
-            "{language}"
-            "rune.json"
+          segments: [
+            {
+              lit: "cdn"
+            }
+            {
+              var: "version"
+            }
+            {
+              lit: "data"
+            }
+            {
+              var: "language"
+            }
+            {
+              lit: "rune.json"
+            }
           ]
           select: {
             exist: [

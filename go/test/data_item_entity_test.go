@@ -50,7 +50,7 @@ func TestDataItemEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		dataItemRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.data_item", setup.data)))
+		dataItemRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.data_item")))
 		var dataItemRef01Data map[string]any
 		if len(dataItemRef01DataRaw) > 0 {
 			dataItemRef01Data = core.ToMapAny(dataItemRef01DataRaw[0][1])
@@ -97,7 +97,7 @@ func data_itemBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"data_item01", "data_item02", "data_item03", "cdn01", "cdn02", "cdn03", "data01", "data02", "data03", "version01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -125,10 +125,22 @@ func data_itemBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["DATA_DRAGON_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewDataDragonSDK(core.ToMapAny(mergedOpts))
 	}

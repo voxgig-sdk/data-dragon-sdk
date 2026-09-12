@@ -50,12 +50,22 @@ main: kit: entity: data_item: {
           }
           method: "GET"
           orig: "/cdn/{version}/data/{language}/item.json"
-          parts: [
-            "cdn"
-            "{version}"
-            "data"
-            "{language}"
-            "item.json"
+          segments: [
+            {
+              lit: "cdn"
+            }
+            {
+              var: "version"
+            }
+            {
+              lit: "data"
+            }
+            {
+              var: "language"
+            }
+            {
+              lit: "item.json"
+            }
           ]
           select: {
             exist: [

@@ -12,9 +12,13 @@ main: kit: entity: version: {
         {
           method: "GET"
           orig: "/api/versions.json"
-          parts: [
-            "api"
-            "versions.json"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "versions.json"
+            }
           ]
           transform: {
             req: "`reqdata`"

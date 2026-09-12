@@ -62,7 +62,7 @@ def region_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["region01", "region02", "region03", "realm01", "realm02", "realm03"],
+    ["region01", "region02", "region03"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",
@@ -91,6 +91,9 @@ def region_basic_setup(extra)
 
   if env["DATA_DRAGON_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
       },
       extra || {},

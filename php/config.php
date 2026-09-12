@@ -69,6 +69,10 @@ class DataDragonConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'champion',
           'op' => [
             'load' => [
@@ -99,16 +103,26 @@ class DataDragonConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/cdn/{version}/img/champion/{championImage}',
-                  'parts' => [
-                    'cdn',
-                    '{version}',
-                    'img',
-                    'champion',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'championImage' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'cdn',
+                    ],
+                    [
+                      'var' => 'version',
+                    ],
+                    [
+                      'lit' => 'img',
+                    ],
+                    [
+                      'lit' => 'champion',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -120,6 +134,13 @@ class DataDragonConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'cdn',
+                    '{version}',
+                    'img',
+                    'champion',
+                    '{id}',
                   ],
                 ],
               ],
@@ -185,12 +206,22 @@ class DataDragonConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/cdn/{version}/data/{language}/champion.json',
-                  'parts' => [
-                    'cdn',
-                    '{version}',
-                    'data',
-                    '{language}',
-                    'champion.json',
+                  'segments' => [
+                    [
+                      'lit' => 'cdn',
+                    ],
+                    [
+                      'var' => 'version',
+                    ],
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'var' => 'language',
+                    ],
+                    [
+                      'lit' => 'champion.json',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -201,6 +232,13 @@ class DataDragonConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'cdn',
+                    '{version}',
+                    'data',
+                    '{language}',
+                    'champion.json',
                   ],
                 ],
               ],
@@ -260,12 +298,22 @@ class DataDragonConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/cdn/{version}/data/{language}/item.json',
-                  'parts' => [
-                    'cdn',
-                    '{version}',
-                    'data',
-                    '{language}',
-                    'item.json',
+                  'segments' => [
+                    [
+                      'lit' => 'cdn',
+                    ],
+                    [
+                      'var' => 'version',
+                    ],
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'var' => 'language',
+                    ],
+                    [
+                      'lit' => 'item.json',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -276,6 +324,13 @@ class DataDragonConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'cdn',
+                    '{version}',
+                    'data',
+                    '{language}',
+                    'item.json',
                   ],
                 ],
               ],
@@ -322,12 +377,22 @@ class DataDragonConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/cdn/{version}/data/{language}/rune.json',
-                  'parts' => [
-                    'cdn',
-                    '{version}',
-                    'data',
-                    '{language}',
-                    'rune.json',
+                  'segments' => [
+                    [
+                      'lit' => 'cdn',
+                    ],
+                    [
+                      'var' => 'version',
+                    ],
+                    [
+                      'lit' => 'data',
+                    ],
+                    [
+                      'var' => 'language',
+                    ],
+                    [
+                      'lit' => 'rune.json',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -338,6 +403,13 @@ class DataDragonConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'cdn',
+                    '{version}',
+                    'data',
+                    '{language}',
+                    'rune.json',
                   ],
                 ],
               ],
@@ -376,9 +448,13 @@ class DataDragonConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/cdn/dragontail-{version}.tgz',
-                  'parts' => [
-                    'cdn',
-                    'dragontail-{version}.tgz',
+                  'segments' => [
+                    [
+                      'lit' => 'cdn',
+                    ],
+                    [
+                      'lit' => 'dragontail-{version}.tgz',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -388,6 +464,10 @@ class DataDragonConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'cdn',
+                    'dragontail-{version}.tgz',
                   ],
                 ],
               ],
@@ -403,6 +483,10 @@ class DataDragonConfig
               'name' => 'id',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'item',
           'op' => [
@@ -434,16 +518,26 @@ class DataDragonConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/cdn/{version}/img/item/{itemImage}',
-                  'parts' => [
-                    'cdn',
-                    '{version}',
-                    'img',
-                    'item',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'itemImage' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'cdn',
+                    ],
+                    [
+                      'var' => 'version',
+                    ],
+                    [
+                      'lit' => 'img',
+                    ],
+                    [
+                      'lit' => 'item',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -455,6 +549,13 @@ class DataDragonConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'cdn',
+                    '{version}',
+                    'img',
+                    'item',
+                    '{id}',
                   ],
                 ],
               ],
@@ -505,9 +606,13 @@ class DataDragonConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/realms/{region}.json',
-                  'parts' => [
-                    'realms',
-                    '{region}.json',
+                  'segments' => [
+                    [
+                      'lit' => 'realms',
+                    ],
+                    [
+                      'lit' => '{region}.json',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -518,16 +623,16 @@ class DataDragonConfig
                     'req' => '`reqdata`',
                     'res' => '`body.n`',
                   ],
+                  'parts' => [
+                    'realms',
+                    '{region}.json',
+                  ],
                 ],
               ],
             ],
           ],
           'relations' => [
-            'ancestors' => [
-              [
-                'realm',
-              ],
-            ],
+            'ancestors' => [],
           ],
         ],
         'version' => [
@@ -543,14 +648,22 @@ class DataDragonConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/versions.json',
-                  'parts' => [
-                    'api',
-                    'versions.json',
+                  'segments' => [
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'versions.json',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'api',
+                    'versions.json',
                   ],
                 ],
               ],

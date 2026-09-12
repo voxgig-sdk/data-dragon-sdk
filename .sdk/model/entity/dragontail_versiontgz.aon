@@ -24,9 +24,13 @@ main: kit: entity: dragontail_versiontgz: {
           }
           method: "GET"
           orig: "/cdn/dragontail-{version}.tgz"
-          parts: [
-            "cdn"
-            "dragontail-{version}.tgz"
+          segments: [
+            {
+              lit: "cdn"
+            }
+            {
+              lit: "dragontail-{version}.tgz"
+            }
           ]
           select: {
             exist: [
