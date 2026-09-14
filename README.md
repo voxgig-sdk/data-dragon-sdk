@@ -105,7 +105,7 @@ local result, err = client:Champion():load({ id = "test01", version = "example" 
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/data-dragon` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-dragon-sdk/releases) |
+| TypeScript | `@voxgig-sdk/data-dragon-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-dragon-sdk/releases) |
 | Python | `voxgig-sdk-data-dragon` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-dragon-sdk/releases) |
 | PHP | `voxgig-sdk/data-dragon` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-dragon-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/data-dragon-sdk/go` | `go get github.com/voxgig-sdk/data-dragon-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Champion():load({ id = "test01", version = "example" 
 ### TypeScript
 
 ```ts
-import { DataDragonSDK } from '@voxgig-sdk/data-dragon'
+import { DataDragonSDK } from '@voxgig-sdk/data-dragon-sdk'
 
 const client = new DataDragonSDK()
 

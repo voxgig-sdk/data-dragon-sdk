@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { DataDragonSDK } from '@voxgig-sdk/data-dragon'
+import { DataDragonSDK } from '@voxgig-sdk/data-dragon-sdk'
 
 const client = new DataDragonSDK()
 ```
@@ -639,7 +639,7 @@ data-dragon/
 Import the SDK from the package root:
 
 ```ts
-import { DataDragonSDK } from '@voxgig-sdk/data-dragon'
+import { DataDragonSDK } from '@voxgig-sdk/data-dragon-sdk'
 ```
 
 ### Entity state
