@@ -22,6 +22,12 @@ main: kit: entity: dragontail_versiontgz: {
               }
             ]
           }
+          contract: {
+            id: "GET /cdn/dragontail-{version}.tgz"
+            json: "{\"operationId\":\"downloadDragontail\",\"parameters\":[{\"description\":\"Patch version (e.g., 12.6.1)\",\"example\":\"12.6.1\",\"in\":\"path\",\"name\":\"version\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/gzip\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successfully retrieved tarball\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/cdn/dragontail-{version}.tgz"
           segments: [

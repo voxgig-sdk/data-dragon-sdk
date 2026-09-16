@@ -43,6 +43,12 @@ main: kit: entity: item: {
               }
             ]
           }
+          contract: {
+            id: "GET /cdn/{version}/img/item/{itemImage}"
+            json: "{\"operationId\":\"getItemImage\",\"parameters\":[{\"description\":\"Patch version (e.g., 12.6.1)\",\"example\":\"12.6.1\",\"in\":\"path\",\"name\":\"version\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Item image filename (e.g., 1001.png)\",\"example\":\"1001.png\",\"in\":\"path\",\"name\":\"itemImage\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"image/png\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successfully retrieved item image\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/cdn/{version}/img/item/{itemImage}"
           rename: {

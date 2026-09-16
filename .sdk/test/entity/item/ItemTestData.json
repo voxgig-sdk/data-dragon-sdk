@@ -19,5 +19,50 @@
     "item": {
       "item_ref01": {}
     }
+  },
+  "requests": {
+    "GET /cdn/{version}/img/item/{itemImage}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getItemImage",
+        "parameters": [
+          {
+            "description": "Patch version (e.g., 12.6.1)",
+            "example": "12.6.1",
+            "in": "path",
+            "name": "version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Item image filename (e.g., 1001.png)",
+            "example": "1001.png",
+            "in": "path",
+            "name": "itemImage",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "image/png": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successfully retrieved item image"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

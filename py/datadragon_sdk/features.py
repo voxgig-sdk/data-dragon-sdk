@@ -1,12 +1,18 @@
 # DataDragon SDK feature factory
 
 from datadragon_sdk.feature.base_feature import DataDragonBaseFeature
+from datadragon_sdk.feature.ratelimit_feature import DataDragonRatelimitFeature
+from datadragon_sdk.feature.retry_feature import DataDragonRetryFeature
 from datadragon_sdk.feature.test_feature import DataDragonTestFeature
+from datadragon_sdk.feature.timeout_feature import DataDragonTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: DataDragonBaseFeature(),
+    "ratelimit": lambda: DataDragonRatelimitFeature(),
+    "retry": lambda: DataDragonRetryFeature(),
     "test": lambda: DataDragonTestFeature(),
+    "timeout": lambda: DataDragonTimeoutFeature(),
 }
 
 

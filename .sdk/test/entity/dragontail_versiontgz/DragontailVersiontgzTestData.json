@@ -19,5 +19,40 @@
     "dragontail_versiontgz": {
       "dragontail_versiontgz_ref01": {}
     }
+  },
+  "requests": {
+    "GET /cdn/dragontail-{version}.tgz": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "downloadDragontail",
+        "parameters": [
+          {
+            "description": "Patch version (e.g., 12.6.1)",
+            "example": "12.6.1",
+            "in": "path",
+            "name": "version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/gzip": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successfully retrieved tarball"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

@@ -4,7 +4,10 @@ declare(strict_types=1);
 // DataDragon SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class DataDragonFeatures
@@ -14,8 +17,14 @@ class DataDragonFeatures
         switch ($name) {
             case "base":
                 return new DataDragonBaseFeature();
+            case "ratelimit":
+                return new DataDragonRatelimitFeature();
+            case "retry":
+                return new DataDragonRetryFeature();
             case "test":
                 return new DataDragonTestFeature();
+            case "timeout":
+                return new DataDragonTimeoutFeature();
             default:
                 return new DataDragonBaseFeature();
         }
@@ -31,7 +40,10 @@ class DataDragonFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

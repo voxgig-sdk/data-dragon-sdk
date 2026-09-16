@@ -56,6 +56,12 @@ main: kit: entity: data_champion: {
               }
             ]
           }
+          contract: {
+            id: "GET /cdn/{version}/data/{language}/champion.json"
+            json: "{\"operationId\":\"getChampionData\",\"parameters\":[{\"description\":\"Patch version (e.g., 12.6.1)\",\"example\":\"12.6.1\",\"in\":\"path\",\"name\":\"version\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Language code (e.g., en_US, ko_KR, ja_JP)\",\"example\":\"en_US\",\"in\":\"path\",\"name\":\"language\",\"required\":true,\"schema\":{\"enum\":[\"cs_CZ\",\"el_GR\",\"pl_PL\",\"ro_RO\",\"hu_HU\",\"en_GB\",\"de_DE\",\"es_ES\",\"it_IT\",\"fr_FR\",\"ja_JP\",\"ko_KR\",\"es_MX\",\"es_AR\",\"pt_BR\",\"en_US\",\"en_AU\",\"ru_RU\",\"tr_TR\",\"ms_MY\",\"en_PH\",\"en_SG\",\"th_TH\",\"vn_VN\",\"id_ID\",\"zh_MY\",\"zh_CN\",\"zh_TW\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"additionalProperties\":{\"properties\":{\"image\":{\"properties\":{\"full\":{\"description\":\"Image filename\",\"type\":\"string\"}},\"type\":\"object\"},\"key\":{\"description\":\"Champion ID\",\"type\":\"string\"},\"name\":{\"description\":\"Champion name\",\"type\":\"string\"},\"title\":{\"description\":\"Champion title\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"object\"},\"format\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"version\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully retrieved champion data\",\"headers\":{\"Accept-Charset\":{\"description\":\"Response encoding (UTF-8)\",\"schema\":{\"type\":\"string\"}}}}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/cdn/{version}/data/{language}/champion.json"
           segments: [

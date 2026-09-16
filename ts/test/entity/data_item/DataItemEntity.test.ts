@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { DataDragonSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('DataItemEntity', async () => {
 
     const live = 'TRUE' === process.env.DATA_DRAGON_TEST_LIVE
     for (const op of ['load']) {
-      if (maybeSkipControl(t, 'entityOp', 'data_item.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'data_item.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set DATA_DRAGON_TEST_DATA_ITEM_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"description","req":false,"type":"`$STRING`","index$":0},{"active":true,"name":"image","req":false,"type":"`$OBJECT`","index$":1},{"active":true,"name":"name","req":false,"type":"`$STRING`","index$":2}],"name":"data_item","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"example":"en_US","kind":"param","name":"language","orig":"language","reqd":true,"type":"`$STRING`","index$":0},{"active":true,"example":"12.6.1","kind":"param","name":"version","orig":"version","reqd":true,"type":"`$STRING`","index$":1}]},"contract":{"id":"GET /cdn/{version}/data/{language}/item.json","json":"{\"operationId\":\"getItemData\",\"parameters\":[{\"description\":\"Patch version (e.g., 12.6.1)\",\"example\":\"12.6.1\",\"in\":\"path\",\"name\":\"version\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Language code (e.g., en_US, ko_KR, ja_JP)\",\"example\":\"en_US\",\"in\":\"path\",\"name\":\"language\",\"required\":true,\"schema\":{\"enum\":[\"cs_CZ\",\"el_GR\",\"pl_PL\",\"ro_RO\",\"hu_HU\",\"en_GB\",\"de_DE\",\"es_ES\",\"it_IT\",\"fr_FR\",\"ja_JP\",\"ko_KR\",\"es_MX\",\"es_AR\",\"pt_BR\",\"en_US\",\"en_AU\",\"ru_RU\",\"tr_TR\",\"ms_MY\",\"en_PH\",\"en_SG\",\"th_TH\",\"vn_VN\",\"id_ID\",\"zh_MY\",\"zh_CN\",\"zh_TW\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"additionalProperties\":{\"properties\":{\"description\":{\"type\":\"string\"},\"image\":{\"properties\":{\"full\":{\"type\":\"string\"}},\"type\":\"object\"},\"name\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"object\"},\"type\":{\"type\":\"string\"},\"version\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully retrieved item data\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/cdn/{version}/data/{language}/item.json","segments":[{"lit":"cdn"},{"var":"version"},{"lit":"data"},{"var":"language"},{"lit":"item.json"}],"select":{"exist":["language","version"]},"transform":{"req":"`reqdata`","res":"`body.data`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[["cdn","data"]]},"key$":"data_item","name__orig":"data_item","Name":"DataItem","name_":"data_item","name-":"data-item","NAME":"DATA_ITEM","index$":2}, {"active":true,"entity":"data_item","key$":"BasicDataItemFlow","kind":"basic","name":"BasicDataItemFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"data_item_ref01","srcdatavar":"data_item_ref01_data","suffix":"_dt0"},"match":{"id":"data_item01","version":"version01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-data_item_ref01"}}],"index$":0}]}, 'DataItem')
     }
     const client = setup.client
     const struct = setup.struct
@@ -107,13 +106,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['DATA_DRAGON_TEST_DATA_ITEM_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'DATA_DRAGON_TEST_DATA_ITEM_ENTID': idmap,
     'DATA_DRAGON_TEST_LIVE': 'FALSE',
@@ -124,7 +116,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.DATA_DRAGON_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['DATA_DRAGON_TEST_DATA_ITEM_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new DataDragonSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -136,7 +134,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -149,7 +148,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.DATA_DRAGON_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

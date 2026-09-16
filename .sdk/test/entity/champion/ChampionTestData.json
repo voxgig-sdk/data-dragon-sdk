@@ -19,5 +19,50 @@
     "champion": {
       "champion_ref01": {}
     }
+  },
+  "requests": {
+    "GET /cdn/{version}/img/champion/{championImage}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getChampionImage",
+        "parameters": [
+          {
+            "description": "Patch version (e.g., 12.6.1)",
+            "example": "12.6.1",
+            "in": "path",
+            "name": "version",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Champion image filename (e.g., Ahri.png)",
+            "example": "Ahri.png",
+            "in": "path",
+            "name": "championImage",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "image/png": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successfully retrieved champion image"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

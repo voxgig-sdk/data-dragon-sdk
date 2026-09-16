@@ -32,5 +32,76 @@
         "rune": "s7a"
       }
     }
+  },
+  "requests": {
+    "GET /realms/{region}.json": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRealmData",
+        "parameters": [
+          {
+            "description": "Region code (e.g., na, euw, kr)",
+            "example": "na",
+            "in": "path",
+            "name": "region",
+            "required": true,
+            "schema": {
+              "enum": [
+                "na",
+                "euw",
+                "eune",
+                "kr",
+                "br",
+                "jp",
+                "lan",
+                "las",
+                "oce",
+                "tr",
+                "ru"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "cdn": {
+                      "description": "CDN base URL",
+                      "type": "string"
+                    },
+                    "n": {
+                      "properties": {
+                        "champion": {
+                          "type": "string"
+                        },
+                        "item": {
+                          "type": "string"
+                        },
+                        "rune": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "v": {
+                      "description": "Current patch version",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successfully retrieved realm data"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

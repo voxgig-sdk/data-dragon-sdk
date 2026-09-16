@@ -10,6 +10,12 @@ main: kit: entity: version: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /api/versions.json"
+            json: "{\"operationId\":\"getVersions\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":[\"12.6.1\",\"12.5.1\",\"12.4.1\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"}}},\"description\":\"Successfully retrieved version list\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/api/versions.json"
           segments: [
