@@ -105,12 +105,12 @@ local result, err = client:Champion():load({ id = "test01", version = "example" 
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/data-dragon-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-dragon-sdk/releases) |
-| Python | `voxgig-sdk-data-dragon` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-dragon-sdk/releases) |
-| PHP | `voxgig-sdk/data-dragon` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-dragon-sdk/releases) |
+| TypeScript | `@voxgig-sdk/data-dragon-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-dragon-sdk/tags) |
+| Python | `voxgig-sdk-data-dragon` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-dragon-sdk/tags) |
+| PHP | `voxgig-sdk/data-dragon` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-dragon-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/data-dragon-sdk/go` | `go get github.com/voxgig-sdk/data-dragon-sdk/go@latest` |
-| Ruby | `voxgig-sdk-data-dragon` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-dragon-sdk/releases) |
-| Lua | `voxgig-sdk-data-dragon` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-dragon-sdk/releases) |
+| Ruby | `voxgig-sdk-data-dragon` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-dragon-sdk/tags) |
+| Lua | `voxgig-sdk-data-dragon` | publish pending — [install from git tag](https://github.com/voxgig-sdk/data-dragon-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/data-dragon-sdk/go-cli` | `go install github.com/voxgig-sdk/data-dragon-sdk/go-cli/cmd/data-dragon@latest` |
 | Go MCP server | `github.com/voxgig-sdk/data-dragon-sdk/go-mcp` | `go get github.com/voxgig-sdk/data-dragon-sdk/go-mcp@latest` |
 

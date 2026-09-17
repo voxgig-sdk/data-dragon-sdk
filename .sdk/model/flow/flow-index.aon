@@ -1,10 +1,10 @@
 # Flows
 
-@"BasicChampionFlow.aon"
-@"BasicDataChampionFlow.aon"
-@"BasicDataItemFlow.aon"
-@"BasicDataRuneFlow.aon"
-@"BasicDragontailVersiontgzFlow.aon"
-@"BasicItemFlow.aon"
-@"BasicRegionFlow.aon"
-@"BasicVersionFlow.aon"
+@"./BasicChampionFlow.aon"
+@"./BasicDataChampionFlow.aon"
+@"./BasicDataItemFlow.aon"
+@"./BasicDataRuneFlow.aon"
+@"./BasicDragontailVersiontgzFlow.aon"
+@"./BasicItemFlow.aon"
+@"./BasicRegionFlow.aon"
+@"./BasicVersionFlow.aon"

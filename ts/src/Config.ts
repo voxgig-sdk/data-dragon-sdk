@@ -127,30 +127,30 @@ class Config {
 
     entity: {
       
-      champion: {
-      },
-
-      data_champion: {
-      },
-
-      data_item: {
-      },
-
-      data_rune: {
-      },
-
-      dragontail_versiontgz: {
-      },
-
-      item: {
-      },
-
-      region: {
-      },
-
-      version: {
-      },
-
+        champion: {
+        },
+  
+        data_champion: {
+        },
+  
+        data_item: {
+        },
+  
+        data_rune: {
+        },
+  
+        dragontail_versiontgz: {
+        },
+  
+        item: {
+        },
+  
+        region: {
+        },
+  
+        version: {
+        },
+  
     }
   }
 
