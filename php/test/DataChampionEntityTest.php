@@ -70,7 +70,7 @@ function data_champion_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["data_champion01", "data_champion02", "data_champion03", "cdn01", "cdn02", "cdn03", "data01", "data02", "data03", "version01"] as $k) {
+    foreach (["data_champion01", "data_champion02", "data_champion03", "version01"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

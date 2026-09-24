@@ -33,12 +33,10 @@ $client = new DataDragonSDK();
 
 ### 3. Load a champion
 
-Champion is nested under version, so provide the `version`.
-
 ```php
 try {
     // load() returns the ENTITY — call data_get() for the Champion record (throws on error).
-    $champion = $client->Champion()->load(["version" => "example_version", "id" => "example_id"]);
+    $champion = $client->Champion()->load(["id" => "example_id", "version" => "example_version"]);
     print_r($champion->data_get());
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();

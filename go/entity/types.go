@@ -1,7 +1,7 @@
 // Typed models for the DataDragon SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,7 +14,6 @@ import (
 
 // Champion is the typed data model for the champion entity.
 type Champion struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // ChampionLoadMatch is the typed request payload for Champion.LoadTyped.
@@ -25,10 +24,6 @@ type ChampionLoadMatch struct {
 
 // DataChampion is the typed data model for the data_champion entity.
 type DataChampion struct {
-	Image *map[string]any `json:"image,omitempty"`
-	Key *string `json:"key,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Title *string `json:"title,omitempty"`
 }
 
 // DataChampionLoadMatch is the typed request payload for DataChampion.LoadTyped.
@@ -39,9 +34,6 @@ type DataChampionLoadMatch struct {
 
 // DataItem is the typed data model for the data_item entity.
 type DataItem struct {
-	Description *string `json:"description,omitempty"`
-	Image *map[string]any `json:"image,omitempty"`
-	Name *string `json:"name,omitempty"`
 }
 
 // DataItemLoadMatch is the typed request payload for DataItem.LoadTyped.
@@ -71,7 +63,6 @@ type DragontailVersiontgzLoadMatch struct {
 
 // Item is the typed data model for the item entity.
 type Item struct {
-	Id *string `json:"id,omitempty"`
 }
 
 // ItemLoadMatch is the typed request payload for Item.LoadTyped.
@@ -82,9 +73,6 @@ type ItemLoadMatch struct {
 
 // Region is the typed data model for the region entity.
 type Region struct {
-	Champion *string `json:"champion,omitempty"`
-	Item *string `json:"item,omitempty"`
-	Rune *string `json:"rune,omitempty"`
 }
 
 // RegionLoadMatch is the typed request payload for Region.LoadTyped.

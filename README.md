@@ -14,7 +14,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
+> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
@@ -123,12 +123,8 @@ import { DataDragonSDK } from '@voxgig-sdk/data-dragon-sdk'
 
 const client = new DataDragonSDK()
 
-
-// Load a specific champion (returns a Champion)
-const champion = await client.Champion().load({
-  version: 'example_version',
-  id: 'example_id',
-})
+// Load champion data (returns a Champion)
+const champion = await client.Champion().load()
 console.log(champion)
 ```
 
@@ -218,11 +214,8 @@ import sdk "github.com/voxgig-sdk/data-dragon-sdk/go"
 
 client := sdk.New()
 
-
-// Load a specific champion
-champion, err := client.Champion(nil).Load(
-    map[string]any{"version": "example_version", "id": "example_id"}, nil,
-)
+// Load champion data
+champion, err := client.Champion(nil).Load(map[string]any{"id": "example_id", "version": "example_version"}, nil)
 if err != nil {
     panic(err)
 }

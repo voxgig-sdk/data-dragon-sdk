@@ -66,7 +66,7 @@ def item_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["item01", "item02", "item03", "cdn01", "cdn02", "cdn03", "version01"],
+    ["item01", "item02", "item03", "version01"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",

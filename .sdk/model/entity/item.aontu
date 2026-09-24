@@ -1,0 +1,93 @@
+# Entity: item
+
+main: kit: entity: item: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "item"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /cdn/{version}/img/item/{itemImage}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "1001.png"
+                k: "param"
+                n: "id"
+                or: "item_image"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "12.6.1"
+                k: "param"
+                n: "version"
+                or: "version"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/cdn/{version}/img/item/{itemImage}"
+          q: {
+            exist: [
+              "id"
+              "version"
+            ]
+          }
+          r: {
+            param: {
+              itemImage: "id"
+            }
+          }
+          s: [
+            {
+              lit: "cdn"
+            }
+            {
+              var: "version"
+            }
+            {
+              lit: "img"
+            }
+            {
+              lit: "item"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

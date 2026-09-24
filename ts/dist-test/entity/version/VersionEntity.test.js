@@ -44,10 +44,6 @@ const live_runner_1 = require("../../live-runner");
 const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 (0, utility_1.loadEnvLocal)(__dirname + '/../../../.env.local');
 (0, node_test_1.describe)('VersionEntity', async () => {
     // Per-test live pacing. Delay is read from sdk-test-control.json's
@@ -66,7 +62,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [], "name": "version", "op": { "list": { "input": "data", "name": "list", "points": [{ "active": true, "args": {}, "contract": { "id": "GET /api/versions.json", "json": "{\"operationId\":\"getVersions\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":[\"12.6.1\",\"12.5.1\",\"12.4.1\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"}}},\"description\":\"Successfully retrieved version list\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/api/versions.json", "segments": [{ "lit": "api" }, { "lit": "versions.json" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "version", "name__orig": "version", "Name": "Version", "name_": "version", "name-": "version", "NAME": "VERSION", "index$": 7 }, { "active": true, "entity": "version", "key$": "BasicVersionFlow", "kind": "basic", "name": "BasicVersionFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": {}, "match": {}, "op": "list", "spec": [], "valid": [{ "apply": "ItemExists", "def": { "ref": "version_ref01" } }], "index$": 0 }] }, 'Version');
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "version", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /api/versions.json", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/api/versions.json", "q": {}, "r": {}, "s": [{ "lit": "api" }, { "lit": "versions.json" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "version", "name__orig": "version", "Name": "Version", "name_": "version", "name-": "version", "NAME": "VERSION", "index$": 7 }, { "active": true, "entity": "version", "key$": "BasicVersionFlow", "kind": "basic", "name": "BasicVersionFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "version_ref01" } }], "index$": 0 }] }, 'Version', { "GET /api/versions.json": { "protocol": "http", "operationId": "getVersions", "responses": { "200": { "description": "Successfully retrieved version list", "content": { "application/json": { "schema": { "type": "array", "items": { "type": "string", "key$": "items" }, "example": ["12.6.1", "12.5.1", "12.4.1"] } } } } }, "parameters": [], "securitySource": "unspecified" } });
         }
         const client = setup.client;
         const struct = setup.struct;

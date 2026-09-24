@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -160,6 +153,7 @@ class Config {
       "fields": [
         {
           "name": "id",
+          "title": "Id",
           "type": "`$STRING`"
         }
       ],
@@ -174,34 +168,9 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "example": "Ahri.png",
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "champion_image",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "12.6.1",
-                    "kind": "param",
-                    "name": "version",
-                    "orig": "version",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/cdn/{version}/img/champion/{championImage}",
-              "rename": {
-                "param": {
-                  "championImage": "id"
-                }
-              },
               "segments": [
                 {
                   "lit": "cdn"
@@ -219,55 +188,80 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id",
-                  "version"
-                ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
               "parts": [
                 "cdn",
                 "{version}",
                 "img",
                 "champion",
                 "{id}"
-              ]
+              ],
+              "rename": {
+                "param": {
+                  "championImage": "id"
+                }
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "champion_image",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true,
+                    "example": "Ahri.png"
+                  },
+                  {
+                    "name": "version",
+                    "orig": "version",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true,
+                    "example": "12.6.1"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id",
+                  "version"
+                ]
+              }
             }
           ]
         }
       },
       "relations": {
-        "ancestors": [
-          [
-            "cdn"
-          ]
-        ]
+        "ancestors": []
       }
     },
     "data_champion": {
       "fields": [
         {
           "name": "image",
+          "title": "Image",
           "type": "`$OBJECT`"
         },
         {
           "name": "key",
-          "short": "Champion ID",
-          "type": "`$STRING`"
+          "title": "Key",
+          "type": "`$STRING`",
+          "short": "Champion ID"
         },
         {
           "name": "name",
-          "short": "Champion name",
-          "type": "`$STRING`"
+          "title": "Name",
+          "type": "`$STRING`",
+          "short": "Champion name"
         },
         {
           "name": "title",
-          "short": "Champion title",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "Champion title"
         }
       ],
       "name": "data_champion",
@@ -277,26 +271,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "example": "en_US",
-                    "kind": "param",
-                    "name": "language",
-                    "orig": "language",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "12.6.1",
-                    "kind": "param",
-                    "name": "version",
-                    "orig": "version",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/cdn/{version}/data/{language}/champion.json",
@@ -317,48 +291,67 @@ class Config {
                   "lit": "champion.json"
                 }
               ],
-              "select": {
-                "exist": [
-                  "language",
-                  "version"
-                ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.data`"
-              },
               "parts": [
                 "cdn",
                 "{version}",
                 "data",
                 "{language}",
                 "champion.json"
-              ]
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.data`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "language",
+                    "orig": "language",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true,
+                    "example": "en_US"
+                  },
+                  {
+                    "name": "version",
+                    "orig": "version",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true,
+                    "example": "12.6.1"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "language",
+                  "version"
+                ]
+              }
             }
           ]
         }
       },
       "relations": {
-        "ancestors": [
-          [
-            "cdn",
-            "data"
-          ]
-        ]
+        "ancestors": []
       }
     },
     "data_item": {
       "fields": [
         {
           "name": "description",
+          "title": "Description",
           "type": "`$STRING`"
         },
         {
           "name": "image",
+          "title": "Image",
           "type": "`$OBJECT`"
         },
         {
           "name": "name",
+          "title": "Name",
           "type": "`$STRING`"
         }
       ],
@@ -369,26 +362,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "example": "en_US",
-                    "kind": "param",
-                    "name": "language",
-                    "orig": "language",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "12.6.1",
-                    "kind": "param",
-                    "name": "version",
-                    "orig": "version",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/cdn/{version}/data/{language}/item.json",
@@ -409,34 +382,50 @@ class Config {
                   "lit": "item.json"
                 }
               ],
-              "select": {
-                "exist": [
-                  "language",
-                  "version"
-                ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.data`"
-              },
               "parts": [
                 "cdn",
                 "{version}",
                 "data",
                 "{language}",
                 "item.json"
-              ]
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.data`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "language",
+                    "orig": "language",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true,
+                    "example": "en_US"
+                  },
+                  {
+                    "name": "version",
+                    "orig": "version",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true,
+                    "example": "12.6.1"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "language",
+                  "version"
+                ]
+              }
             }
           ]
         }
       },
       "relations": {
-        "ancestors": [
-          [
-            "cdn",
-            "data"
-          ]
-        ]
+        "ancestors": []
       }
     },
     "data_rune": {
@@ -448,26 +437,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "example": "en_US",
-                    "kind": "param",
-                    "name": "language",
-                    "orig": "language",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "12.6.1",
-                    "kind": "param",
-                    "name": "version",
-                    "orig": "version",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/cdn/{version}/data/{language}/rune.json",
@@ -488,34 +457,50 @@ class Config {
                   "lit": "rune.json"
                 }
               ],
-              "select": {
-                "exist": [
-                  "language",
-                  "version"
-                ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
               "parts": [
                 "cdn",
                 "{version}",
                 "data",
                 "{language}",
                 "rune.json"
-              ]
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "language",
+                    "orig": "language",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true,
+                    "example": "en_US"
+                  },
+                  {
+                    "name": "version",
+                    "orig": "version",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true,
+                    "example": "12.6.1"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "language",
+                  "version"
+                ]
+              }
             }
           ]
         }
       },
       "relations": {
-        "ancestors": [
-          [
-            "cdn",
-            "data"
-          ]
-        ]
+        "ancestors": []
       }
     },
     "dragontail_versiontgz": {
@@ -527,18 +512,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "example": "12.6.1",
-                    "kind": "param",
-                    "name": "version",
-                    "orig": "version",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/cdn/dragontail-{version}.tgz",
@@ -550,19 +523,32 @@ class Config {
                   "lit": "dragontail-{version}.tgz"
                 }
               ],
-              "select": {
-                "exist": [
-                  "version"
-                ]
-              },
+              "parts": [
+                "cdn",
+                "dragontail-{version}.tgz"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "cdn",
-                "dragontail-{version}.tgz"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "version",
+                    "orig": "version",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true,
+                    "example": "12.6.1"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "version"
+                ]
+              }
             }
           ]
         }
@@ -575,6 +561,7 @@ class Config {
       "fields": [
         {
           "name": "id",
+          "title": "Id",
           "type": "`$STRING`"
         }
       ],
@@ -589,34 +576,9 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "example": "1001.png",
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "item_image",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "12.6.1",
-                    "kind": "param",
-                    "name": "version",
-                    "orig": "version",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/cdn/{version}/img/item/{itemImage}",
-              "rename": {
-                "param": {
-                  "itemImage": "id"
-                }
-              },
               "segments": [
                 {
                   "lit": "cdn"
@@ -634,47 +596,71 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id",
-                  "version"
-                ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
               "parts": [
                 "cdn",
                 "{version}",
                 "img",
                 "item",
                 "{id}"
-              ]
+              ],
+              "rename": {
+                "param": {
+                  "itemImage": "id"
+                }
+              },
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "item_image",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true,
+                    "example": "1001.png"
+                  },
+                  {
+                    "name": "version",
+                    "orig": "version",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true,
+                    "example": "12.6.1"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id",
+                  "version"
+                ]
+              }
             }
           ]
         }
       },
       "relations": {
-        "ancestors": [
-          [
-            "cdn"
-          ]
-        ]
+        "ancestors": []
       }
     },
     "region": {
       "fields": [
         {
           "name": "champion",
+          "title": "Champion",
           "type": "`$STRING`"
         },
         {
           "name": "item",
+          "title": "Item",
           "type": "`$STRING`"
         },
         {
           "name": "rune",
+          "title": "Rune",
           "type": "`$STRING`"
         }
       ],
@@ -685,18 +671,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "example": "na",
-                    "kind": "param",
-                    "name": "region",
-                    "orig": "region",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/realms/{region}.json",
@@ -708,19 +682,32 @@ class Config {
                   "lit": "{region}.json"
                 }
               ],
-              "select": {
-                "exist": [
-                  "region"
-                ]
-              },
+              "parts": [
+                "realms",
+                "{region}.json"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.n`"
               },
-              "parts": [
-                "realms",
-                "{region}.json"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "region",
+                    "orig": "region",
+                    "type": "`$STRING`",
+                    "kind": "param",
+                    "reqd": true,
+                    "example": "na"
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "region"
+                ]
+              }
             }
           ]
         }
@@ -738,7 +725,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/api/versions.json",
@@ -750,15 +736,17 @@ class Config {
                   "lit": "versions.json"
                 }
               ],
-              "select": {},
+              "parts": [
+                "api",
+                "versions.json"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "api",
-                "versions.json"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }

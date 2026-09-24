@@ -74,7 +74,7 @@ function item_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["item01", "item02", "item03", "cdn01", "cdn02", "cdn03", "version01"] as $k) {
+    foreach (["item01", "item02", "item03", "version01"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

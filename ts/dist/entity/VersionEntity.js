@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VersionEntity = void 0;
 const DataDragonEntityBase_1 = require("../DataDragonEntityBase");
-// TODO: needs Entity superclass
 class VersionEntity extends DataDragonEntityBase_1.DataDragonEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

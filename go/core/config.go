@@ -98,6 +98,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 				},
@@ -112,34 +113,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "Ahri.png",
-											"kind": "param",
-											"name": "id",
-											"orig": "champion_image",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "12.6.1",
-											"kind": "param",
-											"name": "version",
-											"orig": "version",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cdn/{version}/img/champion/{championImage}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"championImage": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "cdn",
@@ -157,16 +133,6 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-										"version",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"cdn",
 									"{version}",
@@ -174,38 +140,73 @@ func MakeConfig() map[string]any {
 									"champion",
 									"{id}",
 								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"championImage": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "champion_image",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "Ahri.png",
+										},
+										map[string]any{
+											"name": "version",
+											"orig": "version",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "12.6.1",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+										"version",
+									},
+								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"cdn",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 			"data_champion": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "image",
+						"title": "Image",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "key",
-						"short": "Champion ID",
+						"title": "Key",
 						"type": "`$STRING`",
+						"short": "Champion ID",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Champion name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Champion name",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "Champion title",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "Champion title",
 					},
 				},
 				"name": "data_champion",
@@ -215,26 +216,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "en_US",
-											"kind": "param",
-											"name": "language",
-											"orig": "language",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "12.6.1",
-											"kind": "param",
-											"name": "version",
-											"orig": "version",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cdn/{version}/data/{language}/champion.json",
@@ -255,16 +236,6 @@ func MakeConfig() map[string]any {
 										"lit": "champion.json",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"language",
-										"version",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
 								"parts": []any{
 									"cdn",
 									"{version}",
@@ -272,31 +243,60 @@ func MakeConfig() map[string]any {
 									"{language}",
 									"champion.json",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "language",
+											"orig": "language",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "en_US",
+										},
+										map[string]any{
+											"name": "version",
+											"orig": "version",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "12.6.1",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"language",
+										"version",
+									},
+								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"cdn",
-							"data",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 			"data_item": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "description",
+						"title": "Description",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "image",
+						"title": "Image",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
 						"type": "`$STRING`",
 					},
 				},
@@ -307,26 +307,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "en_US",
-											"kind": "param",
-											"name": "language",
-											"orig": "language",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "12.6.1",
-											"kind": "param",
-											"name": "version",
-											"orig": "version",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cdn/{version}/data/{language}/item.json",
@@ -347,16 +327,6 @@ func MakeConfig() map[string]any {
 										"lit": "item.json",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"language",
-										"version",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.data`",
-								},
 								"parts": []any{
 									"cdn",
 									"{version}",
@@ -364,17 +334,43 @@ func MakeConfig() map[string]any {
 									"{language}",
 									"item.json",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.data`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "language",
+											"orig": "language",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "en_US",
+										},
+										map[string]any{
+											"name": "version",
+											"orig": "version",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "12.6.1",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"language",
+										"version",
+									},
+								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"cdn",
-							"data",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 			"data_rune": map[string]any{
@@ -386,26 +382,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "en_US",
-											"kind": "param",
-											"name": "language",
-											"orig": "language",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "12.6.1",
-											"kind": "param",
-											"name": "version",
-											"orig": "version",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cdn/{version}/data/{language}/rune.json",
@@ -426,16 +402,6 @@ func MakeConfig() map[string]any {
 										"lit": "rune.json",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"language",
-										"version",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"cdn",
 									"{version}",
@@ -443,17 +409,43 @@ func MakeConfig() map[string]any {
 									"{language}",
 									"rune.json",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "language",
+											"orig": "language",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "en_US",
+										},
+										map[string]any{
+											"name": "version",
+											"orig": "version",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "12.6.1",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"language",
+										"version",
+									},
+								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"cdn",
-							"data",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 			"dragontail_versiontgz": map[string]any{
@@ -465,18 +457,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "12.6.1",
-											"kind": "param",
-											"name": "version",
-											"orig": "version",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cdn/dragontail-{version}.tgz",
@@ -488,18 +468,31 @@ func MakeConfig() map[string]any {
 										"lit": "dragontail-{version}.tgz",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"version",
-									},
+								"parts": []any{
+									"cdn",
+									"dragontail-{version}.tgz",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"cdn",
-									"dragontail-{version}.tgz",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "version",
+											"orig": "version",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "12.6.1",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"version",
+									},
 								},
 							},
 						},
@@ -513,6 +506,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"title": "Id",
 						"type": "`$STRING`",
 					},
 				},
@@ -527,34 +521,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "1001.png",
-											"kind": "param",
-											"name": "id",
-											"orig": "item_image",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "12.6.1",
-											"kind": "param",
-											"name": "version",
-											"orig": "version",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/cdn/{version}/img/item/{itemImage}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"itemImage": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "cdn",
@@ -572,16 +541,6 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
-										"version",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"cdn",
 									"{version}",
@@ -589,30 +548,64 @@ func MakeConfig() map[string]any {
 									"item",
 									"{id}",
 								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"itemImage": "id",
+									},
+								},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "item_image",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "1001.png",
+										},
+										map[string]any{
+											"name": "version",
+											"orig": "version",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "12.6.1",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+										"version",
+									},
+								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"cdn",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 			"region": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "champion",
+						"title": "Champion",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "item",
+						"title": "Item",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "rune",
+						"title": "Rune",
 						"type": "`$STRING`",
 					},
 				},
@@ -623,18 +616,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "na",
-											"kind": "param",
-											"name": "region",
-											"orig": "region",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/realms/{region}.json",
@@ -646,18 +627,31 @@ func MakeConfig() map[string]any {
 										"lit": "{region}.json",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"region",
-									},
+								"parts": []any{
+									"realms",
+									"{region}.json",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.n`",
 								},
-								"parts": []any{
-									"realms",
-									"{region}.json",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "region",
+											"orig": "region",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "na",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"region",
+									},
 								},
 							},
 						},
@@ -676,7 +670,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/versions.json",
@@ -688,15 +681,17 @@ func MakeConfig() map[string]any {
 										"lit": "versions.json",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"api",
 									"versions.json",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},

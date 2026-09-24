@@ -35,10 +35,8 @@ local client = sdk.new()
 
 ### 3. Load a champion
 
-Champion is nested under version, so provide the `version`.
-
 ```lua
-local champion, err = client:Champion():load({ version = "example_version", id = "example_id" })
+local champion, err = client:Champion():load({ id = "example_id", version = "example_version" })
 if err then error(err) end
 print(champion)
 ```

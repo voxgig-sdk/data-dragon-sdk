@@ -62,7 +62,7 @@ def data_rune_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["data_rune01", "data_rune02", "data_rune03", "cdn01", "cdn02", "cdn03", "data01", "data02", "data03", "version01"],
+    ["data_rune01", "data_rune02", "data_rune03", "version01"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",

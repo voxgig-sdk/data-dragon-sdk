@@ -35,15 +35,11 @@ const client = new DataDragonSDK()
 
 ### 3. Load a champion
 
-Champion is nested under version, so provide the `version`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const champion = await client.Champion().load({
-    version: 'example_version',
-    id: 'example_id',
-  })
+  const champion = await client.Champion().load({ id: 'example_id', version: 'example_version' })
   console.log(champion)
 } catch (err) {
   console.error('load failed:', err)

@@ -94,6 +94,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -108,34 +109,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "Ahri.png",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "champion_image",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "12.6.1",
-                      ["kind"] = "param",
-                      ["name"] = "version",
-                      ["orig"] = "version",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cdn/{version}/img/champion/{championImage}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["championImage"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cdn",
@@ -153,16 +129,6 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "version",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "cdn",
                   "{version}",
@@ -170,38 +136,73 @@ local function make_config()
                   "champion",
                   "{id}",
                 },
+                ["rename"] = {
+                  ["param"] = {
+                    ["championImage"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "champion_image",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "Ahri.png",
+                    },
+                    {
+                      ["name"] = "version",
+                      ["orig"] = "version",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "12.6.1",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "version",
+                  },
+                },
               },
             },
           },
         },
         ["relations"] = {
-          ["ancestors"] = {
-            {
-              "cdn",
-            },
-          },
+          ["ancestors"] = {},
         },
       },
       ["data_champion"] = {
         ["fields"] = {
           {
             ["name"] = "image",
+            ["title"] = "Image",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "key",
-            ["short"] = "Champion ID",
+            ["title"] = "Key",
             ["type"] = "`$STRING`",
+            ["short"] = "Champion ID",
           },
           {
             ["name"] = "name",
-            ["short"] = "Champion name",
+            ["title"] = "Name",
             ["type"] = "`$STRING`",
+            ["short"] = "Champion name",
           },
           {
             ["name"] = "title",
-            ["short"] = "Champion title",
+            ["title"] = "Title",
             ["type"] = "`$STRING`",
+            ["short"] = "Champion title",
           },
         },
         ["name"] = "data_champion",
@@ -211,26 +212,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "en_US",
-                      ["kind"] = "param",
-                      ["name"] = "language",
-                      ["orig"] = "language",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "12.6.1",
-                      ["kind"] = "param",
-                      ["name"] = "version",
-                      ["orig"] = "version",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cdn/{version}/data/{language}/champion.json",
@@ -251,16 +232,6 @@ local function make_config()
                     ["lit"] = "champion.json",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "language",
-                    "version",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.data`",
-                },
                 ["parts"] = {
                   "cdn",
                   "{version}",
@@ -268,31 +239,60 @@ local function make_config()
                   "{language}",
                   "champion.json",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.data`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "language",
+                      ["orig"] = "language",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "en_US",
+                    },
+                    {
+                      ["name"] = "version",
+                      ["orig"] = "version",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "12.6.1",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "language",
+                    "version",
+                  },
+                },
               },
             },
           },
         },
         ["relations"] = {
-          ["ancestors"] = {
-            {
-              "cdn",
-              "data",
-            },
-          },
+          ["ancestors"] = {},
         },
       },
       ["data_item"] = {
         ["fields"] = {
           {
             ["name"] = "description",
+            ["title"] = "Description",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "image",
+            ["title"] = "Image",
             ["type"] = "`$OBJECT`",
           },
           {
             ["name"] = "name",
+            ["title"] = "Name",
             ["type"] = "`$STRING`",
           },
         },
@@ -303,26 +303,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "en_US",
-                      ["kind"] = "param",
-                      ["name"] = "language",
-                      ["orig"] = "language",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "12.6.1",
-                      ["kind"] = "param",
-                      ["name"] = "version",
-                      ["orig"] = "version",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cdn/{version}/data/{language}/item.json",
@@ -343,16 +323,6 @@ local function make_config()
                     ["lit"] = "item.json",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "language",
-                    "version",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body.data`",
-                },
                 ["parts"] = {
                   "cdn",
                   "{version}",
@@ -360,17 +330,43 @@ local function make_config()
                   "{language}",
                   "item.json",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body.data`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "language",
+                      ["orig"] = "language",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "en_US",
+                    },
+                    {
+                      ["name"] = "version",
+                      ["orig"] = "version",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "12.6.1",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "language",
+                    "version",
+                  },
+                },
               },
             },
           },
         },
         ["relations"] = {
-          ["ancestors"] = {
-            {
-              "cdn",
-              "data",
-            },
-          },
+          ["ancestors"] = {},
         },
       },
       ["data_rune"] = {
@@ -382,26 +378,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "en_US",
-                      ["kind"] = "param",
-                      ["name"] = "language",
-                      ["orig"] = "language",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "12.6.1",
-                      ["kind"] = "param",
-                      ["name"] = "version",
-                      ["orig"] = "version",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cdn/{version}/data/{language}/rune.json",
@@ -422,16 +398,6 @@ local function make_config()
                     ["lit"] = "rune.json",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "language",
-                    "version",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "cdn",
                   "{version}",
@@ -439,17 +405,43 @@ local function make_config()
                   "{language}",
                   "rune.json",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "language",
+                      ["orig"] = "language",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "en_US",
+                    },
+                    {
+                      ["name"] = "version",
+                      ["orig"] = "version",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "12.6.1",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "language",
+                    "version",
+                  },
+                },
               },
             },
           },
         },
         ["relations"] = {
-          ["ancestors"] = {
-            {
-              "cdn",
-              "data",
-            },
-          },
+          ["ancestors"] = {},
         },
       },
       ["dragontail_versiontgz"] = {
@@ -461,18 +453,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "12.6.1",
-                      ["kind"] = "param",
-                      ["name"] = "version",
-                      ["orig"] = "version",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cdn/dragontail-{version}.tgz",
@@ -484,18 +464,31 @@ local function make_config()
                     ["lit"] = "dragontail-{version}.tgz",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "version",
-                  },
+                ["parts"] = {
+                  "cdn",
+                  "dragontail-{version}.tgz",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "cdn",
-                  "dragontail-{version}.tgz",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "version",
+                      ["orig"] = "version",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "12.6.1",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "version",
+                  },
                 },
               },
             },
@@ -509,6 +502,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "id",
+            ["title"] = "Id",
             ["type"] = "`$STRING`",
           },
         },
@@ -523,34 +517,9 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "1001.png",
-                      ["kind"] = "param",
-                      ["name"] = "id",
-                      ["orig"] = "item_image",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["example"] = "12.6.1",
-                      ["kind"] = "param",
-                      ["name"] = "version",
-                      ["orig"] = "version",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/cdn/{version}/img/item/{itemImage}",
-                ["rename"] = {
-                  ["param"] = {
-                    ["itemImage"] = "id",
-                  },
-                },
                 ["segments"] = {
                   {
                     ["lit"] = "cdn",
@@ -568,16 +537,6 @@ local function make_config()
                     ["var"] = "id",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "id",
-                    "version",
-                  },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "cdn",
                   "{version}",
@@ -585,30 +544,64 @@ local function make_config()
                   "item",
                   "{id}",
                 },
+                ["rename"] = {
+                  ["param"] = {
+                    ["itemImage"] = "id",
+                  },
+                },
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "id",
+                      ["orig"] = "item_image",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "1001.png",
+                    },
+                    {
+                      ["name"] = "version",
+                      ["orig"] = "version",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "12.6.1",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "id",
+                    "version",
+                  },
+                },
               },
             },
           },
         },
         ["relations"] = {
-          ["ancestors"] = {
-            {
-              "cdn",
-            },
-          },
+          ["ancestors"] = {},
         },
       },
       ["region"] = {
         ["fields"] = {
           {
             ["name"] = "champion",
+            ["title"] = "Champion",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "item",
+            ["title"] = "Item",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "rune",
+            ["title"] = "Rune",
             ["type"] = "`$STRING`",
           },
         },
@@ -619,18 +612,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["params"] = {
-                    {
-                      ["example"] = "na",
-                      ["kind"] = "param",
-                      ["name"] = "region",
-                      ["orig"] = "region",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/realms/{region}.json",
@@ -642,18 +623,31 @@ local function make_config()
                     ["lit"] = "{region}.json",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "region",
-                  },
+                ["parts"] = {
+                  "realms",
+                  "{region}.json",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.n`",
                 },
-                ["parts"] = {
-                  "realms",
-                  "{region}.json",
+                ["args"] = {
+                  ["params"] = {
+                    {
+                      ["name"] = "region",
+                      ["orig"] = "region",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "param",
+                      ["reqd"] = true,
+                      ["example"] = "na",
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "region",
+                  },
                 },
               },
             },
@@ -672,7 +666,6 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/versions.json",
@@ -684,15 +677,17 @@ local function make_config()
                     ["lit"] = "versions.json",
                   },
                 },
-                ["select"] = {},
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
                 ["parts"] = {
                   "api",
                   "versions.json",
                 },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {},
+                ["select"] = {},
               },
             },
           },

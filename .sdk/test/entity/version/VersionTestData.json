@@ -14,32 +14,8 @@
   "requests": {
     "GET /api/versions.json": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getVersions",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "example": [
-                    "12.6.1",
-                    "12.5.1",
-                    "12.4.1"
-                  ],
-                  "items": {
-                    "type": "string"
-                  },
-                  "type": "array"
-                }
-              }
-            },
-            "description": "Successfully retrieved version list"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     }
   }
 }

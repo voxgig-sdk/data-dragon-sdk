@@ -38,12 +38,11 @@ client = DataDragonSDK()
 
 ### 3. Load a champion
 
-Champion is nested under version, so provide the `version`.
 `load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
-    champion = client.Champion().load({"version": "example_version", "id": "example_id"})
+    champion = client.Champion().load({"id": "example_id", "version": "example_version"})
     print(champion)
 except Exception as err:
     print(f"load failed: {err}")

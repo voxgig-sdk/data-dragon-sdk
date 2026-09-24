@@ -1,0 +1,104 @@
+# Entity: data_champion
+
+main: kit: entity: data_champion: {
+
+  alias: field: {}
+
+  fields: {
+    image: {
+      h: "Image"
+      n: "image"
+      r: false
+      t: "`$OBJECT`"
+    }
+    key: {
+      h: "Key"
+      n: "key"
+      r: false
+      sh: "Champion ID"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Champion name"
+      t: "`$STRING`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "Champion title"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "data_champion"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /cdn/{version}/data/{language}/champion.json"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "en_US"
+                k: "param"
+                n: "language"
+                or: "language"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "12.6.1"
+                k: "param"
+                n: "version"
+                or: "version"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/cdn/{version}/data/{language}/champion.json"
+          q: {
+            exist: [
+              "language"
+              "version"
+            ]
+          }
+          s: [
+            {
+              lit: "cdn"
+            }
+            {
+              var: "version"
+            }
+            {
+              lit: "data"
+            }
+            {
+              var: "language"
+            }
+            {
+              lit: "champion.json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

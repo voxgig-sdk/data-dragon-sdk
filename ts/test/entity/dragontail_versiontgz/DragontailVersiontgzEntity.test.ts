@@ -25,10 +25,6 @@ import {
 } from '../../utility'
 
 
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 loadEnvLocal(__dirname + '/../../../.env.local')
 
 
@@ -55,7 +51,7 @@ describe('DragontailVersiontgzEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[],"name":"dragontail_versiontgz","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"example":"12.6.1","kind":"param","name":"version","orig":"version","reqd":true,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /cdn/dragontail-{version}.tgz","json":"{\"operationId\":\"downloadDragontail\",\"parameters\":[{\"description\":\"Patch version (e.g., 12.6.1)\",\"example\":\"12.6.1\",\"in\":\"path\",\"name\":\"version\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/gzip\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successfully retrieved tarball\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/cdn/dragontail-{version}.tgz","segments":[{"lit":"cdn"},{"lit":"dragontail-{version}.tgz"}],"select":{"exist":["version"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"dragontail_versiontgz","name__orig":"dragontail_versiontgz","Name":"DragontailVersiontgz","name_":"dragontail_versiontgz","name-":"dragontail-versiontgz","NAME":"DRAGONTAIL_VERSIONTGZ","index$":4}, {"active":true,"entity":"dragontail_versiontgz","key$":"BasicDragontailVersiontgzFlow","kind":"basic","name":"BasicDragontailVersiontgzFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"dragontail_versiontgz_ref01","srcdatavar":"dragontail_versiontgz_ref01_data","suffix":"_dt0"},"match":{"version":"version01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-dragontail_versiontgz_ref01"}}],"index$":0}]}, 'DragontailVersiontgz')
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{},"name":"dragontail_versiontgz","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /cdn/dragontail-{version}.tgz","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"12.6.1","k":"param","n":"version","or":"version","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/cdn/dragontail-{version}.tgz","q":{"exist":["version"]},"r":{},"s":[{"lit":"cdn"},{"lit":"dragontail-{version}.tgz"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"dragontail_versiontgz","name__orig":"dragontail_versiontgz","Name":"DragontailVersiontgz","name_":"dragontail_versiontgz","name-":"dragontail-versiontgz","NAME":"DRAGONTAIL_VERSIONTGZ","index$":4}, {"active":true,"entity":"dragontail_versiontgz","key$":"BasicDragontailVersiontgzFlow","kind":"basic","name":"BasicDragontailVersiontgzFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"dragontail_versiontgz_ref01","srcdatavar":"dragontail_versiontgz_ref01_data","suffix":"_dt0"},"m":{"version":"version01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-dragontail_versiontgz_ref01"}}],"index$":0}]}, 'DragontailVersiontgz', {"GET /cdn/dragontail-{version}.tgz":{"protocol":"http","operationId":"downloadDragontail","responses":{"200":{"description":"Successfully retrieved tarball","content":{"application/gzip":{"schema":{"type":"string","format":"binary"}}}}},"parameters":[{"name":"version","in":"path","required":true,"description":"Patch version (e.g., 12.6.1)","schema":{"type":"string"},"example":"12.6.1","index$":0}],"securitySource":"unspecified"}})
     }
     const client = setup.client
     const struct = setup.struct
@@ -98,7 +94,7 @@ function basicSetup(extra?: any) {
   const transform = struct.transform
 
   let idmap = transform(
-    ['dragontail_versiontgz01','dragontail_versiontgz02','dragontail_versiontgz03'],
+    ['dragontail_versiontgz01','dragontail_versiontgz02','dragontail_versiontgz03','version01'],
     {
       '`$PACK`': ['', {
         '`$KEY`': '`$COPY`',

@@ -1,0 +1,33 @@
+# BasicChampionFlow
+
+main: kit: flow: BasicChampionFlow:
+{
+  entity: "champion",
+  kind: "basic",
+  name: "BasicChampionFlow",
+  step: [
+    {
+      i: {
+        ref: "champion_ref01",
+        srcdatavar: "champion_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "champion01",
+        version: "version01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-champion_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicChampionFlow"
+}

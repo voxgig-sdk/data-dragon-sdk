@@ -1,0 +1,77 @@
+# Entity: data_rune
+
+main: kit: entity: data_rune: {
+
+  alias: field: {}
+
+  name: "data_rune"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /cdn/{version}/data/{language}/rune.json"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "en_US"
+                k: "param"
+                n: "language"
+                or: "language"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "12.6.1"
+                k: "param"
+                n: "version"
+                or: "version"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/cdn/{version}/data/{language}/rune.json"
+          q: {
+            exist: [
+              "language"
+              "version"
+            ]
+          }
+          s: [
+            {
+              lit: "cdn"
+            }
+            {
+              var: "version"
+            }
+            {
+              lit: "data"
+            }
+            {
+              var: "language"
+            }
+            {
+              lit: "rune.json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

@@ -19,7 +19,6 @@ import type {
   VersionListMatch,
 } from '../DataDragonTypes'
 
-// TODO: needs Entity superclass
 class VersionEntity extends DataDragonEntityBase<Version> {
 
   constructor(client: DataDragonSDK, entopts: any) {

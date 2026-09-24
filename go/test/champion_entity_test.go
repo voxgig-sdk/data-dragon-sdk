@@ -104,7 +104,7 @@ func championBasicSetup(extra map[string]any) *entityTestSetup {
 
 	// Generate idmap via transform, matching TS pattern.
 	idmap, _ := vs.Transform(
-		[]any{"champion01", "champion02", "champion03", "cdn01", "cdn02", "cdn03", "version01"},
+		[]any{"champion01", "champion02", "champion03", "version01"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
 				"`$KEY`": "`$COPY`",

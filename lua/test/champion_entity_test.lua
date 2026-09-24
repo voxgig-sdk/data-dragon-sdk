@@ -76,7 +76,7 @@ function champion_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "champion01", "champion02", "champion03", "cdn01", "cdn02", "cdn03", "version01" },
+    { "champion01", "champion02", "champion03", "version01" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

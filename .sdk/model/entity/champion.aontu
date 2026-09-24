@@ -1,0 +1,93 @@
+# Entity: champion
+
+main: kit: entity: champion: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "champion"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /cdn/{version}/img/champion/{championImage}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "Ahri.png"
+                k: "param"
+                n: "id"
+                or: "champion_image"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "12.6.1"
+                k: "param"
+                n: "version"
+                or: "version"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/cdn/{version}/img/champion/{championImage}"
+          q: {
+            exist: [
+              "id"
+              "version"
+            ]
+          }
+          r: {
+            param: {
+              championImage: "id"
+            }
+          }
+          s: [
+            {
+              lit: "cdn"
+            }
+            {
+              var: "version"
+            }
+            {
+              lit: "img"
+            }
+            {
+              lit: "champion"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

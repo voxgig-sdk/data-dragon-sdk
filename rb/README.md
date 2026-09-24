@@ -32,12 +32,10 @@ client = DataDragonSDK.new
 
 ### 3. Load a champion
 
-Champion is nested under version, so provide the `version`.
-
 ```ruby
 begin
   # load returns the ENTITY — call data_get for the Champion record (raises on error).
-  champion = client.Champion.load({ "version" => "example_version", "id" => "example_id" })
+  champion = client.Champion.load({ "id" => "example_id", "version" => "example_version" })
   puts champion
 rescue => err
   warn "load failed: #{err}"

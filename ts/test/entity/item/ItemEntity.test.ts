@@ -25,10 +25,6 @@ import {
 } from '../../utility'
 
 
-// AFTER the imports on purpose: TypeScript hoists `import` above any
-// statement in the emitted CommonJS, so a loader placed above them would
-// run only after every imported module had already been evaluated - and
-// anything reading process.env at module scope would miss these values.
 loadEnvLocal(__dirname + '/../../../.env.local')
 
 
@@ -55,7 +51,7 @@ describe('ItemEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"id","req":false,"type":"`$STRING`","index$":0}],"id":{"field":"id","name":"id"},"name":"item","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"example":"1001.png","kind":"param","name":"id","orig":"item_image","reqd":true,"type":"`$STRING`","index$":0},{"active":true,"example":"12.6.1","kind":"param","name":"version","orig":"version","reqd":true,"type":"`$STRING`","index$":1}]},"contract":{"id":"GET /cdn/{version}/img/item/{itemImage}","json":"{\"operationId\":\"getItemImage\",\"parameters\":[{\"description\":\"Patch version (e.g., 12.6.1)\",\"example\":\"12.6.1\",\"in\":\"path\",\"name\":\"version\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Item image filename (e.g., 1001.png)\",\"example\":\"1001.png\",\"in\":\"path\",\"name\":\"itemImage\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"image/png\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successfully retrieved item image\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/cdn/{version}/img/item/{itemImage}","rename":{"param":{"itemImage":"id"}},"segments":[{"lit":"cdn"},{"var":"version"},{"lit":"img"},{"lit":"item"},{"var":"id"}],"select":{"exist":["id","version"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[["cdn"]]},"key$":"item","name__orig":"item","Name":"Item","name_":"item","name-":"item","NAME":"ITEM","index$":5}, {"active":true,"entity":"item","key$":"BasicItemFlow","kind":"basic","name":"BasicItemFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"item_ref01","srcdatavar":"item_ref01_data","suffix":"_dt0"},"match":{"id":"item01","version":"version01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-item_ref01"}}],"index$":0}]}, 'Item')
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"id":{"a":true,"h":"Id","n":"id","r":false,"t":"`$STRING`","key$":"id","index$":0}},"id":{"field":"id","name":"id"},"name":"item","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /cdn/{version}/img/item/{itemImage}","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"1001.png","k":"param","n":"id","or":"item_image","r":true,"t":"`$STRING`","index$":0},{"a":true,"ex":"12.6.1","k":"param","n":"version","or":"version","r":true,"t":"`$STRING`","index$":1}]},"k":"http","m":"GET","o":"/cdn/{version}/img/item/{itemImage}","q":{"exist":["id","version"]},"r":{"param":{"itemImage":"id"}},"s":[{"lit":"cdn"},{"var":"version"},{"lit":"img"},{"lit":"item"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"item","name__orig":"item","Name":"Item","name_":"item","name-":"item","NAME":"ITEM","index$":5}, {"active":true,"entity":"item","key$":"BasicItemFlow","kind":"basic","name":"BasicItemFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"item_ref01","srcdatavar":"item_ref01_data","suffix":"_dt0"},"m":{"id":"item01","version":"version01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-item_ref01"}}],"index$":0}]}, 'Item', {"GET /cdn/{version}/img/item/{itemImage}":{"protocol":"http","operationId":"getItemImage","responses":{"200":{"description":"Successfully retrieved item image","content":{"image/png":{"schema":{"type":"string","format":"binary"}}}}},"parameters":[{"name":"version","in":"path","required":true,"description":"Patch version (e.g., 12.6.1)","schema":{"type":"string"},"example":"12.6.1","index$":0},{"name":"itemImage","in":"path","required":true,"description":"Item image filename (e.g., 1001.png)","schema":{"type":"string"},"example":"1001.png","index$":1}],"securitySource":"unspecified"}})
     }
     const client = setup.client
     const struct = setup.struct
@@ -101,7 +97,7 @@ function basicSetup(extra?: any) {
   const transform = struct.transform
 
   let idmap = transform(
-    ['item01','item02','item03','cdn01','cdn02','cdn03'],
+    ['item01','item02','item03','version01'],
     {
       '`$PACK`': ['', {
         '`$KEY`': '`$COPY`',

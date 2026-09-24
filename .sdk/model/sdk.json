@@ -24,20 +24,87 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "champion": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+          "fields": {
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -49,44 +116,49 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /cdn/{version}/img/champion/{championImage}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": "Ahri.png",
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "champion_image",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "Ahri.png",
+                        "k": "param",
+                        "n": "id",
+                        "or": "champion_image",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "12.6.1",
-                        "kind": "param",
-                        "name": "version",
-                        "orig": "version",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "12.6.1",
+                        "k": "param",
+                        "n": "version",
+                        "or": "version",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /cdn/{version}/img/champion/{championImage}",
-                    "json": "{\"operationId\":\"getChampionImage\",\"parameters\":[{\"description\":\"Patch version (e.g., 12.6.1)\",\"example\":\"12.6.1\",\"in\":\"path\",\"name\":\"version\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Champion image filename (e.g., Ahri.png)\",\"example\":\"Ahri.png\",\"in\":\"path\",\"name\":\"championImage\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"image/png\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successfully retrieved champion image\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/cdn/{version}/img/champion/{championImage}",
+                  "q": {
+                    "exist": [
+                      "id",
+                      "version"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/cdn/{version}/img/champion/{championImage}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "championImage": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "cdn"
                     },
@@ -103,13 +175,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id",
-                      "version"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -118,11 +184,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "cdn"
-              ]
-            ]
+            "ancestors": []
           }
         },
         "data_champion": {
@@ -130,35 +192,39 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "image",
-              "req": false,
-              "type": "`$OBJECT`"
+          "fields": {
+            "image": {
+              "a": true,
+              "h": "Image",
+              "n": "image",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "key",
-              "req": false,
-              "short": "Champion ID",
-              "type": "`$STRING`"
+            "key": {
+              "a": true,
+              "h": "Key",
+              "n": "key",
+              "r": false,
+              "sh": "Champion ID",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Champion name",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Champion name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "title",
-              "req": false,
-              "short": "Champion title",
-              "type": "`$STRING`"
+            "title": {
+              "a": true,
+              "h": "Title",
+              "n": "title",
+              "r": false,
+              "sh": "Champion title",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "data_champion",
           "op": {
             "load": {
@@ -166,39 +232,45 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /cdn/{version}/data/{language}/champion.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": "en_US",
-                        "kind": "param",
-                        "name": "language",
-                        "orig": "language",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "en_US",
+                        "k": "param",
+                        "n": "language",
+                        "or": "language",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "12.6.1",
-                        "kind": "param",
-                        "name": "version",
-                        "orig": "version",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "12.6.1",
+                        "k": "param",
+                        "n": "version",
+                        "or": "version",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /cdn/{version}/data/{language}/champion.json",
-                    "json": "{\"operationId\":\"getChampionData\",\"parameters\":[{\"description\":\"Patch version (e.g., 12.6.1)\",\"example\":\"12.6.1\",\"in\":\"path\",\"name\":\"version\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Language code (e.g., en_US, ko_KR, ja_JP)\",\"example\":\"en_US\",\"in\":\"path\",\"name\":\"language\",\"required\":true,\"schema\":{\"enum\":[\"cs_CZ\",\"el_GR\",\"pl_PL\",\"ro_RO\",\"hu_HU\",\"en_GB\",\"de_DE\",\"es_ES\",\"it_IT\",\"fr_FR\",\"ja_JP\",\"ko_KR\",\"es_MX\",\"es_AR\",\"pt_BR\",\"en_US\",\"en_AU\",\"ru_RU\",\"tr_TR\",\"ms_MY\",\"en_PH\",\"en_SG\",\"th_TH\",\"vn_VN\",\"id_ID\",\"zh_MY\",\"zh_CN\",\"zh_TW\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"additionalProperties\":{\"properties\":{\"image\":{\"properties\":{\"full\":{\"description\":\"Image filename\",\"type\":\"string\"}},\"type\":\"object\"},\"key\":{\"description\":\"Champion ID\",\"type\":\"string\"},\"name\":{\"description\":\"Champion name\",\"type\":\"string\"},\"title\":{\"description\":\"Champion title\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"object\"},\"format\":{\"type\":\"string\"},\"type\":{\"type\":\"string\"},\"version\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully retrieved champion data\",\"headers\":{\"Accept-Charset\":{\"description\":\"Response encoding (UTF-8)\",\"schema\":{\"type\":\"string\"}}}}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/cdn/{version}/data/{language}/champion.json",
+                  "q": {
+                    "exist": [
+                      "language",
+                      "version"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/cdn/{version}/data/{language}/champion.json",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "cdn"
                     },
@@ -215,13 +287,7 @@
                       "lit": "champion.json"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "language",
-                      "version"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -230,12 +296,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "cdn",
-                "data"
-              ]
-            ]
+            "ancestors": []
           }
         },
         "data_item": {
@@ -243,26 +304,29 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "description",
-              "req": false,
-              "type": "`$STRING`"
+          "fields": {
+            "description": {
+              "a": true,
+              "h": "Description",
+              "n": "description",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "image",
-              "req": false,
-              "type": "`$OBJECT`"
+            "image": {
+              "a": true,
+              "h": "Image",
+              "n": "image",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "data_item",
           "op": {
             "load": {
@@ -270,39 +334,45 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /cdn/{version}/data/{language}/item.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": "en_US",
-                        "kind": "param",
-                        "name": "language",
-                        "orig": "language",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "en_US",
+                        "k": "param",
+                        "n": "language",
+                        "or": "language",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "12.6.1",
-                        "kind": "param",
-                        "name": "version",
-                        "orig": "version",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "12.6.1",
+                        "k": "param",
+                        "n": "version",
+                        "or": "version",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /cdn/{version}/data/{language}/item.json",
-                    "json": "{\"operationId\":\"getItemData\",\"parameters\":[{\"description\":\"Patch version (e.g., 12.6.1)\",\"example\":\"12.6.1\",\"in\":\"path\",\"name\":\"version\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Language code (e.g., en_US, ko_KR, ja_JP)\",\"example\":\"en_US\",\"in\":\"path\",\"name\":\"language\",\"required\":true,\"schema\":{\"enum\":[\"cs_CZ\",\"el_GR\",\"pl_PL\",\"ro_RO\",\"hu_HU\",\"en_GB\",\"de_DE\",\"es_ES\",\"it_IT\",\"fr_FR\",\"ja_JP\",\"ko_KR\",\"es_MX\",\"es_AR\",\"pt_BR\",\"en_US\",\"en_AU\",\"ru_RU\",\"tr_TR\",\"ms_MY\",\"en_PH\",\"en_SG\",\"th_TH\",\"vn_VN\",\"id_ID\",\"zh_MY\",\"zh_CN\",\"zh_TW\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"additionalProperties\":{\"properties\":{\"description\":{\"type\":\"string\"},\"image\":{\"properties\":{\"full\":{\"type\":\"string\"}},\"type\":\"object\"},\"name\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"object\"},\"type\":{\"type\":\"string\"},\"version\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully retrieved item data\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/cdn/{version}/data/{language}/item.json",
+                  "q": {
+                    "exist": [
+                      "language",
+                      "version"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/cdn/{version}/data/{language}/item.json",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "cdn"
                     },
@@ -319,13 +389,7 @@
                       "lit": "item.json"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "language",
-                      "version"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -334,12 +398,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "cdn",
-                "data"
-              ]
-            ]
+            "ancestors": []
           }
         },
         "data_rune": {
@@ -347,7 +406,7 @@
           "alias": {
             "field": {}
           },
-          "fields": [],
+          "fields": {},
           "name": "data_rune",
           "op": {
             "load": {
@@ -355,39 +414,45 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /cdn/{version}/data/{language}/rune.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": "en_US",
-                        "kind": "param",
-                        "name": "language",
-                        "orig": "language",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "en_US",
+                        "k": "param",
+                        "n": "language",
+                        "or": "language",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "12.6.1",
-                        "kind": "param",
-                        "name": "version",
-                        "orig": "version",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "12.6.1",
+                        "k": "param",
+                        "n": "version",
+                        "or": "version",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /cdn/{version}/data/{language}/rune.json",
-                    "json": "{\"operationId\":\"getRuneData\",\"parameters\":[{\"description\":\"Patch version (e.g., 12.6.1)\",\"example\":\"12.6.1\",\"in\":\"path\",\"name\":\"version\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Language code (e.g., en_US, ko_KR, ja_JP)\",\"example\":\"en_US\",\"in\":\"path\",\"name\":\"language\",\"required\":true,\"schema\":{\"enum\":[\"cs_CZ\",\"el_GR\",\"pl_PL\",\"ro_RO\",\"hu_HU\",\"en_GB\",\"de_DE\",\"es_ES\",\"it_IT\",\"fr_FR\",\"ja_JP\",\"ko_KR\",\"es_MX\",\"es_AR\",\"pt_BR\",\"en_US\",\"en_AU\",\"ru_RU\",\"tr_TR\",\"ms_MY\",\"en_PH\",\"en_SG\",\"th_TH\",\"vn_VN\",\"id_ID\",\"zh_MY\",\"zh_CN\",\"zh_TW\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"type\":\"object\"}}},\"description\":\"Successfully retrieved rune data\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/cdn/{version}/data/{language}/rune.json",
+                  "q": {
+                    "exist": [
+                      "language",
+                      "version"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/cdn/{version}/data/{language}/rune.json",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "cdn"
                     },
@@ -404,13 +469,7 @@
                       "lit": "rune.json"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "language",
-                      "version"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -419,12 +478,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "cdn",
-                "data"
-              ]
-            ]
+            "ancestors": []
           }
         },
         "dragontail_versiontgz": {
@@ -432,7 +486,7 @@
           "alias": {
             "field": {}
           },
-          "fields": [],
+          "fields": {},
           "name": "dragontail_versiontgz",
           "op": {
             "load": {
@@ -440,30 +494,35 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /cdn/dragontail-{version}.tgz",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": "12.6.1",
-                        "kind": "param",
-                        "name": "version",
-                        "orig": "version",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "12.6.1",
+                        "k": "param",
+                        "n": "version",
+                        "or": "version",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /cdn/dragontail-{version}.tgz",
-                    "json": "{\"operationId\":\"downloadDragontail\",\"parameters\":[{\"description\":\"Patch version (e.g., 12.6.1)\",\"example\":\"12.6.1\",\"in\":\"path\",\"name\":\"version\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/gzip\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successfully retrieved tarball\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/cdn/dragontail-{version}.tgz",
+                  "q": {
+                    "exist": [
+                      "version"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/cdn/dragontail-{version}.tgz",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "cdn"
                     },
@@ -471,12 +530,7 @@
                       "lit": "dragontail-{version}.tgz"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "version"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -493,14 +547,15 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$STRING`"
+          "fields": {
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -512,44 +567,49 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /cdn/{version}/img/item/{itemImage}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": "1001.png",
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "item_image",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "1001.png",
+                        "k": "param",
+                        "n": "id",
+                        "or": "item_image",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "12.6.1",
-                        "kind": "param",
-                        "name": "version",
-                        "orig": "version",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "12.6.1",
+                        "k": "param",
+                        "n": "version",
+                        "or": "version",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /cdn/{version}/img/item/{itemImage}",
-                    "json": "{\"operationId\":\"getItemImage\",\"parameters\":[{\"description\":\"Patch version (e.g., 12.6.1)\",\"example\":\"12.6.1\",\"in\":\"path\",\"name\":\"version\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"Item image filename (e.g., 1001.png)\",\"example\":\"1001.png\",\"in\":\"path\",\"name\":\"itemImage\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"image/png\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successfully retrieved item image\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/cdn/{version}/img/item/{itemImage}",
+                  "q": {
+                    "exist": [
+                      "id",
+                      "version"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/cdn/{version}/img/item/{itemImage}",
-                  "rename": {
+                  "r": {
                     "param": {
                       "itemImage": "id"
                     }
                   },
-                  "segments": [
+                  "s": [
                     {
                       "lit": "cdn"
                     },
@@ -566,13 +626,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id",
-                      "version"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -581,11 +635,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "cdn"
-              ]
-            ]
+            "ancestors": []
           }
         },
         "region": {
@@ -593,26 +643,29 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "champion",
-              "req": false,
-              "type": "`$STRING`"
+          "fields": {
+            "champion": {
+              "a": true,
+              "h": "Champion",
+              "n": "champion",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "item",
-              "req": false,
-              "type": "`$STRING`"
+            "item": {
+              "a": true,
+              "h": "Item",
+              "n": "item",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "rune",
-              "req": false,
-              "type": "`$STRING`"
+            "rune": {
+              "a": true,
+              "h": "Rune",
+              "n": "rune",
+              "r": false,
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "region",
           "op": {
             "load": {
@@ -620,30 +673,35 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /realms/{region}.json",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "example": "na",
-                        "kind": "param",
-                        "name": "region",
-                        "orig": "region",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "na",
+                        "k": "param",
+                        "n": "region",
+                        "or": "region",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /realms/{region}.json",
-                    "json": "{\"operationId\":\"getRealmData\",\"parameters\":[{\"description\":\"Region code (e.g., na, euw, kr)\",\"example\":\"na\",\"in\":\"path\",\"name\":\"region\",\"required\":true,\"schema\":{\"enum\":[\"na\",\"euw\",\"eune\",\"kr\",\"br\",\"jp\",\"lan\",\"las\",\"oce\",\"tr\",\"ru\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"cdn\":{\"description\":\"CDN base URL\",\"type\":\"string\"},\"n\":{\"properties\":{\"champion\":{\"type\":\"string\"},\"item\":{\"type\":\"string\"},\"rune\":{\"type\":\"string\"}},\"type\":\"object\"},\"v\":{\"description\":\"Current patch version\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully retrieved realm data\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/realms/{region}.json",
+                  "q": {
+                    "exist": [
+                      "region"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/realms/{region}.json",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "realms"
                     },
@@ -651,12 +709,7 @@
                       "lit": "{region}.json"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "region"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.n`"
                   }
@@ -673,7 +726,7 @@
           "alias": {
             "field": {}
           },
-          "fields": [],
+          "fields": {},
           "name": "version",
           "op": {
             "list": {
@@ -681,18 +734,19 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /api/versions.json",
-                    "json": "{\"operationId\":\"getVersions\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"example\":[\"12.6.1\",\"12.5.1\",\"12.4.1\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"}}},\"description\":\"Successfully retrieved version list\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/api/versions.json",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/versions.json",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "api"
                     },
@@ -700,8 +754,7 @@
                       "lit": "versions.json"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -1130,20 +1183,20 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "champion_ref01",
                 "srcdatavar": "champion_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "champion01",
                 "version": "version01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1163,20 +1216,20 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "data_champion_ref01",
                 "srcdatavar": "data_champion_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "data_champion01",
                 "version": "version01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1196,20 +1249,20 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "data_item_ref01",
                 "srcdatavar": "data_item_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "data_item01",
                 "version": "version01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1229,20 +1282,20 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "data_rune_ref01",
                 "srcdatavar": "data_rune_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "data_rune01",
                 "version": "version01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1262,19 +1315,19 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "dragontail_versiontgz_ref01",
                 "srcdatavar": "dragontail_versiontgz_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "version": "version01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1294,20 +1347,20 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "item_ref01",
                 "srcdatavar": "item_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "item01",
                 "version": "version01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1327,19 +1380,19 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "region_ref01",
                 "srcdatavar": "region_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "region": "region01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1359,13 +1412,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {

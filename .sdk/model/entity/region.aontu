@@ -1,0 +1,77 @@
+# Entity: region
+
+main: kit: entity: region: {
+
+  alias: field: {}
+
+  fields: {
+    champion: {
+      h: "Champion"
+      n: "champion"
+      r: false
+      t: "`$STRING`"
+    }
+    item: {
+      h: "Item"
+      n: "item"
+      r: false
+      t: "`$STRING`"
+    }
+    rune: {
+      h: "Rune"
+      n: "rune"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  name: "region"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /realms/{region}.json"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "na"
+                k: "param"
+                n: "region"
+                or: "region"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/realms/{region}.json"
+          q: {
+            exist: [
+              "region"
+            ]
+          }
+          s: [
+            {
+              lit: "realms"
+            }
+            {
+              lit: "{region}.json"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.n`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

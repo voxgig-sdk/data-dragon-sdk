@@ -1,0 +1,59 @@
+# Entity: dragontail_versiontgz
+
+main: kit: entity: dragontail_versiontgz: {
+
+  alias: field: {}
+
+  name: "dragontail_versiontgz"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /cdn/dragontail-{version}.tgz"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "12.6.1"
+                k: "param"
+                n: "version"
+                or: "version"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/cdn/dragontail-{version}.tgz"
+          q: {
+            exist: [
+              "version"
+            ]
+          }
+          s: [
+            {
+              lit: "cdn"
+            }
+            {
+              lit: "dragontail-{version}.tgz"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}
