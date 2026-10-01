@@ -170,10 +170,10 @@ local data_champion = client:DataChampion(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `image` | `table` | No |  |
-| `key` | `string` | No | Champion ID |
-| `name` | `string` | No | Champion name |
-| `title` | `string` | No | Champion title |
+| `data` | `table` | No |  |
+| `format` | `string` | No |  |
+| `type` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
@@ -225,9 +225,9 @@ local data_item = client:DataItem(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `image` | `table` | No |  |
-| `name` | `string` | No |  |
+| `data` | `table` | No |  |
+| `type` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
@@ -423,9 +423,9 @@ local region = client:Region(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `champion` | `string` | No |  |
-| `item` | `string` | No |  |
-| `rune` | `string` | No |  |
+| `cdn` | `string` | No | CDN base URL |
+| `n` | `table` | No |  |
+| `v` | `string` | No | Current patch version |
 
 ### Operations
 

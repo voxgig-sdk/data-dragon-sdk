@@ -173,10 +173,10 @@ data_champion = client.DataChampion
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `image` | `Hash` | No |  |
-| `key` | `String` | No | Champion ID |
-| `name` | `String` | No | Champion name |
-| `title` | `String` | No | Champion title |
+| `data` | `Hash` | No |  |
+| `format` | `String` | No |  |
+| `type` | `String` | No |  |
+| `version` | `String` | No |  |
 
 ### Operations
 
@@ -228,9 +228,9 @@ data_item = client.DataItem
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `String` | No |  |
-| `image` | `Hash` | No |  |
-| `name` | `String` | No |  |
+| `data` | `Hash` | No |  |
+| `type` | `String` | No |  |
+| `version` | `String` | No |  |
 
 ### Operations
 
@@ -426,9 +426,9 @@ region = client.Region
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `champion` | `String` | No |  |
-| `item` | `String` | No |  |
-| `rune` | `String` | No |  |
+| `cdn` | `String` | No | CDN base URL |
+| `n` | `Hash` | No |  |
+| `v` | `String` | No | Current patch version |
 
 ### Operations
 

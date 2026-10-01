@@ -153,7 +153,7 @@ func MakeConfig() map[string]any {
 									"params": []any{
 										map[string]any{
 											"name": "id",
-											"orig": "champion_image",
+											"orig": "championImage",
 											"type": "`$STRING`",
 											"kind": "param",
 											"reqd": true,
@@ -186,27 +186,24 @@ func MakeConfig() map[string]any {
 			"data_champion": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"name": "image",
-						"title": "Image",
+						"name": "data",
+						"title": "Data",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
-						"name": "key",
-						"title": "Key",
+						"name": "format",
+						"title": "Format",
 						"type": "`$STRING`",
-						"short": "Champion ID",
 					},
 					map[string]any{
-						"name": "name",
-						"title": "Name",
+						"name": "type",
+						"title": "Type",
 						"type": "`$STRING`",
-						"short": "Champion name",
 					},
 					map[string]any{
-						"name": "title",
-						"title": "Title",
+						"name": "version",
+						"title": "Version",
 						"type": "`$STRING`",
-						"short": "Champion title",
 					},
 				},
 				"name": "data_champion",
@@ -246,7 +243,7 @@ func MakeConfig() map[string]any {
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body.data`",
+									"res": "`body`",
 								},
 								"args": map[string]any{
 									"params": []any{
@@ -285,18 +282,18 @@ func MakeConfig() map[string]any {
 			"data_item": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"name": "description",
-						"title": "Description",
-						"type": "`$STRING`",
-					},
-					map[string]any{
-						"name": "image",
-						"title": "Image",
+						"name": "data",
+						"title": "Data",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
-						"name": "name",
-						"title": "Name",
+						"name": "type",
+						"title": "Type",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "version",
+						"title": "Version",
 						"type": "`$STRING`",
 					},
 				},
@@ -337,7 +334,7 @@ func MakeConfig() map[string]any {
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body.data`",
+									"res": "`body`",
 								},
 								"args": map[string]any{
 									"params": []any{
@@ -561,7 +558,7 @@ func MakeConfig() map[string]any {
 									"params": []any{
 										map[string]any{
 											"name": "id",
-											"orig": "item_image",
+											"orig": "itemImage",
 											"type": "`$STRING`",
 											"kind": "param",
 											"reqd": true,
@@ -594,19 +591,21 @@ func MakeConfig() map[string]any {
 			"region": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"name": "champion",
-						"title": "Champion",
+						"name": "cdn",
+						"title": "Cdn",
 						"type": "`$STRING`",
+						"short": "CDN base URL",
 					},
 					map[string]any{
-						"name": "item",
-						"title": "Item",
-						"type": "`$STRING`",
+						"name": "n",
+						"title": "N",
+						"type": "`$OBJECT`",
 					},
 					map[string]any{
-						"name": "rune",
-						"title": "Rune",
+						"name": "v",
+						"title": "V",
 						"type": "`$STRING`",
+						"short": "Current patch version",
 					},
 				},
 				"name": "region",
@@ -634,7 +633,7 @@ func MakeConfig() map[string]any {
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body.n`",
+									"res": "`body`",
 								},
 								"args": map[string]any{
 									"params": []any{

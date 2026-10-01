@@ -169,7 +169,7 @@ class Config {
                                 "params": [
                                     {
                                         "name": "id",
-                                        "orig": "champion_image",
+                                        "orig": "championImage",
                                         "type": "`$STRING`",
                                         "kind": "param",
                                         "reqd": true,
@@ -202,27 +202,24 @@ class Config {
         "data_champion": {
             "fields": [
                 {
-                    "name": "image",
-                    "title": "Image",
+                    "name": "data",
+                    "title": "Data",
                     "type": "`$OBJECT`"
                 },
                 {
-                    "name": "key",
-                    "title": "Key",
-                    "type": "`$STRING`",
-                    "short": "Champion ID"
+                    "name": "format",
+                    "title": "Format",
+                    "type": "`$STRING`"
                 },
                 {
-                    "name": "name",
-                    "title": "Name",
-                    "type": "`$STRING`",
-                    "short": "Champion name"
+                    "name": "type",
+                    "title": "Type",
+                    "type": "`$STRING`"
                 },
                 {
-                    "name": "title",
-                    "title": "Title",
-                    "type": "`$STRING`",
-                    "short": "Champion title"
+                    "name": "version",
+                    "title": "Version",
+                    "type": "`$STRING`"
                 }
             ],
             "name": "data_champion",
@@ -262,7 +259,7 @@ class Config {
                             "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
-                                "res": "`body.data`"
+                                "res": "`body`"
                             },
                             "args": {
                                 "params": [
@@ -301,18 +298,18 @@ class Config {
         "data_item": {
             "fields": [
                 {
-                    "name": "description",
-                    "title": "Description",
-                    "type": "`$STRING`"
-                },
-                {
-                    "name": "image",
-                    "title": "Image",
+                    "name": "data",
+                    "title": "Data",
                     "type": "`$OBJECT`"
                 },
                 {
-                    "name": "name",
-                    "title": "Name",
+                    "name": "type",
+                    "title": "Type",
+                    "type": "`$STRING`"
+                },
+                {
+                    "name": "version",
+                    "title": "Version",
                     "type": "`$STRING`"
                 }
             ],
@@ -353,7 +350,7 @@ class Config {
                             "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
-                                "res": "`body.data`"
+                                "res": "`body`"
                             },
                             "args": {
                                 "params": [
@@ -577,7 +574,7 @@ class Config {
                                 "params": [
                                     {
                                         "name": "id",
-                                        "orig": "item_image",
+                                        "orig": "itemImage",
                                         "type": "`$STRING`",
                                         "kind": "param",
                                         "reqd": true,
@@ -610,19 +607,21 @@ class Config {
         "region": {
             "fields": [
                 {
-                    "name": "champion",
-                    "title": "Champion",
-                    "type": "`$STRING`"
+                    "name": "cdn",
+                    "title": "Cdn",
+                    "type": "`$STRING`",
+                    "short": "CDN base URL"
                 },
                 {
-                    "name": "item",
-                    "title": "Item",
-                    "type": "`$STRING`"
+                    "name": "n",
+                    "title": "N",
+                    "type": "`$OBJECT`"
                 },
                 {
-                    "name": "rune",
-                    "title": "Rune",
-                    "type": "`$STRING`"
+                    "name": "v",
+                    "title": "V",
+                    "type": "`$STRING`",
+                    "short": "Current patch version"
                 }
             ],
             "name": "region",
@@ -650,7 +649,7 @@ class Config {
                             "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
-                                "res": "`body.n`"
+                                "res": "`body`"
                             },
                             "args": {
                                 "params": [

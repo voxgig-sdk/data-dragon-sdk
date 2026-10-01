@@ -6,19 +6,19 @@ export interface ChampionLoadMatch {
     version: string;
 }
 export interface DataChampion {
-    image?: Record<string, any>;
-    key?: string;
-    name?: string;
-    title?: string;
+    data?: Record<string, any>;
+    format?: string;
+    type?: string;
+    version?: string;
 }
 export interface DataChampionLoadMatch {
     language: string;
     version: string;
 }
 export interface DataItem {
-    description?: string;
-    image?: Record<string, any>;
-    name?: string;
+    data?: Record<string, any>;
+    type?: string;
+    version?: string;
 }
 export interface DataItemLoadMatch {
     language: string;
@@ -43,9 +43,9 @@ export interface ItemLoadMatch {
     version: string;
 }
 export interface Region {
-    champion?: string;
-    item?: string;
-    rune?: string;
+    cdn?: string;
+    n?: Record<string, any>;
+    v?: string;
 }
 export interface RegionLoadMatch {
     region: string;

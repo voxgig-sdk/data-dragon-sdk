@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 DataDragonUtility::setRegistrar(function (DataDragonUtility $u): void {
     $u->clean = [DataDragonClean::class, 'call'];
+    $u->clean_add = [DataDragonClean::class, 'add'];
+    $u->clean_explain = [DataDragonDone::class, 'clean_explain'];
     $u->done = [DataDragonDone::class, 'call'];
     $u->make_error = [DataDragonMakeError::class, 'call'];
     $u->feature_add = [DataDragonFeatureAdd::class, 'call'];

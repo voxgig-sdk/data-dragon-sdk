@@ -12,9 +12,18 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`):
+GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/data-dragon-sdk/releases)), or
+from a clone:
 
-- Releases: [https://github.com/voxgig-sdk/data-dragon-sdk/releases](https://github.com/voxgig-sdk/data-dragon-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/data-dragon-sdk
+```
+
+Then add it to your `Gemfile` by path, and run `bundle install`:
+
+```ruby
+gem "voxgig-sdk-data-dragon-sdk", path: "./data-dragon-sdk/rb"
+```
 
 
 ## Tutorial: your first API call
@@ -256,10 +265,10 @@ API path: `/cdn/{version}/img/champion/{championImage}`
 
 | Field | Description |
 | --- | --- |
-| `image` |  |
-| `key` | Champion ID |
-| `name` | Champion name |
-| `title` | Champion title |
+| `data` |  |
+| `format` |  |
+| `type` |  |
+| `version` |  |
 
 Operations: Load.
 
@@ -269,9 +278,9 @@ API path: `/cdn/{version}/data/{language}/champion.json`
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `image` |  |
-| `name` |  |
+| `data` |  |
+| `type` |  |
+| `version` |  |
 
 Operations: Load.
 
@@ -309,9 +318,9 @@ API path: `/cdn/{version}/img/item/{itemImage}`
 
 | Field | Description |
 | --- | --- |
-| `champion` |  |
-| `item` |  |
-| `rune` |  |
+| `cdn` | CDN base URL |
+| `n` |  |
+| `v` | Current patch version |
 
 Operations: Load.
 
@@ -369,10 +378,10 @@ Create an instance: `data_champion = client.DataChampion`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `image` | `Hash` |  |
-| `key` | `String` | Champion ID |
-| `name` | `String` | Champion name |
-| `title` | `String` | Champion title |
+| `data` | `Hash` |  |
+| `format` | `String` |  |
+| `type` | `String` |  |
+| `version` | `String` |  |
 
 #### Example: Load
 
@@ -396,9 +405,9 @@ Create an instance: `data_item = client.DataItem`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `String` |  |
-| `image` | `Hash` |  |
-| `name` | `String` |  |
+| `data` | `Hash` |  |
+| `type` | `String` |  |
+| `version` | `String` |  |
 
 #### Example: Load
 
@@ -482,9 +491,9 @@ Create an instance: `region = client.Region`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `champion` | `String` |  |
-| `item` | `String` |  |
-| `rune` | `String` |  |
+| `cdn` | `String` | CDN base URL |
+| `n` | `Hash` |  |
+| `v` | `String` | Current patch version |
 
 #### Example: Load
 

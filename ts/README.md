@@ -15,9 +15,13 @@ predictable and low-friction for both humans and AI agents.
 
 ## Install
 This package is not yet published to npm. Install it from the GitHub
-release tag (`ts/vX.Y.Z`):
+release tag (`ts/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/data-dragon-sdk/releases)), or from a
+clone, which carries the compiled `dist/`:
 
-- Releases: [https://github.com/voxgig-sdk/data-dragon-sdk/releases](https://github.com/voxgig-sdk/data-dragon-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/data-dragon-sdk
+npm install ./data-dragon-sdk/ts
+```
 
 
 ## Tutorial: your first API call
@@ -310,10 +314,10 @@ API path: `/cdn/{version}/img/champion/{championImage}`
 
 | Field | Description |
 | --- | --- |
-| `image` |  |
-| `key` | Champion ID |
-| `name` | Champion name |
-| `title` | Champion title |
+| `data` |  |
+| `format` |  |
+| `type` |  |
+| `version` |  |
 
 Operations: load.
 
@@ -323,9 +327,9 @@ API path: `/cdn/{version}/data/{language}/champion.json`
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `image` |  |
-| `name` |  |
+| `data` |  |
+| `type` |  |
+| `version` |  |
 
 Operations: load.
 
@@ -363,9 +367,9 @@ API path: `/cdn/{version}/img/item/{itemImage}`
 
 | Field | Description |
 | --- | --- |
-| `champion` |  |
-| `item` |  |
-| `rune` |  |
+| `cdn` | CDN base URL |
+| `n` |  |
+| `v` | Current patch version |
 
 Operations: load.
 
@@ -422,10 +426,10 @@ Create an instance: `const data_champion = client.DataChampion()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `image` | `Record<string, any>` |  |
-| `key` | `string` | Champion ID |
-| `name` | `string` | Champion name |
-| `title` | `string` | Champion title |
+| `data` | `Record<string, any>` |  |
+| `format` | `string` |  |
+| `type` | `string` |  |
+| `version` | `string` |  |
 
 #### Example: Load
 
@@ -448,9 +452,9 @@ Create an instance: `const data_item = client.DataItem()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `image` | `Record<string, any>` |  |
-| `name` | `string` |  |
+| `data` | `Record<string, any>` |  |
+| `type` | `string` |  |
+| `version` | `string` |  |
 
 #### Example: Load
 
@@ -530,9 +534,9 @@ Create an instance: `const region = client.Region()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `champion` | `string` |  |
-| `item` | `string` |  |
-| `rune` | `string` |  |
+| `cdn` | `string` | CDN base URL |
+| `n` | `Record<string, any>` |  |
+| `v` | `string` | Current patch version |
 
 #### Example: Load
 

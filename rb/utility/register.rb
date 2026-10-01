@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 DataDragonUtility.registrar = ->(u) {
   u.clean = DataDragonUtilities::Clean
+  u.clean_add = DataDragonUtilities::CleanAdd
+  u.clean_explain = DataDragonUtilities::CleanExplain
   u.done = DataDragonUtilities::Done
   u.make_error = DataDragonUtilities::MakeError
   u.feature_add = DataDragonUtilities::FeatureAdd

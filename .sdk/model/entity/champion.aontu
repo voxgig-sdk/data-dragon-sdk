@@ -35,7 +35,7 @@ main: kit: entity: champion: {
                 ex: "Ahri.png"
                 k: "param"
                 n: "id"
-                or: "champion_image"
+                or: "championImage"
                 r: true
                 t: "`$STRING`"
               }

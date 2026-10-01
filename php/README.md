@@ -12,9 +12,14 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`):
+GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/data-dragon-sdk/releases)), or
+from a clone as a Composer path repository:
 
-- Releases: [https://github.com/voxgig-sdk/data-dragon-sdk/releases](https://github.com/voxgig-sdk/data-dragon-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/data-dragon-sdk
+composer config repositories.data-dragon-sdk path ./data-dragon-sdk/php
+composer require voxgig-sdk/data-dragon-sdk:@dev
+```
 
 
 ## Tutorial: your first API call
@@ -266,10 +271,10 @@ API path: `/cdn/{version}/img/champion/{championImage}`
 
 | Field | Description |
 | --- | --- |
-| `image` |  |
-| `key` | Champion ID |
-| `name` | Champion name |
-| `title` | Champion title |
+| `data` |  |
+| `format` |  |
+| `type` |  |
+| `version` |  |
 
 Operations: Load.
 
@@ -279,9 +284,9 @@ API path: `/cdn/{version}/data/{language}/champion.json`
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `image` |  |
-| `name` |  |
+| `data` |  |
+| `type` |  |
+| `version` |  |
 
 Operations: Load.
 
@@ -319,9 +324,9 @@ API path: `/cdn/{version}/img/item/{itemImage}`
 
 | Field | Description |
 | --- | --- |
-| `champion` |  |
-| `item` |  |
-| `rune` |  |
+| `cdn` | CDN base URL |
+| `n` |  |
+| `v` | Current patch version |
 
 Operations: Load.
 
@@ -379,10 +384,10 @@ Create an instance: `$data_champion = $client->DataChampion();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `image` | `array` |  |
-| `key` | `string` | Champion ID |
-| `name` | `string` | Champion name |
-| `title` | `string` | Champion title |
+| `data` | `array` |  |
+| `format` | `string` |  |
+| `type` | `string` |  |
+| `version` | `string` |  |
 
 #### Example: Load
 
@@ -406,9 +411,9 @@ Create an instance: `$data_item = $client->DataItem();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `image` | `array` |  |
-| `name` | `string` |  |
+| `data` | `array` |  |
+| `type` | `string` |  |
+| `version` | `string` |  |
 
 #### Example: Load
 
@@ -492,9 +497,9 @@ Create an instance: `$region = $client->Region();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `champion` | `string` |  |
-| `item` | `string` |  |
-| `rune` | `string` |  |
+| `cdn` | `string` | CDN base URL |
+| `n` | `array` |  |
+| `v` | `string` | Current patch version |
 
 #### Example: Load
 

@@ -5,22 +5,24 @@ main: kit: entity: region: {
   alias: field: {}
 
   fields: {
-    champion: {
-      h: "Champion"
-      n: "champion"
+    cdn: {
+      h: "Cdn"
+      n: "cdn"
       r: false
+      sh: "CDN base URL"
       t: "`$STRING`"
     }
-    item: {
-      h: "Item"
-      n: "item"
+    n: {
+      h: "N"
+      n: "n"
       r: false
-      t: "`$STRING`"
+      t: "`$OBJECT`"
     }
-    rune: {
-      h: "Rune"
-      n: "rune"
+    v: {
+      h: "V"
+      n: "v"
       r: false
+      sh: "Current patch version"
       t: "`$STRING`"
     }
   }
@@ -65,7 +67,7 @@ main: kit: entity: region: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body.n`"
+            res: "`body`"
           }
         }
       ]

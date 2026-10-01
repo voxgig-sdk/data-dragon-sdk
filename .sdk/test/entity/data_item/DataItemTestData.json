@@ -2,27 +2,24 @@
   "existing": {
     "data_item": {
       "DATA_ITEM00": {
-        "description": "s1e",
-        "image": {},
-        "name": "s20",
+        "data": {},
+        "type": "s1f",
+        "version": "s20",
         "language": "LANGUAGE01",
-        "version": "VERSION01",
         "id": "DATA_ITEM00"
       },
       "DATA_ITEM01": {
-        "description": "s3c",
-        "image": {},
-        "name": "s3e",
+        "data": {},
+        "type": "s3d",
+        "version": "s3e",
         "language": "LANGUAGE01",
-        "version": "VERSION01",
         "id": "DATA_ITEM01"
       },
       "DATA_ITEM02": {
-        "description": "s5a",
-        "image": {},
-        "name": "s5c",
+        "data": {},
+        "type": "s5b",
+        "version": "s5c",
         "language": "LANGUAGE01",
-        "version": "VERSION01",
         "id": "DATA_ITEM02"
       }
     }
@@ -30,9 +27,9 @@
   "new": {
     "data_item": {
       "data_item_ref01": {
-        "description": "s78",
-        "image": {},
-        "name": "s7a"
+        "data": {},
+        "type": "s79",
+        "version": "s7a"
       }
     }
   },

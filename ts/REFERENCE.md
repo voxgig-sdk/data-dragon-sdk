@@ -250,10 +250,10 @@ const data_champion = client.DataChampion()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `image` | `Record<string, any>` | No |  |
-| `key` | `string` | No | Champion ID |
-| `name` | `string` | No | Champion name |
-| `title` | `string` | No | Champion title |
+| `data` | `Record<string, any>` | No |  |
+| `format` | `string` | No |  |
+| `type` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
@@ -303,9 +303,9 @@ const data_item = client.DataItem()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `image` | `Record<string, any>` | No |  |
-| `name` | `string` | No |  |
+| `data` | `Record<string, any>` | No |  |
+| `type` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
@@ -493,9 +493,9 @@ const region = client.Region()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `champion` | `string` | No |  |
-| `item` | `string` | No |  |
-| `rune` | `string` | No |  |
+| `cdn` | `string` | No | CDN base URL |
+| `n` | `Record<string, any>` | No |  |
+| `v` | `string` | No | Current patch version |
 
 ### Operations
 

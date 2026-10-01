@@ -1,6 +1,9 @@
 package entity
 
 import (
+	"encoding/json"
+	"fmt"
+
 	"github.com/voxgig-sdk/data-dragon-sdk/go/core"
 
 	vs "github.com/voxgig-sdk/data-dragon-sdk/go/utility/struct"
@@ -49,6 +52,26 @@ func NewDataChampionEntity(client *core.DataDragonSDK, entopts map[string]any) *
 }
 
 func (e *DataChampionEntity) GetName() string { return e.name }
+
+// An entity prints and serialises as its data, as ts's toString and toJSON
+// do: the match state can carry a query credential, and the client holds
+// the options.
+func (e *DataChampionEntity) String() string {
+	return "DataChampion " + vs.Jsonify(e.data, map[string]any{"indent": 0})
+}
+
+func (e *DataChampionEntity) GoString() string {
+	return e.String()
+}
+
+func (e *DataChampionEntity) MarshalJSON() ([]byte, error) {
+	out := map[string]any{}
+	for k, v := range e.data {
+		out[k] = v
+	}
+	out["voxgig$entity"] = "DataChampion"
+	return json.Marshal(out)
+}
 
 func (e *DataChampionEntity) MarkDeleted() {
 	e.deleted = true
@@ -173,6 +196,15 @@ func (e *DataChampionEntity) Stream(action string, args map[string]any, callopts
 	go func() {
 		defer close(out)
 
+		// With no error channel, a panicking hook or stream function ends the
+		// stream as runOp's error would. A goroutine the stream function
+		// starts is out of reach of this recover.
+		defer func() {
+			if r := recover(); r != nil {
+				e.recovered(ctx, r)
+			}
+		}()
+
 		utility.FeatureHook(ctx, "PrePoint")
 		point, err := utility.MakePoint(ctx)
 		ctx.Out["point"] = point
@@ -213,6 +245,8 @@ func (e *DataChampionEntity) Stream(action string, args map[string]any, callopts
 		// Inbound: prefer the streaming feature's incremental iterator; else
 		// fall back to the materialised items so Stream always yields.
 		if ctx.Result != nil && ctx.Result.Stream != nil {
+			// Done does not run on this path, so its record is cleaned here.
+			utility.CleanExplain(ctx)
 			for item := range ctx.Result.Stream() {
 				if !send(item) {
 					return
@@ -301,8 +335,14 @@ func (e *DataChampionEntity) Remove(_ map[string]any, _ map[string]any) (any, er
 }
 
 
-func (e *DataChampionEntity) runOp(ctx *core.Context, postDone func()) (any, error) {
+func (e *DataChampionEntity) runOp(ctx *core.Context, postDone func()) (out any, err error) {
 	utility := e.utility
+
+	defer func() {
+		if r := recover(); r != nil {
+			out, err = e.recovered(ctx, r)
+		}
+	}()
 
 	utility.FeatureHook(ctx, "PrePoint")
 	point, err := utility.MakePoint(ctx)
@@ -342,9 +382,9 @@ func (e *DataChampionEntity) runOp(ctx *core.Context, postDone func()) (any, err
 	utility.FeatureHook(ctx, "PreDone")
 	postDone()
 
-	out, doneErr := utility.Done(ctx)
-	if doneErr != nil {
-		return out, doneErr
+	out, err = utility.Done(ctx)
+	if err != nil {
+		return out, err
 	}
 
 	opname := ""
@@ -360,4 +400,14 @@ func (e *DataChampionEntity) runOp(ctx *core.Context, postDone func()) (any, err
 	}
 
 	return out, nil
+}
+
+// A hook, fetcher or parser that panics never reached MakeError, and its
+// message can quote the request.
+func (e *DataChampionEntity) recovered(ctx *core.Context, r any) (any, error) {
+	perr, ok := r.(error)
+	if !ok {
+		perr = fmt.Errorf("%v", r)
+	}
+	return e.utility.MakeError(ctx, perr)
 }

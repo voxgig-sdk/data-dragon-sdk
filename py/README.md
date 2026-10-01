@@ -259,10 +259,10 @@ API path: `/cdn/{version}/img/champion/{championImage}`
 
 | Field | Description |
 | --- | --- |
-| `image` |  |
-| `key` | Champion ID |
-| `name` | Champion name |
-| `title` | Champion title |
+| `data` |  |
+| `format` |  |
+| `type` |  |
+| `version` |  |
 
 Operations: Load.
 
@@ -272,9 +272,9 @@ API path: `/cdn/{version}/data/{language}/champion.json`
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `image` |  |
-| `name` |  |
+| `data` |  |
+| `type` |  |
+| `version` |  |
 
 Operations: Load.
 
@@ -312,9 +312,9 @@ API path: `/cdn/{version}/img/item/{itemImage}`
 
 | Field | Description |
 | --- | --- |
-| `champion` |  |
-| `item` |  |
-| `rune` |  |
+| `cdn` | CDN base URL |
+| `n` |  |
+| `v` | Current patch version |
 
 Operations: Load.
 
@@ -371,10 +371,10 @@ Create an instance: `data_champion = client.DataChampion()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `image` | `dict` |  |
-| `key` | `str` | Champion ID |
-| `name` | `str` | Champion name |
-| `title` | `str` | Champion title |
+| `data` | `dict` |  |
+| `format` | `str` |  |
+| `type` | `str` |  |
+| `version` | `str` |  |
 
 #### Example: Load
 
@@ -397,9 +397,9 @@ Create an instance: `data_item = client.DataItem()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `str` |  |
-| `image` | `dict` |  |
-| `name` | `str` |  |
+| `data` | `dict` |  |
+| `type` | `str` |  |
+| `version` | `str` |  |
 
 #### Example: Load
 
@@ -479,9 +479,9 @@ Create an instance: `region = client.Region()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `champion` | `str` |  |
-| `item` | `str` |  |
-| `rune` | `str` |  |
+| `cdn` | `str` | CDN base URL |
+| `n` | `dict` |  |
+| `v` | `str` | Current patch version |
 
 #### Example: Load
 

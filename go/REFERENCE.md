@@ -177,10 +177,10 @@ fmt.Println(dataChampion.GetName()) // "data_champion"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `image` | `map[string]any` | No |  |
-| `key` | `string` | No | Champion ID |
-| `name` | `string` | No | Champion name |
-| `title` | `string` | No | Champion title |
+| `data` | `map[string]any` | No |  |
+| `format` | `string` | No |  |
+| `type` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
@@ -231,9 +231,9 @@ fmt.Println(dataItem.GetName()) // "data_item"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `image` | `map[string]any` | No |  |
-| `name` | `string` | No |  |
+| `data` | `map[string]any` | No |  |
+| `type` | `string` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
@@ -425,9 +425,9 @@ fmt.Println(region.GetName()) // "region"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `champion` | `string` | No |  |
-| `item` | `string` | No |  |
-| `rune` | `string` | No |  |
+| `cdn` | `string` | No | CDN base URL |
+| `n` | `map[string]any` | No |  |
+| `v` | `string` | No | Current patch version |
 
 ### Operations
 

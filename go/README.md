@@ -277,10 +277,10 @@ API path: `/cdn/{version}/img/champion/{championImage}`
 
 | Field | Description |
 | --- | --- |
-| `"image"` |  |
-| `"key"` | Champion ID |
-| `"name"` | Champion name |
-| `"title"` | Champion title |
+| `"data"` |  |
+| `"format"` |  |
+| `"type"` |  |
+| `"version"` |  |
 
 Operations: Load.
 
@@ -290,9 +290,9 @@ API path: `/cdn/{version}/data/{language}/champion.json`
 
 | Field | Description |
 | --- | --- |
-| `"description"` |  |
-| `"image"` |  |
-| `"name"` |  |
+| `"data"` |  |
+| `"type"` |  |
+| `"version"` |  |
 
 Operations: Load.
 
@@ -330,9 +330,9 @@ API path: `/cdn/{version}/img/item/{itemImage}`
 
 | Field | Description |
 | --- | --- |
-| `"champion"` |  |
-| `"item"` |  |
-| `"rune"` |  |
+| `"cdn"` | CDN base URL |
+| `"n"` |  |
+| `"v"` | Current patch version |
 
 Operations: Load.
 
@@ -393,10 +393,10 @@ Create an instance: `dataChampion := client.DataChampion(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `image` | `map[string]any` |  |
-| `key` | `string` | Champion ID |
-| `name` | `string` | Champion name |
-| `title` | `string` | Champion title |
+| `data` | `map[string]any` |  |
+| `format` | `string` |  |
+| `type` | `string` |  |
+| `version` | `string` |  |
 
 #### Example: Load
 
@@ -423,9 +423,9 @@ Create an instance: `dataItem := client.DataItem(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `image` | `map[string]any` |  |
-| `name` | `string` |  |
+| `data` | `map[string]any` |  |
+| `type` | `string` |  |
+| `version` | `string` |  |
 
 #### Example: Load
 
@@ -521,9 +521,9 @@ Create an instance: `region := client.Region(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `champion` | `string` |  |
-| `item` | `string` |  |
-| `rune` | `string` |  |
+| `cdn` | `string` | CDN base URL |
+| `n` | `map[string]any` |  |
+| `v` | `string` | Current patch version |
 
 #### Example: Load
 

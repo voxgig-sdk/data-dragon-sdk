@@ -35,7 +35,7 @@ main: kit: entity: item: {
                 ex: "1001.png"
                 k: "param"
                 n: "id"
-                or: "item_image"
+                or: "itemImage"
                 r: true
                 t: "`$STRING`"
               }

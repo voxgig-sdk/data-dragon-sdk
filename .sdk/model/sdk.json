@@ -129,7 +129,7 @@
                         "ex": "Ahri.png",
                         "k": "param",
                         "n": "id",
-                        "or": "champion_image",
+                        "or": "championImage",
                         "r": true,
                         "t": "`$STRING`"
                       },
@@ -193,35 +193,32 @@
             "field": {}
           },
           "fields": {
-            "image": {
+            "data": {
               "a": true,
-              "h": "Image",
-              "n": "image",
+              "h": "Data",
+              "n": "data",
               "r": false,
               "t": "`$OBJECT`"
             },
-            "key": {
+            "format": {
               "a": true,
-              "h": "Key",
-              "n": "key",
+              "h": "Format",
+              "n": "format",
               "r": false,
-              "sh": "Champion ID",
               "t": "`$STRING`"
             },
-            "name": {
+            "type": {
               "a": true,
-              "h": "Name",
-              "n": "name",
+              "h": "Type",
+              "n": "type",
               "r": false,
-              "sh": "Champion name",
               "t": "`$STRING`"
             },
-            "title": {
+            "version": {
               "a": true,
-              "h": "Title",
-              "n": "title",
+              "h": "Version",
+              "n": "version",
               "r": false,
-              "sh": "Champion title",
               "t": "`$STRING`"
             }
           },
@@ -289,7 +286,7 @@
                   ],
                   "t": {
                     "req": "`reqdata`",
-                    "res": "`body.data`"
+                    "res": "`body`"
                   }
                 }
               ]
@@ -305,24 +302,24 @@
             "field": {}
           },
           "fields": {
-            "description": {
+            "data": {
               "a": true,
-              "h": "Description",
-              "n": "description",
-              "r": false,
-              "t": "`$STRING`"
-            },
-            "image": {
-              "a": true,
-              "h": "Image",
-              "n": "image",
+              "h": "Data",
+              "n": "data",
               "r": false,
               "t": "`$OBJECT`"
             },
-            "name": {
+            "type": {
               "a": true,
-              "h": "Name",
-              "n": "name",
+              "h": "Type",
+              "n": "type",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "version": {
+              "a": true,
+              "h": "Version",
+              "n": "version",
               "r": false,
               "t": "`$STRING`"
             }
@@ -391,7 +388,7 @@
                   ],
                   "t": {
                     "req": "`reqdata`",
-                    "res": "`body.data`"
+                    "res": "`body`"
                   }
                 }
               ]
@@ -580,7 +577,7 @@
                         "ex": "1001.png",
                         "k": "param",
                         "n": "id",
-                        "or": "item_image",
+                        "or": "itemImage",
                         "r": true,
                         "t": "`$STRING`"
                       },
@@ -644,25 +641,27 @@
             "field": {}
           },
           "fields": {
-            "champion": {
+            "cdn": {
               "a": true,
-              "h": "Champion",
-              "n": "champion",
+              "h": "Cdn",
+              "n": "cdn",
               "r": false,
+              "sh": "CDN base URL",
               "t": "`$STRING`"
             },
-            "item": {
+            "n": {
               "a": true,
-              "h": "Item",
-              "n": "item",
+              "h": "N",
+              "n": "n",
               "r": false,
-              "t": "`$STRING`"
+              "t": "`$OBJECT`"
             },
-            "rune": {
+            "v": {
               "a": true,
-              "h": "Rune",
-              "n": "rune",
+              "h": "V",
+              "n": "v",
               "r": false,
+              "sh": "Current patch version",
               "t": "`$STRING`"
             }
           },
@@ -711,7 +710,7 @@
                   ],
                   "t": {
                     "req": "`reqdata`",
-                    "res": "`body.n`"
+                    "res": "`body`"
                   }
                 }
               ]
@@ -1467,7 +1466,12 @@
         },
         "base": "http://localhost:8000",
         "clean": {
-          "keys": "key,token,id"
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
         },
         "entity": {
           "`$CHILD`": {

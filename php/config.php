@@ -175,7 +175,7 @@ class DataDragonConfig
                     'params' => [
                       [
                         'name' => 'id',
-                        'orig' => 'champion_image',
+                        'orig' => 'championImage',
                         'type' => '`$STRING`',
                         'kind' => 'param',
                         'reqd' => true,
@@ -208,27 +208,24 @@ class DataDragonConfig
         'data_champion' => [
           'fields' => [
             [
-              'name' => 'image',
-              'title' => 'Image',
+              'name' => 'data',
+              'title' => 'Data',
               'type' => '`$OBJECT`',
             ],
             [
-              'name' => 'key',
-              'title' => 'Key',
+              'name' => 'format',
+              'title' => 'Format',
               'type' => '`$STRING`',
-              'short' => 'Champion ID',
             ],
             [
-              'name' => 'name',
-              'title' => 'Name',
+              'name' => 'type',
+              'title' => 'Type',
               'type' => '`$STRING`',
-              'short' => 'Champion name',
             ],
             [
-              'name' => 'title',
-              'title' => 'Title',
+              'name' => 'version',
+              'title' => 'Version',
               'type' => '`$STRING`',
-              'short' => 'Champion title',
             ],
           ],
           'name' => 'data_champion',
@@ -268,7 +265,7 @@ class DataDragonConfig
                   'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body.data`',
+                    'res' => '`body`',
                   ],
                   'args' => [
                     'params' => [
@@ -307,18 +304,18 @@ class DataDragonConfig
         'data_item' => [
           'fields' => [
             [
-              'name' => 'description',
-              'title' => 'Description',
-              'type' => '`$STRING`',
-            ],
-            [
-              'name' => 'image',
-              'title' => 'Image',
+              'name' => 'data',
+              'title' => 'Data',
               'type' => '`$OBJECT`',
             ],
             [
-              'name' => 'name',
-              'title' => 'Name',
+              'name' => 'type',
+              'title' => 'Type',
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'version',
+              'title' => 'Version',
               'type' => '`$STRING`',
             ],
           ],
@@ -359,7 +356,7 @@ class DataDragonConfig
                   'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body.data`',
+                    'res' => '`body`',
                   ],
                   'args' => [
                     'params' => [
@@ -583,7 +580,7 @@ class DataDragonConfig
                     'params' => [
                       [
                         'name' => 'id',
-                        'orig' => 'item_image',
+                        'orig' => 'itemImage',
                         'type' => '`$STRING`',
                         'kind' => 'param',
                         'reqd' => true,
@@ -616,19 +613,21 @@ class DataDragonConfig
         'region' => [
           'fields' => [
             [
-              'name' => 'champion',
-              'title' => 'Champion',
+              'name' => 'cdn',
+              'title' => 'Cdn',
               'type' => '`$STRING`',
+              'short' => 'CDN base URL',
             ],
             [
-              'name' => 'item',
-              'title' => 'Item',
-              'type' => '`$STRING`',
+              'name' => 'n',
+              'title' => 'N',
+              'type' => '`$OBJECT`',
             ],
             [
-              'name' => 'rune',
-              'title' => 'Rune',
+              'name' => 'v',
+              'title' => 'V',
               'type' => '`$STRING`',
+              'short' => 'Current patch version',
             ],
           ],
           'name' => 'region',
@@ -656,7 +655,7 @@ class DataDragonConfig
                   'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body.n`',
+                    'res' => '`body`',
                   ],
                   'args' => [
                     'params' => [

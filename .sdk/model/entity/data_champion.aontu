@@ -5,31 +5,28 @@ main: kit: entity: data_champion: {
   alias: field: {}
 
   fields: {
-    image: {
-      h: "Image"
-      n: "image"
+    data: {
+      h: "Data"
+      n: "data"
       r: false
       t: "`$OBJECT`"
     }
-    key: {
-      h: "Key"
-      n: "key"
+    format: {
+      h: "Format"
+      n: "format"
       r: false
-      sh: "Champion ID"
       t: "`$STRING`"
     }
-    name: {
-      h: "Name"
-      n: "name"
+    type: {
+      h: "Type"
+      n: "type"
       r: false
-      sh: "Champion name"
       t: "`$STRING`"
     }
-    title: {
-      h: "Title"
-      n: "title"
+    version: {
+      h: "Version"
+      n: "version"
       r: false
-      sh: "Champion title"
       t: "`$STRING`"
     }
   }
@@ -92,7 +89,7 @@ main: kit: entity: data_champion: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body.data`"
+            res: "`body`"
           }
         }
       ]

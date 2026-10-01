@@ -14,19 +14,19 @@
 ---@field version string
 
 ---@class DataChampion
----@field image? table
----@field key? string
----@field name? string
----@field title? string
+---@field data? table
+---@field format? string
+---@field type? string
+---@field version? string
 
 ---@class DataChampionLoadMatch
 ---@field language string
 ---@field version string
 
 ---@class DataItem
----@field description? string
----@field image? table
----@field name? string
+---@field data? table
+---@field type? string
+---@field version? string
 
 ---@class DataItemLoadMatch
 ---@field language string
@@ -51,9 +51,9 @@
 ---@field version string
 
 ---@class Region
----@field champion? string
----@field item? string
----@field rune? string
+---@field cdn? string
+---@field n? table
+---@field v? string
 
 ---@class RegionLoadMatch
 ---@field region string

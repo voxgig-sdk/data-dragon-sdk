@@ -24,12 +24,6 @@ Results: Successfully retrieved champion data.
 
 SDK operations: `load`.
 
-Key fields to recognise:
-
-- `key`: Champion ID
-- `name`: Champion name
-- `title`: Champion title
-
 ### DataItem
 
 Results: Successfully retrieved item data.
@@ -59,6 +53,11 @@ SDK operations: `load`.
 Results: Successfully retrieved realm data.
 
 SDK operations: `load`.
+
+Key fields to recognise:
+
+- `cdn`: CDN base URL
+- `v`: Current patch version
 
 ### Version
 

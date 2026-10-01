@@ -32,22 +32,22 @@ ChampionLoadMatch = Struct.new(
 
 # DataChampion entity data model.
 #
-# @!attribute [rw] image
+# @!attribute [rw] data
 #   @return [Hash, nil]
 #
-# @!attribute [rw] key
+# @!attribute [rw] format
 #   @return [String, nil]
 #
-# @!attribute [rw] name
+# @!attribute [rw] type
 #   @return [String, nil]
 #
-# @!attribute [rw] title
+# @!attribute [rw] version
 #   @return [String, nil]
 DataChampion = Struct.new(
-  :image,
-  :key,
-  :name,
-  :title,
+  :data,
+  :format,
+  :type,
+  :version,
   keyword_init: true
 )
 
@@ -66,18 +66,18 @@ DataChampionLoadMatch = Struct.new(
 
 # DataItem entity data model.
 #
-# @!attribute [rw] description
-#   @return [String, nil]
-#
-# @!attribute [rw] image
+# @!attribute [rw] data
 #   @return [Hash, nil]
 #
-# @!attribute [rw] name
+# @!attribute [rw] type
+#   @return [String, nil]
+#
+# @!attribute [rw] version
 #   @return [String, nil]
 DataItem = Struct.new(
-  :description,
-  :image,
-  :name,
+  :data,
+  :type,
+  :version,
   keyword_init: true
 )
 
@@ -148,18 +148,18 @@ ItemLoadMatch = Struct.new(
 
 # Region entity data model.
 #
-# @!attribute [rw] champion
+# @!attribute [rw] cdn
 #   @return [String, nil]
 #
-# @!attribute [rw] item
-#   @return [String, nil]
+# @!attribute [rw] n
+#   @return [Hash, nil]
 #
-# @!attribute [rw] rune
+# @!attribute [rw] v
 #   @return [String, nil]
 Region = Struct.new(
-  :champion,
-  :item,
-  :rune,
+  :cdn,
+  :n,
+  :v,
   keyword_init: true
 )
 

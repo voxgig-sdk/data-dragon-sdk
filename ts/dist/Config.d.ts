@@ -137,17 +137,11 @@ declare class Config {
             };
         };
         data_champion: {
-            fields: ({
+            fields: {
                 name: string;
                 title: string;
                 type: string;
-                short?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                short: string;
-            })[];
+            }[];
             name: string;
             op: {
                 load: {
@@ -379,11 +373,17 @@ declare class Config {
             };
         };
         region: {
-            fields: {
+            fields: ({
                 name: string;
                 title: string;
                 type: string;
-            }[];
+                short: string;
+            } | {
+                name: string;
+                title: string;
+                type: string;
+                short?: undefined;
+            })[];
             name: string;
             op: {
                 load: {

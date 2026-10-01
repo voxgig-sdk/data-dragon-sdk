@@ -26,10 +26,10 @@ class ChampionLoadMatch(TypedDict):
 
 
 class DataChampion(TypedDict, total=False):
-    image: dict
-    key: str
-    name: str
-    title: str
+    data: dict
+    format: str
+    type: str
+    version: str
 
 
 class DataChampionLoadMatch(TypedDict):
@@ -38,9 +38,9 @@ class DataChampionLoadMatch(TypedDict):
 
 
 class DataItem(TypedDict, total=False):
-    description: str
-    image: dict
-    name: str
+    data: dict
+    type: str
+    version: str
 
 
 class DataItemLoadMatch(TypedDict):
@@ -75,9 +75,9 @@ class ItemLoadMatch(TypedDict):
 
 
 class Region(TypedDict, total=False):
-    champion: str
-    item: str
-    rune: str
+    cdn: str
+    n: dict
+    v: str
 
 
 class RegionLoadMatch(TypedDict):
