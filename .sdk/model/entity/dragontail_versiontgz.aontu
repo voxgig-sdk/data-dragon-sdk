@@ -34,6 +34,11 @@ main: kit: entity: dragontail_versiontgz: {
               "version"
             ]
           }
+          rs: {
+            binary: true
+            kind: "raw"
+            media: "application/gzip"
+          }
           s: [
             {
               lit: "cdn"

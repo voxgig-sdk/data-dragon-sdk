@@ -54,26 +54,36 @@ const utility_1 = require("../../utility");
         const ent = testsdk.DataRune();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.DataDragonSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.DataRune().load({ "language": 1, "version": "x" }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.DATA_DRAGON_TEST_LIVE;
-        for (const op of ['load']) {
+        for (const op of []) {
             if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'data_rune.' + op, live))
                 return;
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "data_rune", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /cdn/{version}/data/{language}/rune.json", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "en_US", "k": "param", "n": "language", "or": "language", "r": true, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "12.6.1", "k": "param", "n": "version", "or": "version", "r": true, "t": "`$STRING`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/cdn/{version}/data/{language}/rune.json", "q": { "exist": ["language", "version"] }, "r": {}, "s": [{ "lit": "cdn" }, { "var": "version" }, { "lit": "data" }, { "var": "language" }, { "lit": "rune.json" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "data_rune", "name__orig": "data_rune", "Name": "DataRune", "name_": "data_rune", "name-": "data-rune", "NAME": "DATA_RUNE", "index$": 3 }, { "active": true, "entity": "data_rune", "key$": "BasicDataRuneFlow", "kind": "basic", "name": "BasicDataRuneFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "data_rune_ref01", "srcdatavar": "data_rune_ref01_data", "suffix": "_dt0" }, "m": { "id": "data_rune01", "version": "version01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-data_rune_ref01" } }], "index$": 0 }] }, 'DataRune', { "GET /cdn/{version}/data/{language}/rune.json": { "protocol": "http", "parameters": [{ "name": "version", "in": "path", "required": true, "description": "Patch version (e.g., 12.6.1)", "schema": { "type": "string" }, "example": "12.6.1", "index$": 0 }, { "name": "language", "in": "path", "required": true, "description": "Language code (e.g., en_US, ko_KR, ja_JP)", "schema": { "type": "string", "enum": ["cs_CZ", "el_GR", "pl_PL", "ro_RO", "hu_HU", "en_GB", "de_DE", "es_ES", "it_IT", "fr_FR", "ja_JP", "ko_KR", "es_MX", "es_AR", "pt_BR", "en_US", "en_AU", "ru_RU", "tr_TR", "ms_MY", "en_PH", "en_SG", "th_TH", "vn_VN", "id_ID", "zh_MY", "zh_CN", "zh_TW"] }, "example": "en_US", "index$": 1 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "data_rune", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /cdn/{version}/data/{language}/rune.json", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "en_US", "k": "param", "n": "language", "or": "language", "r": true, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "12.6.1", "k": "param", "n": "version", "or": "version", "r": true, "t": "`$STRING`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/cdn/{version}/data/{language}/rune.json", "q": { "exist": ["language", "version"] }, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "cdn" }, { "var": "version" }, { "lit": "data" }, { "var": "language" }, { "lit": "rune.json" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "data_rune", "name__orig": "data_rune", "Name": "DataRune", "name_": "data_rune", "name-": "data-rune", "NAME": "DATA_RUNE", "index$": 3 }, { "active": true, "entity": "data_rune", "key$": "BasicDataRuneFlow", "kind": "basic", "name": "BasicDataRuneFlow", "param": {}, "step": [{ "a": false, "d": {}, "i": { "ref": "data_rune_ref01", "srcdatavar": "data_rune_ref01_data", "suffix": "_dt0" }, "m": { "id": "data_rune01", "version": "version01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-data_rune_ref01" } }], "unreachable": true }] }, 'DataRune', { "GET /cdn/{version}/data/{language}/rune.json": { "protocol": "http", "parameters": [{ "name": "version", "in": "path", "required": true, "description": "Patch version (e.g., 12.6.1)", "schema": { "type": "string" }, "example": "12.6.1", "index$": 0 }, { "name": "language", "in": "path", "required": true, "description": "Language code (e.g., en_US, ko_KR, ja_JP)", "schema": { "type": "string", "enum": ["cs_CZ", "el_GR", "pl_PL", "ro_RO", "hu_HU", "en_GB", "de_DE", "es_ES", "it_IT", "fr_FR", "ja_JP", "ko_KR", "es_MX", "es_AR", "pt_BR", "en_US", "en_AU", "ru_RU", "tr_TR", "ms_MY", "en_PH", "en_SG", "th_TH", "vn_VN", "id_ID", "zh_MY", "zh_CN", "zh_TW"] }, "example": "en_US", "index$": 1 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
         const isempty = struct.isempty;
         const select = struct.select;
         let data_rune_ref01_data = Object.values(setup.data.existing.data_rune)[0];
-        // LOAD: skipped — no entity id field and load requires path params.
-        // Entity-var is declared here so later flow steps still compile.
-        const data_rune_ref01_ent = client.DataRune();
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null
@@ -88,7 +98,7 @@ function basicSetup(extra) {
     const struct = client.utility().struct;
     const merge = struct.merge;
     const transform = struct.transform;
-    let idmap = transform(['data_rune01', 'data_rune02', 'data_rune03', 'version01'], {
+    let idmap = transform(['data_rune01', 'data_rune02', 'data_rune03'], {
         '`$PACK`': ['', {
                 '`$KEY`': '`$COPY`',
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']

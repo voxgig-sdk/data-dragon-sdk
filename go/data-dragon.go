@@ -13,7 +13,12 @@ type Context = core.Context
 type Utility = core.Utility
 type Feature = core.Feature
 type Entity = core.Entity
-type DataDragonEntity = core.DataDragonEntity
+type DataDragonEntityBase = core.DataDragonEntityBase
+
+// Deprecated: use DataDragonEntityBase.
+type DataDragonEntity = core.DataDragonEntityBase
+
+type StreamItem = core.StreamItem
 type FetcherFunc = core.FetcherFunc
 type Spec = core.Spec
 type Result = core.Result
@@ -41,28 +46,28 @@ func init() {
 	core.NewTimeoutFeatureFunc = func() core.Feature {
 		return feature.NewTimeoutFeature()
 	}
-	core.NewChampionEntityFunc = func(client *core.DataDragonSDK, entopts map[string]any) core.DataDragonEntity {
+	core.NewChampionEntityFunc = func(client *core.DataDragonSDK, entopts map[string]any) core.DataDragonEntityBase {
 		return entity.NewChampionEntity(client, entopts)
 	}
-	core.NewDataChampionEntityFunc = func(client *core.DataDragonSDK, entopts map[string]any) core.DataDragonEntity {
+	core.NewDataChampionEntityFunc = func(client *core.DataDragonSDK, entopts map[string]any) core.DataDragonEntityBase {
 		return entity.NewDataChampionEntity(client, entopts)
 	}
-	core.NewDataItemEntityFunc = func(client *core.DataDragonSDK, entopts map[string]any) core.DataDragonEntity {
+	core.NewDataItemEntityFunc = func(client *core.DataDragonSDK, entopts map[string]any) core.DataDragonEntityBase {
 		return entity.NewDataItemEntity(client, entopts)
 	}
-	core.NewDataRuneEntityFunc = func(client *core.DataDragonSDK, entopts map[string]any) core.DataDragonEntity {
+	core.NewDataRuneEntityFunc = func(client *core.DataDragonSDK, entopts map[string]any) core.DataDragonEntityBase {
 		return entity.NewDataRuneEntity(client, entopts)
 	}
-	core.NewDragontailVersiontgzEntityFunc = func(client *core.DataDragonSDK, entopts map[string]any) core.DataDragonEntity {
+	core.NewDragontailVersiontgzEntityFunc = func(client *core.DataDragonSDK, entopts map[string]any) core.DataDragonEntityBase {
 		return entity.NewDragontailVersiontgzEntity(client, entopts)
 	}
-	core.NewItemEntityFunc = func(client *core.DataDragonSDK, entopts map[string]any) core.DataDragonEntity {
+	core.NewItemEntityFunc = func(client *core.DataDragonSDK, entopts map[string]any) core.DataDragonEntityBase {
 		return entity.NewItemEntity(client, entopts)
 	}
-	core.NewRegionEntityFunc = func(client *core.DataDragonSDK, entopts map[string]any) core.DataDragonEntity {
+	core.NewRegionEntityFunc = func(client *core.DataDragonSDK, entopts map[string]any) core.DataDragonEntityBase {
 		return entity.NewRegionEntity(client, entopts)
 	}
-	core.NewVersionEntityFunc = func(client *core.DataDragonSDK, entopts map[string]any) core.DataDragonEntity {
+	core.NewVersionEntityFunc = func(client *core.DataDragonSDK, entopts map[string]any) core.DataDragonEntityBase {
 		return entity.NewVersionEntity(client, entopts)
 	}
 }

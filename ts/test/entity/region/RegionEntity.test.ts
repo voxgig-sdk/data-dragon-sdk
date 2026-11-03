@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { DataDragonSDK, BaseFeature, stdutil } from '../../..'
+import { DataDragonSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('RegionEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = DataDragonSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Region().load({"region":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.DATA_DRAGON_TEST_LIVE
@@ -51,7 +63,7 @@ describe('RegionEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"cdn":{"a":true,"h":"Cdn","n":"cdn","r":false,"sh":"CDN base URL","t":"`$STRING`","key$":"cdn","index$":0},"n":{"a":true,"h":"N","n":"n","r":false,"t":"`$OBJECT`","key$":"n","index$":1},"v":{"a":true,"h":"V","n":"v","r":false,"sh":"Current patch version","t":"`$STRING`","key$":"v","index$":2}},"name":"region","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /realms/{region}.json","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"na","k":"param","n":"region","or":"region","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/realms/{region}.json","q":{"exist":["region"]},"r":{},"s":[{"lit":"realms"},{"lit":"{region}.json"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"region","name__orig":"region","Name":"Region","name_":"region","name-":"region","NAME":"REGION","index$":6}, {"active":true,"entity":"region","key$":"BasicRegionFlow","kind":"basic","name":"BasicRegionFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"region_ref01","srcdatavar":"region_ref01_data","suffix":"_dt0"},"m":{"region":"region01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-region_ref01"}}],"index$":0}]}, 'Region', {"GET /realms/{region}.json":{"protocol":"http","parameters":[{"name":"region","in":"path","required":true,"description":"Region code (e.g., na, euw, kr)","schema":{"type":"string","enum":["na","euw","eune","kr","br","jp","lan","las","oce","tr","ru"]},"example":"na","index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"cdn":{"a":true,"h":"Cdn","n":"cdn","r":false,"sh":"CDN base URL","t":"`$STRING`","key$":"cdn","index$":0},"n":{"a":true,"h":"N","n":"n","r":false,"t":"`$OBJECT`","key$":"n","index$":1},"v":{"a":true,"h":"V","n":"v","r":false,"sh":"Current patch version","t":"`$STRING`","key$":"v","index$":2}},"name":"region","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /realms/{region}.json","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"na","k":"param","n":"region","or":"region","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/realms/{region}.json","q":{"exist":["region"]},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"realms"},{"lit":"{region}.json"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"region","name__orig":"region","Name":"Region","name_":"region","name-":"region","NAME":"REGION","index$":6}, {"active":true,"entity":"region","key$":"BasicRegionFlow","kind":"basic","name":"BasicRegionFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"region_ref01","srcdatavar":"region_ref01_data","suffix":"_dt0"},"m":{"region":"region01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-region_ref01"}}],"index$":0}]}, 'Region', {"GET /realms/{region}.json":{"protocol":"http","parameters":[{"name":"region","in":"path","required":true,"description":"Region code (e.g., na, euw, kr)","schema":{"type":"string","enum":["na","euw","eune","kr","br","jp","lan","las","oce","tr","ru"]},"example":"na","index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -61,15 +73,24 @@ describe('RegionEntity', async () => {
 
     let region_ref01_data = Object.values(setup.data.existing.region)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const region_ref01_ent = client.Region()
+    const region_ref01_match_dt0: any = {}
+    region_ref01_match_dt0['region'] = setup.idmap['region'] ?? setup.idmap['region01']
+    const region_ref01_data_dt0 = (await region_ref01_ent.load(region_ref01_match_dt0)).data()
+    assert(null != region_ref01_data_dt0)
 
 
   })
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

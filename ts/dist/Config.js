@@ -87,6 +87,7 @@ class Config {
             },
             "optspec": {
                 "clearTimer": "`$FUNCTION`",
+                "now": "`$FUNCTION`",
                 "setTimer": "`$FUNCTION`"
             },
             "strict": false,
@@ -190,6 +191,11 @@ class Config {
                                     "id",
                                     "version"
                                 ]
+                            },
+                            "response": {
+                                "binary": true,
+                                "kind": "raw",
+                                "media": "image/png"
                             }
                         }
                     ]
@@ -286,6 +292,10 @@ class Config {
                                     "language",
                                     "version"
                                 ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]
@@ -377,6 +387,10 @@ class Config {
                                     "language",
                                     "version"
                                 ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]
@@ -452,6 +466,10 @@ class Config {
                                     "language",
                                     "version"
                                 ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]
@@ -506,6 +524,11 @@ class Config {
                                 "exist": [
                                     "version"
                                 ]
+                            },
+                            "response": {
+                                "binary": true,
+                                "kind": "raw",
+                                "media": "application/gzip"
                             }
                         }
                     ]
@@ -595,6 +618,11 @@ class Config {
                                     "id",
                                     "version"
                                 ]
+                            },
+                            "response": {
+                                "binary": true,
+                                "kind": "raw",
+                                "media": "image/png"
                             }
                         }
                     ]
@@ -667,6 +695,10 @@ class Config {
                                 "exist": [
                                     "region"
                                 ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]
@@ -706,7 +738,11 @@ class Config {
                                 "res": "`body`"
                             },
                             "args": {},
-                            "select": {}
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
                         }
                     ]
                 }

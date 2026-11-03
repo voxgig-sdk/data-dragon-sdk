@@ -43,6 +43,10 @@ main: kit: entity: data_rune: {
               "version"
             ]
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "cdn"

@@ -8,6 +8,13 @@ local runner = require("test.runner")
 
 local _test_dir = debug.getinfo(1, "S").source:match("^@(.+/)")  or "./"
 
+-- main.kit.test.live.strict is true (the default is true): a live
+-- request that fails, or a live test missing an input it needs,
+-- fails the test.
+-- An account with no record for a test to read skips it either way.
+local LIVE_STRICT = true
+
+
 describe("DataItemEntity", function()
   it("should create instance", function()
     local testsdk = sdk.test(nil, nil)
@@ -15,23 +22,33 @@ describe("DataItemEntity", function()
     assert.is_not_nil(ent)
   end)
 
+  it("should refuse an invalid request", function()
+    local config = require("config_shared")()
+    if type(config.feature) ~= "table" or config.feature.validate == nil then
+      pending("feature not present in this SDK: validate")
+      return
+    end
+    local client = sdk.test(nil, { feature = { validate = { active = true } } })
+    local _, err = client:DataItem(nil):load({ ["language"] = 1, ["version"] = "x" }, nil)
+    assert.are.equal("validate_failed", type(err) == "table" and err.code or nil)
+  end)
+
   it("should run basic flow", function()
     local setup = data_item_basic_setup(nil)
     -- Per-op sdk-test-control.json skip.
     local _live = setup.live or false
-    for _, _op in ipairs({"load"}) do
+    for _, _op in ipairs({}) do
       local _should_skip, _reason = runner.is_control_skipped("entityOp", "data_item." .. _op, _live and "live" or "unit")
       if _should_skip then
         pending(_reason or "skipped via sdk-test-control.json")
         return
       end
     end
-    -- The basic flow consumes synthetic IDs from the fixture. In live mode
-    -- without an *_ENTID env override, those IDs hit the live API and 4xx.
-    if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set DATA_DRAGON_TEST_DATA_ITEM_ENTID JSON to run live")
+    if setup.live then
+      pending("Live coverage incomplete: the flow has no step to run")
       return
     end
+
     local client = setup.client
 
     -- Bootstrap entity data from existing test data.
@@ -41,13 +58,6 @@ describe("DataItemEntity", function()
     if #data_item_ref01_data_raw > 0 then
       data_item_ref01_data = helpers.to_map(data_item_ref01_data_raw[1][2])
     end
-
-    -- LOAD
-    local data_item_ref01_ent = client:DataItem(nil)
-    local data_item_ref01_match_dt0 = {}
-    local data_item_ref01_data_dt0_loaded, err = data_item_ref01_ent:load(data_item_ref01_match_dt0, nil)
-    assert.is_nil(err)
-    assert.is_not_nil(data_item_ref01_data_dt0_loaded)
 
   end)
 end)
@@ -72,7 +82,7 @@ function data_item_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "data_item01", "data_item02", "data_item03", "version01" },
+    { "data_item01", "data_item02", "data_item03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",
@@ -81,9 +91,8 @@ function data_item_basic_setup(extra)
     }
   )
 
-  -- Detect ENTID env override before envOverride consumes it. When live
-  -- mode is on without a real override, the basic test runs against synthetic
-  -- IDs from the fixture and 4xx's. Surface this so the test can skip.
+  -- Whether *_ENTID supplied the idmap, read before env_override consumes
+  -- it: without it, the ids a live flow binds are the fixture's synthetic ones.
   local entid_env_raw = os.getenv("DATA_DRAGON_TEST_DATA_ITEM_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 

@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Champion();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.DataDragonSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Champion().load({ "id": 1, "version": "x" }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.DATA_DRAGON_TEST_LIVE;
         for (const op of ['load']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$STRING`", "key$": "id", "index$": 0 } }, "id": { "field": "id", "name": "id" }, "name": "champion", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /cdn/{version}/img/champion/{championImage}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "Ahri.png", "k": "param", "n": "id", "or": "championImage", "r": true, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "12.6.1", "k": "param", "n": "version", "or": "version", "r": true, "t": "`$STRING`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/cdn/{version}/img/champion/{championImage}", "q": { "exist": ["id", "version"] }, "r": { "param": { "championImage": "id" } }, "s": [{ "lit": "cdn" }, { "var": "version" }, { "lit": "img" }, { "lit": "champion" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "champion", "name__orig": "champion", "Name": "Champion", "name_": "champion", "name-": "champion", "NAME": "CHAMPION", "index$": 0 }, { "active": true, "entity": "champion", "key$": "BasicChampionFlow", "kind": "basic", "name": "BasicChampionFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "champion_ref01", "srcdatavar": "champion_ref01_data", "suffix": "_dt0" }, "m": { "id": "champion01", "version": "version01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-champion_ref01" } }], "index$": 0 }] }, 'Champion', { "GET /cdn/{version}/img/champion/{championImage}": { "protocol": "http", "parameters": [{ "name": "version", "in": "path", "required": true, "description": "Patch version (e.g., 12.6.1)", "schema": { "type": "string" }, "example": "12.6.1", "index$": 0 }, { "name": "championImage", "in": "path", "required": true, "description": "Champion image filename (e.g., Ahri.png)", "schema": { "type": "string" }, "example": "Ahri.png", "index$": 1 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$STRING`", "key$": "id", "index$": 0 } }, "id": { "field": "id", "name": "id" }, "name": "champion", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /cdn/{version}/img/champion/{championImage}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "Ahri.png", "k": "param", "n": "id", "or": "championImage", "r": true, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "12.6.1", "k": "param", "n": "version", "or": "version", "r": true, "t": "`$STRING`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/cdn/{version}/img/champion/{championImage}", "q": { "exist": ["id", "version"] }, "r": { "param": { "championImage": "id" } }, "rs": { "binary": true, "kind": "raw", "media": "image/png" }, "s": [{ "lit": "cdn" }, { "var": "version" }, { "lit": "img" }, { "lit": "champion" }, { "var": "id" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "champion", "name__orig": "champion", "Name": "Champion", "name_": "champion", "name-": "champion", "NAME": "CHAMPION", "index$": 0 }, { "active": true, "entity": "champion", "key$": "BasicChampionFlow", "kind": "basic", "name": "BasicChampionFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "champion_ref01", "srcdatavar": "champion_ref01_data", "suffix": "_dt0" }, "m": { "id": "champion01", "version": "version01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-champion_ref01" } }], "index$": 0, "route": "GET /cdn/{version}/img/champion/{championImage}", "record": {} }] }, 'Champion', { "GET /cdn/{version}/img/champion/{championImage}": { "protocol": "http", "parameters": [{ "name": "version", "in": "path", "required": true, "description": "Patch version (e.g., 12.6.1)", "schema": { "type": "string" }, "example": "12.6.1", "index$": 0 }, { "name": "championImage", "in": "path", "required": true, "description": "Champion image filename (e.g., Ahri.png)", "schema": { "type": "string" }, "example": "Ahri.png", "index$": 1 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -73,10 +81,16 @@ const utility_1 = require("../../utility");
         const champion_ref01_ent = client.Champion();
         const champion_ref01_match_dt0 = {};
         champion_ref01_match_dt0.id = champion_ref01_data.id;
+        champion_ref01_match_dt0['version'] = setup.idmap['version'] ?? setup.idmap['version01'];
         const champion_ref01_data_dt0 = (await champion_ref01_ent.load(champion_ref01_match_dt0)).data();
         (0, node_assert_1.default)(champion_ref01_data_dt0.id === champion_ref01_data.id);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

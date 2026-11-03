@@ -146,6 +146,14 @@ func (sdk *DataDragonSDK) Prepare(fetchargs map[string]any) (map[string]any, err
 	if method == "" {
 		method = "GET"
 	}
+	method = strings.ToUpper(method)
+
+	allowMethodVal := vs.GetPath(options, []any{"allow", "method"})
+	if !Allowed(allowMethodVal, method) {
+		allowMethod, _ := allowMethodVal.(string)
+		return nil, ctx.MakeError("spec_method_allow",
+			"Method \""+method+"\" not allowed by SDK option allow.method value: \""+allowMethod+"\"")
+	}
 
 	params := ToMapAny(vs.GetProp(fetchargs, "params"))
 	if params == nil {
@@ -205,8 +213,7 @@ func (sdk *DataDragonSDK) Direct(fetchargs map[string]any) (map[string]any, erro
 
 // Is this raw-access op permitted by the SDK's allow.op option?
 func (sdk *DataDragonSDK) opAllowed(op string) bool {
-	allowOp, _ := vs.GetPath(sdk.options, []any{"allow", "op"}).(string)
-	return strings.Contains(allowOp, op)
+	return Allowed(vs.GetPath(sdk.options, []any{"allow", "op"}), op)
 }
 
 func (sdk *DataDragonSDK) opDenied(op string) map[string]any {
@@ -278,20 +285,34 @@ func (sdk *DataDragonSDK) rawRequest(fetchargs map[string]any) (map[string]any, 
 		noBody := status == 204 || status == 304 || contentLength == "0"
 
 		var jsonData any
+		var bodyErr error
 		if !noBody {
 			if jf := vs.GetProp(fm, "json"); jf != nil {
 				if f, ok := jf.(func() any); ok {
 					jsonData = f()
 				}
 			}
+			if unreadable, _ := vs.GetProp(fm, "unreadable").(bool); unreadable {
+				var failed error
+				if status < 200 || status >= 300 {
+					failed = ctx.MakeError("request_status",
+						fmt.Sprintf("request: %d: %v", status, vs.GetProp(fm, "statusText")))
+				}
+				bodyErr = UnreadableBody(ctx, status, headers, vs.GetProp(fm, "body"),
+					fetchdef["headers"], failed)
+			}
 		}
 
-		return map[string]any{
-			"ok":      status >= 200 && status < 300,
+		out := map[string]any{
+			"ok":      bodyErr == nil && status >= 200 && status < 300,
 			"status":  status,
 			"headers": headers,
 			"data":    jsonData,
-		}, nil
+		}
+		if bodyErr != nil {
+			out["err"] = sdk.cleanErr(ctx, bodyErr)
+		}
+		return out, nil
 	}
 
 	return map[string]any{"ok": false, "err": ctx.MakeError("direct_invalid", "invalid response type")}, nil
@@ -354,7 +375,7 @@ func (sdk *DataDragonSDK) Graphql(
 // Champion returns a Champion entity bound to this client.
 // Idiomatic usage: client.Champion(nil).List(nil, nil) or
 // client.Champion(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *DataDragonSDK) Champion(data map[string]any) DataDragonEntity {
+func (sdk *DataDragonSDK) Champion(data map[string]any) DataDragonEntityBase {
 	return NewChampionEntityFunc(sdk, data)
 }
 
@@ -362,7 +383,7 @@ func (sdk *DataDragonSDK) Champion(data map[string]any) DataDragonEntity {
 // DataChampion returns a DataChampion entity bound to this client.
 // Idiomatic usage: client.DataChampion(nil).List(nil, nil) or
 // client.DataChampion(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *DataDragonSDK) DataChampion(data map[string]any) DataDragonEntity {
+func (sdk *DataDragonSDK) DataChampion(data map[string]any) DataDragonEntityBase {
 	return NewDataChampionEntityFunc(sdk, data)
 }
 
@@ -370,7 +391,7 @@ func (sdk *DataDragonSDK) DataChampion(data map[string]any) DataDragonEntity {
 // DataItem returns a DataItem entity bound to this client.
 // Idiomatic usage: client.DataItem(nil).List(nil, nil) or
 // client.DataItem(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *DataDragonSDK) DataItem(data map[string]any) DataDragonEntity {
+func (sdk *DataDragonSDK) DataItem(data map[string]any) DataDragonEntityBase {
 	return NewDataItemEntityFunc(sdk, data)
 }
 
@@ -378,7 +399,7 @@ func (sdk *DataDragonSDK) DataItem(data map[string]any) DataDragonEntity {
 // DataRune returns a DataRune entity bound to this client.
 // Idiomatic usage: client.DataRune(nil).List(nil, nil) or
 // client.DataRune(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *DataDragonSDK) DataRune(data map[string]any) DataDragonEntity {
+func (sdk *DataDragonSDK) DataRune(data map[string]any) DataDragonEntityBase {
 	return NewDataRuneEntityFunc(sdk, data)
 }
 
@@ -386,7 +407,7 @@ func (sdk *DataDragonSDK) DataRune(data map[string]any) DataDragonEntity {
 // DragontailVersiontgz returns a DragontailVersiontgz entity bound to this client.
 // Idiomatic usage: client.DragontailVersiontgz(nil).List(nil, nil) or
 // client.DragontailVersiontgz(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *DataDragonSDK) DragontailVersiontgz(data map[string]any) DataDragonEntity {
+func (sdk *DataDragonSDK) DragontailVersiontgz(data map[string]any) DataDragonEntityBase {
 	return NewDragontailVersiontgzEntityFunc(sdk, data)
 }
 
@@ -394,7 +415,7 @@ func (sdk *DataDragonSDK) DragontailVersiontgz(data map[string]any) DataDragonEn
 // Item returns a Item entity bound to this client.
 // Idiomatic usage: client.Item(nil).List(nil, nil) or
 // client.Item(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *DataDragonSDK) Item(data map[string]any) DataDragonEntity {
+func (sdk *DataDragonSDK) Item(data map[string]any) DataDragonEntityBase {
 	return NewItemEntityFunc(sdk, data)
 }
 
@@ -402,7 +423,7 @@ func (sdk *DataDragonSDK) Item(data map[string]any) DataDragonEntity {
 // Region returns a Region entity bound to this client.
 // Idiomatic usage: client.Region(nil).List(nil, nil) or
 // client.Region(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *DataDragonSDK) Region(data map[string]any) DataDragonEntity {
+func (sdk *DataDragonSDK) Region(data map[string]any) DataDragonEntityBase {
 	return NewRegionEntityFunc(sdk, data)
 }
 
@@ -410,7 +431,7 @@ func (sdk *DataDragonSDK) Region(data map[string]any) DataDragonEntity {
 // Version returns a Version entity bound to this client.
 // Idiomatic usage: client.Version(nil).List(nil, nil) or
 // client.Version(nil).Load(map[string]any{"id": ...}, nil).
-func (sdk *DataDragonSDK) Version(data map[string]any) DataDragonEntity {
+func (sdk *DataDragonSDK) Version(data map[string]any) DataDragonEntityBase {
 	return NewVersionEntityFunc(sdk, data)
 }
 

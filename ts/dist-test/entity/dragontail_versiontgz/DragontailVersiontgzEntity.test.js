@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.DragontailVersiontgz();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.DataDragonSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.DragontailVersiontgz().load({ "version": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.DATA_DRAGON_TEST_LIVE;
         for (const op of ['load']) {
@@ -62,18 +70,26 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "dragontail_versiontgz", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /cdn/dragontail-{version}.tgz", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "12.6.1", "k": "param", "n": "version", "or": "version", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/cdn/dragontail-{version}.tgz", "q": { "exist": ["version"] }, "r": {}, "s": [{ "lit": "cdn" }, { "lit": "dragontail-{version}.tgz" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "dragontail_versiontgz", "name__orig": "dragontail_versiontgz", "Name": "DragontailVersiontgz", "name_": "dragontail_versiontgz", "name-": "dragontail-versiontgz", "NAME": "DRAGONTAIL_VERSIONTGZ", "index$": 4 }, { "active": true, "entity": "dragontail_versiontgz", "key$": "BasicDragontailVersiontgzFlow", "kind": "basic", "name": "BasicDragontailVersiontgzFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "dragontail_versiontgz_ref01", "srcdatavar": "dragontail_versiontgz_ref01_data", "suffix": "_dt0" }, "m": { "version": "version01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-dragontail_versiontgz_ref01" } }], "index$": 0 }] }, 'DragontailVersiontgz', { "GET /cdn/dragontail-{version}.tgz": { "protocol": "http", "parameters": [{ "name": "version", "in": "path", "required": true, "description": "Patch version (e.g., 12.6.1)", "schema": { "type": "string" }, "example": "12.6.1", "index$": 0 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "dragontail_versiontgz", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /cdn/dragontail-{version}.tgz", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "12.6.1", "k": "param", "n": "version", "or": "version", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/cdn/dragontail-{version}.tgz", "q": { "exist": ["version"] }, "r": {}, "rs": { "binary": true, "kind": "raw", "media": "application/gzip" }, "s": [{ "lit": "cdn" }, { "lit": "dragontail-{version}.tgz" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "dragontail_versiontgz", "name__orig": "dragontail_versiontgz", "Name": "DragontailVersiontgz", "name_": "dragontail_versiontgz", "name-": "dragontail-versiontgz", "NAME": "DRAGONTAIL_VERSIONTGZ", "index$": 4 }, { "active": true, "entity": "dragontail_versiontgz", "key$": "BasicDragontailVersiontgzFlow", "kind": "basic", "name": "BasicDragontailVersiontgzFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "dragontail_versiontgz_ref01", "srcdatavar": "dragontail_versiontgz_ref01_data", "suffix": "_dt0" }, "m": { "version": "version01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-dragontail_versiontgz_ref01" } }], "index$": 0 }] }, 'DragontailVersiontgz', { "GET /cdn/dragontail-{version}.tgz": { "protocol": "http", "parameters": [{ "name": "version", "in": "path", "required": true, "description": "Patch version (e.g., 12.6.1)", "schema": { "type": "string" }, "example": "12.6.1", "index$": 0 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
         const isempty = struct.isempty;
         const select = struct.select;
         let dragontail_versiontgz_ref01_data = Object.values(setup.data.existing.dragontail_versiontgz)[0];
-        // LOAD: skipped — no entity id field and load requires path params.
-        // Entity-var is declared here so later flow steps still compile.
+        // LOAD
         const dragontail_versiontgz_ref01_ent = client.DragontailVersiontgz();
+        const dragontail_versiontgz_ref01_match_dt0 = {};
+        dragontail_versiontgz_ref01_match_dt0['version'] = setup.idmap['version'] ?? setup.idmap['version01'];
+        const dragontail_versiontgz_ref01_data_dt0 = (await dragontail_versiontgz_ref01_ent.load(dragontail_versiontgz_ref01_match_dt0)).data();
+        (0, node_assert_1.default)(null != dragontail_versiontgz_ref01_data_dt0);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

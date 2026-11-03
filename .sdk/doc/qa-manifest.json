@@ -3,5 +3,21 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "CDN base URL",
+      "Current patch version",
+      "Data Dragon API Server",
+      "Data Dragon is a static data API providing information and images related to champions, runes, and items in League of Legends. It allows developers to access and download data files, enabling them to integrate game-related information into their applications.",
+      "Successfully retrieved champion data",
+      "Successfully retrieved champion image",
+      "Successfully retrieved item data",
+      "Successfully retrieved item image",
+      "Successfully retrieved realm data",
+      "Successfully retrieved rune data",
+      "Successfully retrieved tarball",
+      "Successfully retrieved version list"
+    ]
+  }
 }

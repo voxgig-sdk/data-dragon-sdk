@@ -21,6 +21,7 @@ export DATA_DRAGON_APIKEY=sk_live_xxx
 # 4. Each command line is ONE boru expression, run against the API:
 ./data-dragon-cli load 1 champion            # {id:1} shorthand
 ./data-dragon-cli load '{id:1}' champion       # explicit match map
+./data-dragon-cli list version
 
 # 5. Override the API base URL for a single call
 DATA_DRAGON_BASE=https://api.example.com ./data-dragon-cli load 1 champion

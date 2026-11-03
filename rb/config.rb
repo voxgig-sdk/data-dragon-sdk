@@ -79,6 +79,7 @@ module DataDragonConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -183,6 +184,11 @@ module DataDragonConfig
                       "version",
                     ],
                   },
+                  "response" => {
+                    "binary" => true,
+                    "kind" => "raw",
+                    "media" => "image/png",
+                  },
                 },
               ],
             },
@@ -279,6 +285,10 @@ module DataDragonConfig
                       "version",
                     ],
                   },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
                 },
               ],
             },
@@ -370,6 +380,10 @@ module DataDragonConfig
                       "version",
                     ],
                   },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
                 },
               ],
             },
@@ -445,6 +459,10 @@ module DataDragonConfig
                       "version",
                     ],
                   },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
                 },
               ],
             },
@@ -498,6 +516,11 @@ module DataDragonConfig
                     "exist" => [
                       "version",
                     ],
+                  },
+                  "response" => {
+                    "binary" => true,
+                    "kind" => "raw",
+                    "media" => "application/gzip",
                   },
                 },
               ],
@@ -588,6 +611,11 @@ module DataDragonConfig
                       "version",
                     ],
                   },
+                  "response" => {
+                    "binary" => true,
+                    "kind" => "raw",
+                    "media" => "image/png",
+                  },
                 },
               ],
             },
@@ -660,6 +688,10 @@ module DataDragonConfig
                       "region",
                     ],
                   },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
                 },
               ],
             },
@@ -699,6 +731,10 @@ module DataDragonConfig
                   },
                   "args" => {},
                   "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
                 },
               ],
             },

@@ -15,6 +15,13 @@ import (
 	vs "github.com/voxgig-sdk/data-dragon-sdk/go/utility/struct"
 )
 
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const championEntityLiveStrict = true
+
+
 func TestChampionEntity(t *testing.T) {
 	t.Run("instance", func(t *testing.T) {
 		testsdk := sdk.TestSDK(nil, nil)
@@ -24,7 +31,21 @@ func TestChampionEntity(t *testing.T) {
 		}
 	})
 
-	t.Run("basic", func(t *testing.T) {
+	t.Run("validate", func(t *testing.T) {
+		if !fhHasFeature("validate") {
+			t.Skip("feature not present in this SDK: validate")
+		}
+		client := sdk.TestSDK(nil, map[string]any{
+			"feature": map[string]any{"validate": map[string]any{"active": true}},
+		})
+		_, err := client.Champion(nil).Load(map[string]any{"id": 1, "version": "x"}, nil)
+		if sdkerr, ok := err.(*core.DataDragonError); !ok || "validate_failed" != sdkerr.Code {
+			t.Fatalf("expected validate_failed, got %v", err)
+		}
+	})
+
+	t.Run("basic", func(tt *testing.T) {
+		var t testing.TB = tt
 		setup := championBasicSetup(nil)
 		// Per-op sdk-test-control.json skip — basic test exercises a flow
 		// with multiple ops; skipping any op skips the whole flow.
@@ -41,13 +62,20 @@ func TestChampionEntity(t *testing.T) {
 				return
 			}
 		}
-		// The basic flow consumes synthetic IDs from the fixture. In live mode
-		// without an *_ENTID env override, those IDs hit the live API and 4xx.
-		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set DATA_DRAGON_TEST_CHAMPION_ENTID JSON to run live")
-			return
+		if setup.live {
+			for _liveKey, _liveEx := range map[string]any{"champion01": "Ahri.png", "version01": "12.6.1"} {
+				if setup.syntheticOnly || setup.idmap[_liveKey] == nil {
+					setup.idmap[_liveKey] = _liveEx
+				}
+			}
 		}
 		client := setup.client
+		_ = client
+		if setup.live {
+			liveExisting(t, championEntityLiveStrict, setup.data, "champion", func() (any, error) {
+				return []any{map[string]any{"id": setup.idmap["champion01"]}}, nil
+			})
+		}
 
 		// Bootstrap entity data from existing test data (no create step in flow).
 		championRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.champion")))
@@ -63,6 +91,11 @@ func TestChampionEntity(t *testing.T) {
 		championRef01Ent := client.Champion(nil)
 		championRef01MatchDt0 := map[string]any{
 			"id": championRef01Data["id"],
+		}
+		if v := setup.idmap["version"]; v != nil {
+			championRef01MatchDt0["version"] = v
+		} else {
+			championRef01MatchDt0["version"] = setup.idmap["version01"]
 		}
 		championRef01DataDt0Loaded, err := championRef01Ent.Load(championRef01MatchDt0, nil)
 		if err != nil {
@@ -113,9 +146,8 @@ func championBasicSetup(extra map[string]any) *entityTestSetup {
 		},
 	)
 
-	// Detect ENTID env override before envOverride consumes it. When live
-	// mode is on without a real override, the basic test runs against synthetic
-	// IDs from the fixture and 4xx's. Surface this so the test can skip.
+	// Whether *_ENTID supplied the idmap, read before envOverride consumes it:
+	// without it, the ids a live flow binds are the fixture's synthetic ones.
 	entidEnvRaw := os.Getenv("DATA_DRAGON_TEST_CHAMPION_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 

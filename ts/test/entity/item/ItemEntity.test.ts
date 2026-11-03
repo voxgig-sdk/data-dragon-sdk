@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { DataDragonSDK, BaseFeature, stdutil } from '../../..'
+import { DataDragonSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('ItemEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = DataDragonSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Item().load({"id":1,"version":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.DATA_DRAGON_TEST_LIVE
@@ -51,7 +63,7 @@ describe('ItemEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"id":{"a":true,"h":"Id","n":"id","r":false,"t":"`$STRING`","key$":"id","index$":0}},"id":{"field":"id","name":"id"},"name":"item","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /cdn/{version}/img/item/{itemImage}","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"1001.png","k":"param","n":"id","or":"itemImage","r":true,"t":"`$STRING`","index$":0},{"a":true,"ex":"12.6.1","k":"param","n":"version","or":"version","r":true,"t":"`$STRING`","index$":1}]},"k":"http","m":"GET","o":"/cdn/{version}/img/item/{itemImage}","q":{"exist":["id","version"]},"r":{"param":{"itemImage":"id"}},"s":[{"lit":"cdn"},{"var":"version"},{"lit":"img"},{"lit":"item"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"item","name__orig":"item","Name":"Item","name_":"item","name-":"item","NAME":"ITEM","index$":5}, {"active":true,"entity":"item","key$":"BasicItemFlow","kind":"basic","name":"BasicItemFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"item_ref01","srcdatavar":"item_ref01_data","suffix":"_dt0"},"m":{"id":"item01","version":"version01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-item_ref01"}}],"index$":0}]}, 'Item', {"GET /cdn/{version}/img/item/{itemImage}":{"protocol":"http","parameters":[{"name":"version","in":"path","required":true,"description":"Patch version (e.g., 12.6.1)","schema":{"type":"string"},"example":"12.6.1","index$":0},{"name":"itemImage","in":"path","required":true,"description":"Item image filename (e.g., 1001.png)","schema":{"type":"string"},"example":"1001.png","index$":1}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"id":{"a":true,"h":"Id","n":"id","r":false,"t":"`$STRING`","key$":"id","index$":0}},"id":{"field":"id","name":"id"},"name":"item","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /cdn/{version}/img/item/{itemImage}","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"1001.png","k":"param","n":"id","or":"itemImage","r":true,"t":"`$STRING`","index$":0},{"a":true,"ex":"12.6.1","k":"param","n":"version","or":"version","r":true,"t":"`$STRING`","index$":1}]},"k":"http","m":"GET","o":"/cdn/{version}/img/item/{itemImage}","q":{"exist":["id","version"]},"r":{"param":{"itemImage":"id"}},"rs":{"binary":true,"kind":"raw","media":"image/png"},"s":[{"lit":"cdn"},{"var":"version"},{"lit":"img"},{"lit":"item"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"item","name__orig":"item","Name":"Item","name_":"item","name-":"item","NAME":"ITEM","index$":5}, {"active":true,"entity":"item","key$":"BasicItemFlow","kind":"basic","name":"BasicItemFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"item_ref01","srcdatavar":"item_ref01_data","suffix":"_dt0"},"m":{"id":"item01","version":"version01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-item_ref01"}}],"index$":0,"route":"GET /cdn/{version}/img/item/{itemImage}","record":{}}]}, 'Item', {"GET /cdn/{version}/img/item/{itemImage}":{"protocol":"http","parameters":[{"name":"version","in":"path","required":true,"description":"Patch version (e.g., 12.6.1)","schema":{"type":"string"},"example":"12.6.1","index$":0},{"name":"itemImage","in":"path","required":true,"description":"Item image filename (e.g., 1001.png)","schema":{"type":"string"},"example":"1001.png","index$":1}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -65,6 +77,7 @@ describe('ItemEntity', async () => {
     const item_ref01_ent = client.Item()
     const item_ref01_match_dt0: any = {}
     item_ref01_match_dt0.id = item_ref01_data.id
+    item_ref01_match_dt0['version'] = setup.idmap['version'] ?? setup.idmap['version01']
     const item_ref01_data_dt0 = (await item_ref01_ent.load(item_ref01_match_dt0)).data()
     assert(item_ref01_data_dt0.id === item_ref01_data.id)
 
@@ -73,6 +86,12 @@ describe('ItemEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

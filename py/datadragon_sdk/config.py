@@ -96,6 +96,7 @@ def make_config():
         },
         "optspec": {
           "clearTimer": "`$FUNCTION`",
+          "now": "`$FUNCTION`",
           "setTimer": "`$FUNCTION`",
         },
         "strict": False,
@@ -200,6 +201,11 @@ def make_config():
                     "version",
                   ],
                 },
+                "response": {
+                  "binary": True,
+                  "kind": "raw",
+                  "media": "image/png",
+                },
               },
             ],
           },
@@ -296,6 +302,10 @@ def make_config():
                     "version",
                   ],
                 },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
               },
             ],
           },
@@ -387,6 +397,10 @@ def make_config():
                     "version",
                   ],
                 },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
               },
             ],
           },
@@ -462,6 +476,10 @@ def make_config():
                     "version",
                   ],
                 },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
               },
             ],
           },
@@ -515,6 +533,11 @@ def make_config():
                   "exist": [
                     "version",
                   ],
+                },
+                "response": {
+                  "binary": True,
+                  "kind": "raw",
+                  "media": "application/gzip",
                 },
               },
             ],
@@ -605,6 +628,11 @@ def make_config():
                     "version",
                   ],
                 },
+                "response": {
+                  "binary": True,
+                  "kind": "raw",
+                  "media": "image/png",
+                },
               },
             ],
           },
@@ -677,6 +705,10 @@ def make_config():
                     "region",
                   ],
                 },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
               },
             ],
           },
@@ -716,6 +748,10 @@ def make_config():
                 },
                 "args": {},
                 "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
               },
             ],
           },

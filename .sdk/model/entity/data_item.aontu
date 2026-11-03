@@ -64,6 +64,10 @@ main: kit: entity: data_item: {
               "version"
             ]
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "cdn"

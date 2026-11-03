@@ -93,6 +93,7 @@ class DataDragonConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -197,6 +198,11 @@ class DataDragonConfig
                       'version',
                     ],
                   ],
+                  'response' => [
+                    'binary' => true,
+                    'kind' => 'raw',
+                    'media' => 'image/png',
+                  ],
                 ],
               ],
             ],
@@ -293,6 +299,10 @@ class DataDragonConfig
                       'version',
                     ],
                   ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -384,6 +394,10 @@ class DataDragonConfig
                       'version',
                     ],
                   ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -459,6 +473,10 @@ class DataDragonConfig
                       'version',
                     ],
                   ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -512,6 +530,11 @@ class DataDragonConfig
                     'exist' => [
                       'version',
                     ],
+                  ],
+                  'response' => [
+                    'binary' => true,
+                    'kind' => 'raw',
+                    'media' => 'application/gzip',
                   ],
                 ],
               ],
@@ -602,6 +625,11 @@ class DataDragonConfig
                       'version',
                     ],
                   ],
+                  'response' => [
+                    'binary' => true,
+                    'kind' => 'raw',
+                    'media' => 'image/png',
+                  ],
                 ],
               ],
             ],
@@ -674,6 +702,10 @@ class DataDragonConfig
                       'region',
                     ],
                   ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -713,6 +745,10 @@ class DataDragonConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],

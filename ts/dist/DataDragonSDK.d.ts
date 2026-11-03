@@ -14,6 +14,19 @@ import { DataDragonEntityBase } from './DataDragonEntityBase';
 import { Utility } from './utility/Utility';
 import { BaseFeature } from './feature/base/BaseFeature';
 declare const stdutil: Utility;
+type DirectResult = {
+    ok: false;
+    err: any;
+    status?: undefined;
+    headers?: undefined;
+    data?: undefined;
+} | {
+    ok: boolean;
+    status: number;
+    headers: any;
+    data: any;
+    err?: any;
+};
 declare class DataDragonSDK {
     _mode: string;
     _options: any;
@@ -24,32 +37,8 @@ declare class DataDragonSDK {
     options(): any;
     utility(): any;
     prepare(fetchargs?: any): Promise<any>;
-    direct(fetchargs?: any): Promise<Error | {
-        ok: boolean;
-        err: any;
-        status?: undefined;
-        headers?: undefined;
-        data?: undefined;
-    } | {
-        ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    }>;
-    _rawRequest(fetchargs?: any): Promise<Error | {
-        ok: boolean;
-        err: any;
-        status?: undefined;
-        headers?: undefined;
-        data?: undefined;
-    } | {
-        ok: boolean;
-        status: number;
-        headers: any;
-        data: any;
-        err?: undefined;
-    }>;
+    direct(fetchargs?: any): Promise<DirectResult>;
+    _rawRequest(fetchargs?: any): Promise<DirectResult>;
     graphql(query: string, variables?: any, ctrl?: any): Promise<any>;
     Champion(entopts?: Record<string, any>): ChampionEntity;
     DataChampion(entopts?: Record<string, any>): DataChampionEntity;
@@ -69,3 +58,4 @@ declare class DataDragonSDK {
 }
 declare const SDK: typeof DataDragonSDK;
 export { stdutil, config, BaseFeature, DataDragonEntityBase, DataDragonSDK, SDK, };
+export type { DirectResult };

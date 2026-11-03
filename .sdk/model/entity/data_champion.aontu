@@ -70,6 +70,10 @@ main: kit: entity: data_champion: {
               "version"
             ]
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "cdn"

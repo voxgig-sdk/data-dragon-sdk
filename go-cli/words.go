@@ -75,7 +75,7 @@ func runOp(client *sdk.DataDragonSDK, op string, query *eng.Value, entityAtom en
 
 // entityFor dispatches on the lowercase entity name. The generator
 // emits one `case "<name>":` per entity defined in the SDK model.
-func entityFor(client *sdk.DataDragonSDK, name string) (sdk.DataDragonEntity, error) {
+func entityFor(client *sdk.DataDragonSDK, name string) (sdk.DataDragonEntityBase, error) {
 	switch strings.ToLower(name) {
 	case "champion":
 		return client.Champion(nil), nil
